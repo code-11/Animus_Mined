@@ -5,40 +5,53 @@ public class playerController : MonoBehaviour
 {
 
 		public float m_speed;
-		public float m_gravity;
+		public Transform left;
+		public Transform right;
 		// Use this for initialization
-		void Start ()
+		void MoveHoriz ()
 		{
-		
-		}
-		void Move ()
-		{
+				float rayScale = .25F;
 				float horizDir = Input.GetAxis ("Horizontal");
-				float vertDir = Input.GetAxis ("Vertical");
-				transform.position += (new Vector3 (horizDir, vertDir) * m_speed * Time.fixedDeltaTime);
-		}
-
-		void Gravity ()
-		{
-				float yPos=transform.position.y;
-				float xPos=transform.position.x;
-				Debug.DrawLine(new Vector3(xPos+.5F,yPos-.5F,0),new Vector3(xPos+.5F,yPos-1.5F,0),Color.red);
-				Debug.DrawLine(new Vector3(xPos-.5F,yPos-.5F,0),new Vector3(xPos-.5F,yPos-1.5F,0),Color.blue);
-				RaycastHit2D downInfoLeft;
-				RaycastHit2D downInfoRight;
-				downInfoLeft=Physics2D.Raycast(new Vector2(xPos-.5F,yPos-.5F),-Vector2.up,1F);
-				downInfoRight=Physics2D.Raycast(new Vector2(xPos+.5F, yPos-.5F),-Vector2.up,1F);
-				Debug.Log(downInfoLeft.collider);
-				if (downInfoLeft.collider==null && downInfoRight.collider==null){
-					transform.position+= (new Vector3(0,m_gravity,0))*Time.fixedDeltaTime;
-				}
+				//float vertDir = Input.GetAxis ("Vertical");
 				
-		}	
-
-
+				RaycastHit2D infoLeft;
+				RaycastHit2D infoRight;
+				
+				Vector3 leftPos = left.position;
+				Vector3 rightPos = right.position;
+				
+				infoLeft = Physics2D.Raycast (new Vector2 (leftPos.x, leftPos.y), -Vector2.right, m_speed * rayScale);
+				infoRight = Physics2D.Raycast (new Vector2 (rightPos.x, rightPos.y), Vector2.right, m_speed * rayScale);
+		
+				//Debug.DrawLine (new Vector3 (xPosRight, yPos, 0), new Vector3 (xPosRight, yPos - gravSize, 0), Color.blue);
+				Vector3 amountMove = (new Vector3 (horizDir, 0) * m_speed * Time.fixedDeltaTime);
+				
+				float leftDiff = Mathf.Abs (leftPos.x - infoLeft.point.x);
+				float rightDiff = Mathf.Abs (rightPos.x - infoRight.point.x);
+				
+				bool anyHit = ((infoLeft.collider != null) || (infoRight.collider != null));
+				if (anyHit) {
+						if ((horizDir > 0) && (rightDiff < Mathf.Abs (amountMove.x))) {
+								transform.position += (new Vector3 (rightDiff, 0, 0));
+								Debug.DrawLine (rightPos, rightPos + (new Vector3 (m_speed * rayScale, 0, 0)), Color.green);
+						} else if ((horizDir < 0) && (leftDiff < Mathf.Abs (amountMove.x))) {
+								transform.position -= (new Vector3 (leftDiff, 0, 0));
+								Debug.Log ("Left Diff" + leftDiff);
+								Debug.Log ("Amount Move" + Mathf.Abs (amountMove.x));
+								Debug.DrawLine (leftPos, leftPos - (new Vector3 (m_speed * rayScale, 0, 0)), Color.green);
+						} else {
+								//Debug.Log ("Regular Move");
+								transform.position += amountMove;
+						}
+				} else {
+						//Debug.Log ("Regular Move");
+						transform.position += amountMove;
+				}
+				//Debug.Log ("I am moving");
+		}
 		void FixedUpdate ()
 		{
-				Move ();
-				Gravity();
+				MoveHoriz ();
+				//Gravity ();
 		}
 }
