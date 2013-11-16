@@ -1,0 +1,1 @@
+Animus Mined is a 2-D mining game much like motherlode (see miniclip.com). The objective of the game is to mine deeper and acquire more resources. It is made using Unity. 

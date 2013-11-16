@@ -38,15 +38,12 @@ public class fallController : MonoBehaviour
 				Vector3 amountMove = (new Vector3 (0, m_gravity, 0)) * Time.fixedDeltaTime;
 		
 				bool collidersNull = downInfoLeft.collider == null && downInfoRight.collider == null;
-/*				Debug.Log (downInfoLeft.collider);
-				Debug.Log (downInfoRight.collider);*/
 				if ((leastDiff <= -amountMove.y) && (!collidersNull)) {
 						transform.position += (new Vector3 (0, -leastDiff, 0));
-						//Debug.Log ("Just a bit more");
 				} else if ((collidersNull) || (leastDiff >= -amountMove.y)) {
 						transform.position += amountMove;
-						//Debug.Log ("Apply gravity like regular");
 				}	
+				//if downInfoLeft.collider.
 		}	
 	
 		// Update is called once per frame

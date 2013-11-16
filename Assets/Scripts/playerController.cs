@@ -31,12 +31,12 @@ public class playerController : MonoBehaviour
 								
 				if ((infoRight.collider != null) && (horizDir > 0) && (rightDiff < Mathf.Abs (amountMove.x))) {
 						transform.position += (new Vector3 (rightDiff, 0, 0));
-						Debug.DrawLine (rightPos, rightPos + (new Vector3 (m_speed * rayScale, 0, 0)), Color.green);
+						//Debug.DrawLine (rightPos, rightPos + (new Vector3 (m_speed * rayScale, 0, 0)), Color.green);
 				} else if ((infoLeft.collider != null) && (horizDir < 0) && (leftDiff < Mathf.Abs (amountMove.x))) {
 						transform.position -= (new Vector3 (leftDiff, 0, 0));
-						Debug.Log ("Left Diff" + leftDiff);
-						Debug.Log ("Amount Move" + Mathf.Abs (amountMove.x));
-						Debug.DrawLine (leftPos, leftPos - (new Vector3 (m_speed * rayScale, 0, 0)), Color.green);
+						//Debug.Log ("Left Diff" + leftDiff);
+						//Debug.Log ("Amount Move" + Mathf.Abs (amountMove.x));
+						//Debug.DrawLine (leftPos, leftPos - (new Vector3 (m_speed * rayScale, 0, 0)), Color.green);
 				} else {
 						transform.position += amountMove;
 				}
