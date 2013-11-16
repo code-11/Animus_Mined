@@ -41,6 +41,12 @@ public class playerController : MonoBehaviour
 						transform.position += amountMove;
 				}
 		}
+		void killSelf ()
+		{
+				Time.timeScale = 0.3F;
+				Destroy (this.gameObject);
+				Debug.Log ("Game Over");
+		}
 		void FixedUpdate ()
 		{
 				MoveHoriz ();

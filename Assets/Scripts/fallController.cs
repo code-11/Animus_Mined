@@ -43,9 +43,30 @@ public class fallController : MonoBehaviour
 				} else if ((collidersNull) || (leastDiff >= -amountMove.y)) {
 						transform.position += amountMove;
 				}	
-				//if downInfoLeft.collider.
-		}	
-	
+				CheckPlayerHit (downInfoLeft, downInfoRight, leftDiff, rightDiff);
+
+		}
+		void CheckPlayerHit (RaycastHit2D downInfoLeft, RaycastHit2D downInfoRight, float leftDiff, float rightDiff)
+		{
+				Transform leftHitObj = null;
+				Transform rightHitObj = null;
+				if (downInfoLeft.collider) {
+						leftHitObj = downInfoLeft.collider.transform;
+				}
+				if (downInfoRight.collider) {
+						rightHitObj = downInfoRight.collider.transform;
+				}				
+			
+				if (leftHitObj != null) {
+						if ((leftHitObj.CompareTag ("Player")) && (leftDiff < .1)) {		
+								leftHitObj.gameObject.SendMessage ("killSelf");
+						}
+				} else if (rightHitObj != null) {
+						if ((rightHitObj.CompareTag ("Player")) && (rightDiff < .1)) {
+								rightHitObj.gameObject.SendMessage ("killSelf");
+						}
+				}
+		}
 		// Update is called once per frame
 		void FixedUpdate ()
 		{
