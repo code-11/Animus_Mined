@@ -7,7 +7,7 @@ public class playerController : MonoBehaviour
 		public float m_speed;
 		public Transform left;
 		public Transform right;
-		public int m_mineStr;
+		//public int m_mineStr;
 		// Use this for initialization
 		void MoveHoriz ()
 		{
@@ -42,8 +42,9 @@ public class playerController : MonoBehaviour
 						transform.position += amountMove;
 				}
 				
-				MineLogic (infoRight, infoLeft, leftDiff, rightDiff, horizDir);
+				//MineLogic (infoRight, infoLeft, leftDiff, rightDiff, horizDir);
 		}
+		/*
 		void MineLogic (RaycastHit2D infoRight, RaycastHit2D infoLeft, float leftDiff, float rightDiff, float horizDir)
 		{	
 				if (horizDir != 0) {
@@ -61,7 +62,7 @@ public class playerController : MonoBehaviour
 				
 				//Destroy (blockHit.collider.gameObject);
 		}
-		
+		*/
 		void killSelf ()
 		{
 				Time.timeScale = 0.3F;

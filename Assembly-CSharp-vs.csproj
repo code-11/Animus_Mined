@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\fallController.cs" />
+     <Compile Include="Assets\Scripts\mineController.cs" />
      <Compile Include="Assets\Scripts\mineability.cs" />
      <Compile Include="Assets\Scripts\playerController.cs" />
   </ItemGroup>
