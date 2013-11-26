@@ -6,6 +6,17 @@ public class fallController : MonoBehaviour
 		public Transform m_leftBottom;
 		public Transform m_rightBottom;
 		public float m_gravity;
+		public float m_maxTimeToFall;
+		public float m_curTimeToFall;
+		
+		void GravityWithWait ()
+		{
+				if (m_curTimeToFall <= 0) {
+						Gravity ();
+				} else {
+						m_curTimeToFall -= 1 * Time.deltaTime;
+				}
+		}
 		void Gravity ()
 		{
 				RaycastHit2D downInfoLeft;
@@ -40,6 +51,7 @@ public class fallController : MonoBehaviour
 				bool collidersNull = downInfoLeft.collider == null && downInfoRight.collider == null;
 				if ((leastDiff <= -amountMove.y) && (!collidersNull)) {
 						transform.position += (new Vector3 (0, -leastDiff, 0));
+						m_curTimeToFall = m_maxTimeToFall;
 				} else if ((collidersNull) || (leastDiff >= -amountMove.y)) {
 						transform.position += amountMove;
 				}	
@@ -70,6 +82,6 @@ public class fallController : MonoBehaviour
 		// Update is called once per frame
 		void FixedUpdate ()
 		{
-				Gravity ();
+				GravityWithWait ();
 		}
 }
