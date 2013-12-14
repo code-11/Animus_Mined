@@ -46,10 +46,12 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Scripts\fallController.cs" />
-     <Compile Include="Assets\Scripts\mineController.cs" />
-     <Compile Include="Assets\Scripts\mineability.cs" />
-     <Compile Include="Assets\Scripts\playerController.cs" />
+     <Compile Include="Assets\Scripts\Abilities\mineability.cs" />
+     <Compile Include="Assets\Scripts\Abilities\permeability.cs" />
+     <Compile Include="Assets\Scripts\Controllers\fallController.cs" />
+     <Compile Include="Assets\Scripts\Controllers\ladderController.cs" />
+     <Compile Include="Assets\Scripts\Controllers\mineController.cs" />
+     <Compile Include="Assets\Scripts\Controllers\playerController.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

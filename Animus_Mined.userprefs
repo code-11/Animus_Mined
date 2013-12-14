@@ -1,10 +1,11 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\mineController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Controllers\ladderController.cs">
     <Files>
-      <File FileName="Assets\Scripts\playerController.cs" Line="51" Column="4" />
-      <File FileName="Assets\Scripts\mineability.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\mineController.cs" Line="23" Column="6" />
+      <File FileName="Assets\Scripts\Controllers\playerController.cs" Line="80" Column="19" />
+      <File FileName="Assets\Scripts\Controllers\ladderController.cs" Line="21" Column="6" />
+      <File FileName="Assets\Scripts\Controllers\fallController.cs" Line="47" Column="29" />
+      <File FileName="Assets\Scripts\Abilities\permeability.cs" Line="6" Column="27" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
