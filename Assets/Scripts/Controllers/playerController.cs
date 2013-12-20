@@ -160,7 +160,7 @@ public class playerController : MonoBehaviour
 				Destroy (this.gameObject);
 				Debug.Log ("Game Over");
 		}
-		void FixedUpdate ()
+		void Update ()
 		{
 				//Debug.Log (Input.GetAxis ("Horizontal"));
 				MoveHorizNew ();

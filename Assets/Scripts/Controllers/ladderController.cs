@@ -20,7 +20,7 @@ public class ladderController : MonoBehaviour
 								transform.position += amountMove;
 				}
 		}
-		void FixedUpdate ()
+		void Update ()
 		{
 				ladderNavigate ();
 		}

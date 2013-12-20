@@ -8,6 +8,7 @@ public class fallController : MonoBehaviour
 		public float m_gravity;
 		public float m_maxTimeToFall;
 		public float m_curTimeToFall;
+		public bool m_waitToFall;
 		
 		void GravityWithWait ()
 		{
@@ -80,8 +81,13 @@ public class fallController : MonoBehaviour
 				}
 		}
 		// Update is called once per frame
-		void FixedUpdate ()
+		void Update ()
 		{
-				GravityWithWait ();
+				if (m_waitToFall) {
+						GravityWithWait ();
+				} else {
+						Gravity ();
+				}
+
 		}
 }
