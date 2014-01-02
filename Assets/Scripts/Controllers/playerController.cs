@@ -71,7 +71,7 @@ public class playerController : MonoBehaviour
 								//Debug.Log ("Right");
 								transform.position += amountMove;
 						}
-						Debug.Log (closeRightInfo.collider.gameObject.name);
+						//Debug.Log (closeRightInfo.collider.gameObject.name);
 						//Debug.DrawLine (rightHPos, rightHPos + (new Vector3 (m_speed * rayScale, 0, 0)), Color.green);
 				} else if ((closeLeftInfo.collider != null) && (horizDir < 0) && (closeLeftDiff < Mathf.Abs (amountMove.x))) {
 						if (! closeLeftInfo.collider.gameObject.GetComponent<permeability> ().m_horizontal) {
@@ -81,7 +81,7 @@ public class playerController : MonoBehaviour
 								//Debug.Log ("Left");
 								transform.position += amountMove;
 						}
-						Debug.Log (closeLeftInfo.collider.gameObject.name);
+						//Debug.Log (closeLeftInfo.collider.gameObject.name);
 						//Debug.Log ("Left Diff" + leftDiff);
 						//Debug.Log ("Amount Move" + Mathf.Abs (amountMove.x));
 						//Debug.DrawLine (leftPos, leftPos - (new Vector3 (m_speed * rayScale, 0, 0)), Color.green);

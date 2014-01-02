@@ -50,7 +50,7 @@ public class fallController : MonoBehaviour
 				Vector3 amountMove = (new Vector3 (0, m_gravity, 0)) * Time.fixedDeltaTime;
 		
 				bool collidersNull = downInfoLeft.collider == null && downInfoRight.collider == null;
-				if ((leastDiff <= -amountMove.y) && (!collidersNull)) {
+				if ((leastDiff <= -amountMove.y) || (!collidersNull)) {
 						transform.position += (new Vector3 (0, -leastDiff, 0));
 						m_curTimeToFall = m_maxTimeToFall;
 				} else if ((collidersNull) || (leastDiff >= -amountMove.y)) {
