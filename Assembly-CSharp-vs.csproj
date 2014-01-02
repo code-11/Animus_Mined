@@ -52,6 +52,7 @@
      <Compile Include="Assets\Scripts\Controllers\ladderController.cs" />
      <Compile Include="Assets\Scripts\Controllers\mineController.cs" />
      <Compile Include="Assets\Scripts\Controllers\playerController.cs" />
+     <Compile Include="Assets\Scripts\overlapDetector.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
