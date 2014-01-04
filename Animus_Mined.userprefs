@@ -1,9 +1,12 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Controllers\ladderController.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\inventoryManager.cs">
     <Files>
-      <File FileName="Assets\Scripts\Controllers\ladderController.cs" Line="36" Column="24" />
-      <File FileName="Assets\Scripts\Controllers\fallController.cs" Line="43" Column="21" />
+      <File FileName="Assets\Scripts\inventoryManager.cs" Line="26" Column="4" />
+      <File FileName="Assets\Scripts\Controllers\playerController.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Controllers\ladderController.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\overlapDetector.cs" Line="24" Column="30" />
+      <File FileName="Assets\Scripts\Abilities\pickupability.cs" Line="9" Column="29" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
