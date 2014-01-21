@@ -37,6 +37,10 @@ public class inventoryManager : MonoBehaviour
 				}
 				pickUp ();				
 		}	
+		public Hashtable getInven ()
+		{
+				return m_inventory;
+		}
 		void pickUp ()
 		{
 				overlapDetector waitItems = gameObject.GetComponent<overlapDetector> ();

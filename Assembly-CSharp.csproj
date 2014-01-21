@@ -46,6 +46,8 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\InventoryGui.cs" />
+     <Compile Include="Assets\QuickSlot.cs" />
      <Compile Include="Assets\Scripts\Abilities\mineability.cs" />
      <Compile Include="Assets\Scripts\Abilities\permeability.cs" />
      <Compile Include="Assets\Scripts\Abilities\pickupability.cs" />
