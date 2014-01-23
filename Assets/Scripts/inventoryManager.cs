@@ -13,7 +13,20 @@ public class inventoryManager : MonoBehaviour
 		//public GameObject m_placeholder;
 		private int invenNum = 0;
 		private bool allowI = true;
+		public int selected = 0;
 		
+		public GameObject getSelObj ()
+		{
+				return (GameObject)m_inventory [selected + 1];
+		}
+		public void setSelNum (int newNum)
+		{
+				selected = newNum;
+		}
+		public int getSelNum ()
+		{
+				return selected;
+		}
 		void Start ()
 		{
 /*				GameObject m_startItems[]={};*/
@@ -27,10 +40,31 @@ public class inventoryManager : MonoBehaviour
 				runInven ();
 		}
 		
+		void shiftLeft ()
+		{
+				if (selected > 0) {
+						selected -= 1;
+				}
+		}
+		void shiftRight ()
+		{
+				if (selected < invenNum - 1) {
+						selected += 1;
+				}
+		}
+		
 		void runInven ()
 		{
 
 				bool iPress = Input.GetKey ("i");
+				bool selLeft = Input.GetKeyDown ("q");
+				bool selRight = Input.GetKeyDown ("e");
+				if (selLeft) {
+						shiftLeft ();
+				}
+				if (selRight) {
+						shiftRight ();
+				}
 				if ((iPress) && (allowI)) {
 						allowI = false;
 						StartCoroutine (viewIven ());
