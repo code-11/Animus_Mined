@@ -12,7 +12,7 @@ public class inventoryManager : MonoBehaviour
 		private Hashtable m_inventory;
 		//public GameObject m_placeholder;
 		private int invenNum = 0;
-		private bool allowI = true;
+		private bool invenUp = false;
 		public int selected = 0;
 		
 		public GameObject getSelObj ()
@@ -55,19 +55,26 @@ public class inventoryManager : MonoBehaviour
 		
 		void runInven ()
 		{
-
-				bool iPress = Input.GetKey ("i");
+				InventoryGui invenGui = gameObject.GetComponent<InventoryGui> ();
+				bool iPress = Input.GetKeyDown ("i");
 				bool selLeft = Input.GetKeyDown ("q");
 				bool selRight = Input.GetKeyDown ("e");
+				
 				if (selLeft) {
 						shiftLeft ();
 				}
 				if (selRight) {
 						shiftRight ();
 				}
-				if ((iPress) && (allowI)) {
-						allowI = false;
-						StartCoroutine (viewIven ());
+				if (iPress) {
+						if (invenUp == true) {
+								invenUp = false;
+								invenGui.enabled = false;
+						} else {
+								invenUp = true;
+								invenGui.enabled = true;
+						}
+						//StartCoroutine (viewIven ());
 				}
 				pickUp ();				
 		}	
@@ -94,13 +101,13 @@ public class inventoryManager : MonoBehaviour
 						m_inventory.Add (invenNum, item);
 				}
 		}
-		IEnumerator viewIven ()
+/*		IEnumerator viewIven ()
 		{
 				yield return new WaitForSeconds (0.2f);
 				allowI = true;
 				foreach (var item in m_inventory.Values) {
 						Debug.Log (item);
 				}
-		}
+		}*/
 		
 }
