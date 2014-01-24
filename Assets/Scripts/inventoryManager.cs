@@ -59,7 +59,14 @@ public class inventoryManager : MonoBehaviour
 				bool iPress = Input.GetKeyDown ("i");
 				bool selLeft = Input.GetKeyDown ("q");
 				bool selRight = Input.GetKeyDown ("e");
-				
+				bool rPress = Input.GetKeyDown ("r");
+				bool pPress = Input.GetKeyDown ("p");
+				if (pPress) {
+						RemoveSelItem ();
+				}
+				if (rPress) {
+						UseSelected ();
+				}
 				if (selLeft) {
 						shiftLeft ();
 				}
@@ -99,6 +106,26 @@ public class inventoryManager : MonoBehaviour
 				if (!m_inventory.ContainsValue (item)) {
 						invenNum += 1;
 						m_inventory.Add (invenNum, item);
+				}
+		}
+		public void RemoveSelItem ()
+		{
+				m_inventory.Remove (selected);
+				for (int index=selected; index<invenNum; index++) {
+						if (m_inventory.ContainsKey (index + 1)) {
+								Debug.Log ("Replacing slot " + index + " with item at " + (index + 1));
+								m_inventory.Add (index, m_inventory [index + 1]);
+								m_inventory.Remove (index + 1);
+						}
+				}
+				selected = 0;
+				//Destroy()
+		}
+		public void UseSelected ()
+		{
+				Usability useScript = getSelObj ().GetComponent<Usability> (); 
+				if (useScript != null) {
+						useScript.Use ();
 				}
 		}
 /*		IEnumerator viewIven ()

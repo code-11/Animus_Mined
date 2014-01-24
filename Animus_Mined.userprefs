@@ -1,11 +1,10 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\InventoryGui.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\inventoryManager.cs">
     <Files>
-      <File FileName="Assets\InventoryGui.cs" Line="1" Column="1" />
-      <File FileName="Assets\InventoryGui.cs" Line="11" Column="5" />
-      <File FileName="Assets\Scripts\inventoryManager.cs" Line="59" Column="35" />
-      <File FileName="Assets\QuickSlot.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\inventoryManager.cs" Line="115" Column="45" />
+      <File FileName="Assets\Usability.cs" Line="5" Column="4" />
+      <File FileName="Assets\ladderOnUse.cs" Line="23" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
