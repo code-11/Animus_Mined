@@ -17,7 +17,7 @@ public class inventoryManager : MonoBehaviour
 		
 		public GameObject getSelObj ()
 		{
-				return (GameObject)m_inventory [selected + 1];
+				return (GameObject)m_inventory [selected];
 		}
 		public void setSelNum (int newNum)
 		{
@@ -48,7 +48,7 @@ public class inventoryManager : MonoBehaviour
 		}
 		void shiftRight ()
 		{
-				if (selected < invenNum - 1) {
+				if (selected < invenNum) {
 						selected += 1;
 				}
 		}
@@ -104,8 +104,9 @@ public class inventoryManager : MonoBehaviour
 		public void AddItem (GameObject item)
 		{
 				if (!m_inventory.ContainsValue (item)) {
-						invenNum += 1;
+						
 						m_inventory.Add (invenNum, item);
+						invenNum += 1;
 				}
 		}
 		public void RemoveSelItem ()
