@@ -126,7 +126,7 @@ public class inventoryManager : MonoBehaviour
 		{
 				Usability useScript = getSelObj ().GetComponent<Usability> (); 
 				if (useScript != null) {
-						useScript.Use ();
+						useScript.Use (gameObject.transform);
 				}
 		}
 /*		IEnumerator viewIven ()
