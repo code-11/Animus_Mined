@@ -114,7 +114,7 @@ public class inventoryManager : MonoBehaviour
 				m_inventory.Remove (selected);
 				for (int index=selected; index<invenNum; index++) {
 						if (m_inventory.ContainsKey (index + 1)) {
-								Debug.Log ("Replacing slot " + index + " with item at " + (index + 1));
+								//Debug.Log ("Replacing slot " + index + " with item at " + (index + 1));
 								m_inventory.Add (index, m_inventory [index + 1]);
 								m_inventory.Remove (index + 1);
 						}
@@ -125,8 +125,13 @@ public class inventoryManager : MonoBehaviour
 		public void UseSelected ()
 		{
 				Usability useScript = getSelObj ().GetComponent<Usability> (); 
-				if (useScript != null) {
+				InvenObject chargeScript = getSelObj ().GetComponent<InvenObject> ();
+				if ((useScript != null) && (chargeScript != null)) {
 						useScript.Use (gameObject.transform);
+						chargeScript.decCharges ();
+						if (chargeScript.getCharges () <= 0) {
+								RemoveSelItem ();
+						}
 				}
 		}
 /*		IEnumerator viewIven ()
