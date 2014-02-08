@@ -8,15 +8,22 @@ public class fallController : MonoBehaviour
 		public float m_gravity;
 		public float m_maxTimeToFall;
 		public float m_curTimeToFall;
+		public float m_timeToFall;
 		public bool m_waitToFall;
 		
 		void GravityWithWait ()
 		{
-				if (m_curTimeToFall <= 0) {
+				StartCoroutine (GravityTimer ());
+/*				if (m_curTimeToFall <= 0) {
 						Gravity ();
 				} else {
 						m_curTimeToFall -= 1 * Time.deltaTime;
-				}
+				}*/
+		}
+		IEnumerator GravityTimer ()
+		{
+				yield return new WaitForSeconds (m_timeToFall);
+				Gravity ();
 		}
 		void Gravity ()
 		{
