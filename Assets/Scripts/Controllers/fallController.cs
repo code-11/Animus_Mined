@@ -18,6 +18,17 @@ public class fallController : MonoBehaviour
 						m_curTimeToFall -= 1 * Time.deltaTime;
 				}*/
 		}
+		bool checkForLadder ()
+		{
+				ladderController ladderScript = gameObject.GetComponent<ladderController> ();
+				bool ladderPresent = false;
+/*				Debug.Log (ladderScript == null);*/
+				if (ladderScript != null) {
+						ladderPresent = ladderScript.getHitLadder ();
+				}
+				Debug.Log (ladderPresent);
+				return ladderPresent;
+		}
 		IEnumerator GravityTimer ()
 		{
 				yield return new WaitForSeconds (m_timeToFall);
@@ -90,7 +101,9 @@ public class fallController : MonoBehaviour
 				if (m_waitToFall) {
 						GravityWithWait ();
 				} else {
-						Gravity ();
+						if (!checkForLadder ()) {
+								Gravity ();
+						}
 				}
 
 		}
