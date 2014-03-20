@@ -36,7 +36,7 @@ public class overlapDetector : MonoBehaviour
 				for (int i=0; i<numHit; i++) {
 						if (!m_olapObjs.ContainsKey (coll [i].gameObject.tag)) {
 								m_olapObjs.Add (coll [i].gameObject.tag, coll [i].gameObject);
-								Debug.Log (coll [i].gameObject);
+								//Debug.Log (coll [i].gameObject);
 						}
 				}
 		}

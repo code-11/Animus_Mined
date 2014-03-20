@@ -26,7 +26,7 @@ public class fallController : MonoBehaviour
 				if (ladderScript != null) {
 						ladderPresent = ladderScript.getHitLadder ();
 				}
-				Debug.Log (ladderPresent);
+				//Debug.Log (ladderPresent);
 				return ladderPresent;
 		}
 		IEnumerator GravityTimer ()
