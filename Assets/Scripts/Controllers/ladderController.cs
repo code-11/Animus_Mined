@@ -49,8 +49,8 @@ public class ladderController : MonoBehaviour
 				Vector2 leftPos = m_middleRight.position;
 				
 				float yPos = rightPos.y + .01f;
-				float xPosLeft = leftPos.x - .01f;
-				float xPosRight = rightPos.x + .01f;
+				float xPosLeft = leftPos.x - .02f;
+				float xPosRight = rightPos.x + .02f;
 				
 
 				float dir = Mathf.Sign (vertDir);

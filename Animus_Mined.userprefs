@@ -1,15 +1,8 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workspace />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Controllers\ladderController.cs">
     <Files>
-      <File FileName="Animus_Mined.sln" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Controllers\ladderController.cs" Line="105" Column="15" />
-      <File FileName="Assets\Scripts\Controllers\ladderController.cs" Line="105" Column="15" />
-      <File FileName="Assets\Scripts\Controllers\overlapDetector.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Controllers\bombController.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Guis\QuickSlot.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Controllers\playerController.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Controllers\fallController.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Controllers\ladderController.cs" Line="53" Column="39" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
