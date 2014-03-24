@@ -33,10 +33,15 @@ public class playerController : MonoBehaviour
 				Vector3 rightHPos = rightHigh.position - (new Vector3 (0, .01f, 0));
 				Vector3 rightLPos = rightLow.position + (new Vector3 (0, .01f, 0));
 			
-				infoHLeft = Physics2D.Raycast (new Vector2 (leftHPos.x, leftHPos.y), -Vector2.right, m_speed * rayScale);
-				infoHRight = Physics2D.Raycast (new Vector2 (rightHPos.x, rightHPos.y), Vector2.right, m_speed * rayScale);
-				infoLLeft = Physics2D.Raycast (new Vector2 (leftLPos.x, leftLPos.y), -Vector2.right, m_speed * rayScale);
-				infoLRight = Physics2D.Raycast (new Vector2 (rightLPos.x, rightLPos.y), Vector2.right, m_speed * rayScale);			
+				int onlyLadders = 1 << 8;
+				int allButLadders = ~onlyLadders;
+			
+				infoHLeft = Physics2D.Raycast (new Vector2 (leftHPos.x, leftHPos.y), -Vector2.right, m_speed * rayScale, allButLadders);
+				infoHRight = Physics2D.Raycast (new Vector2 (rightHPos.x, rightHPos.y), Vector2.right, m_speed * rayScale, allButLadders);
+				infoLLeft = Physics2D.Raycast (new Vector2 (leftLPos.x, leftLPos.y), -Vector2.right, m_speed * rayScale, allButLadders);
+				infoLRight = Physics2D.Raycast (new Vector2 (rightLPos.x, rightLPos.y), Vector2.right, m_speed * rayScale, allButLadders);
+				//Debug.DrawLine (leftHPos, new Vector3 (leftHPos.x - (m_speed * rayScale), leftHPos.y, 0));		
+				//Debug.DrawLine (leftHPos, new Vector3 (leftHPos.x - (m_speed * rayScale), leftHPos.y, 0));	
 				//Debug.DrawLine (new Vector3 (xPosRight, yPos, 0), new Vector3 (xPosRight, yPos - gravSize, 0), Color.blue);
 				Vector3 amountMove = (new Vector3 (horizDir, 0f, 0f) * m_speed * Time.fixedDeltaTime);
 				//Vector3 amountMove = (new Vector3 (.1f, 0f, 0f));
