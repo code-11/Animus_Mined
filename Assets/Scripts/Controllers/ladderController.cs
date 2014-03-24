@@ -27,6 +27,7 @@ public class ladderController : MonoBehaviour
 						m_hitLadder = (coll [0].CompareTag ("Ladder"));
 						//Debug.Log (m_hitLadder);
 						if (m_hitLadder) {
+								Debug.Log ("Hit Ladder");
 								/*transform.position += amountMove;*/
 								CheckForCol (vertDir, onlyLadders, amountMove);
 						}	
@@ -47,9 +48,9 @@ public class ladderController : MonoBehaviour
 				Vector2 rightPos = m_middleLeft.position;
 				Vector2 leftPos = m_middleRight.position;
 				
-				float yPos = rightPos.y;
-				float xPosLeft = leftPos.x;
-				float xPosRight = rightPos.x;
+				float yPos = rightPos.y + .01f;
+				float xPosLeft = leftPos.x - .01f;
+				float xPosRight = rightPos.x + .01f;
 				
 
 				float dir = Mathf.Sign (vertDir);
@@ -86,6 +87,10 @@ public class ladderController : MonoBehaviour
 						leastDiff = rightDiff;
 				}
 				bool collidersNull = vertInfoLeft.collider == null && vertInfoRight.collider == null;
+/*				if (vertInfoLeft.collider != null)
+						Debug.Log ("Left " + vertInfoLeft.collider.gameObject.name);
+				if (vertInfoRight.collider != null)
+						Debug.Log ("Right " + vertInfoRight.collider.gameObject.name);*/
 				//Debug.Log ("Yposandoffset: " + (yPos + offset) + " vert: " + vertInfoLeft.point.y + " frac: " + vertInfoLeft.fraction + " verDir: " + vertDir + " Least: " + leastDiff);
 				//Debug.Log ("Left: " + leftDiff + " Right: " + rightDiff + " Least: " + leastDiff);
 				//Debug.Log ("leastDiff: " + leastDiff + " amountMove.y: " + Mathf.Abs (amountMove.y));
@@ -93,10 +98,12 @@ public class ladderController : MonoBehaviour
 				//Debug.Log ("lfrac: " + vertInfoLeft.fraction + " rfrac: " + vertInfoRight.fraction);
 				if ((leastDiff <= Mathf.Abs (amountMove.y)) && (!collidersNull)) {
 						transform.position += (new Vector3 (0, dir * leastDiff, 0));
-						//Debug.Log ("constrain, col:" + collidersNull);
+/*						Debug.Log ("constrain, col:" + collidersNull);
+*/
 				} else if ((leastDiff > Mathf.Abs (amountMove.y)) || (collidersNull)) {
 						transform.position += amountMove;
-						//Debug.Log ("free, col:" + collidersNull);
+/*						Debug.Log ("free, col:" + collidersNull);
+*/
 				}
 /*				if (vertInfoLeft.collider != null)
 						Debug.Log (vertInfoLeft.collider.gameObject.name);*/
