@@ -140,8 +140,8 @@ public class inventoryManager : MonoBehaviour
 				Usability useScript = getSelObj ().GetComponent<Usability> (); 
 				InvenObject chargeScript = getSelObj ().GetComponent<InvenObject> ();
 				if ((useScript != null) && (chargeScript != null)) {
-						useScript.Use (gameObject.transform);
-						chargeScript.decCharges ();
+						if (useScript.Use (gameObject.transform))
+								chargeScript.decCharges ();
 						if (chargeScript.getCharges () <= 0) {
 								RemoveSelItem ();
 						}

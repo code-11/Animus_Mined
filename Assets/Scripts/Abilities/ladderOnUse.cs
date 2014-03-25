@@ -1,13 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ladderOnUse : Usability
+public class ladderOnUse : placeOnUse
 {
-		private GameObject m_ladder;
 		
-		void OnEnable ()
+		public override string provideBlock ()
 		{
-				m_ladder = Resources.Load ("prefabLadder") as GameObject;
+				return "prefabLadder";
 		}
 		// Use this for initialization
 		void Start ()
@@ -19,14 +18,5 @@ public class ladderOnUse : Usability
 		void Update ()
 		{
 	
-		}
-		public override void Use (Transform playerPos)
-		{
-				//Debug.Log ("Ladder was used");
-				
-				int x = (int)Mathf.Round (playerPos.position.x);
-				int y = (int)Mathf.Round (playerPos.position.y);
-				//Debug.Log ("PlayerPosx: " + playerPos.position.x + " Roundedx: " + x);
-				Instantiate (m_ladder, new Vector3 (x, y, 0), Quaternion.identity);
 		}
 }

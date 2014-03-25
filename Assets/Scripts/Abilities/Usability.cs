@@ -3,7 +3,8 @@ using System.Collections;
 
 public abstract class Usability : MonoBehaviour
 {		
-		public virtual void Use (Transform playerPos)
+		public virtual bool Use (Transform playerPos)
 		{
+				return true;
 		} 
 }

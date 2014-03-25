@@ -29,7 +29,7 @@ public class DiscreteSpring : MonoBehaviour
 						int disPosY = Mathf.RoundToInt (pos.y);
 						Debug.Log ("posx " + pos.x + " rounded " + disPosX);
 						float diffX = Mathf.Abs (pos.x - disPosX);
-						float diffY = Mathf.Abs (pos.y - disPosY);
+						//float diffY = Mathf.Abs (pos.y - disPosY);
 						float xSign = -Mathf.Sign (pos.x - disPosX);
 						//Debug.Log (Mathf.RoundToInt (.2f));
 						
