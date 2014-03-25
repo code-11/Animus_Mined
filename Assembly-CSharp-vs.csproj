@@ -46,6 +46,7 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\DiscreteSpring.cs" />
      <Compile Include="Assets\Scripts\Abilities\InvenObject.cs" />
      <Compile Include="Assets\Scripts\Abilities\SupportOnUse.cs" />
      <Compile Include="Assets\Scripts\Abilities\Usability.cs" />

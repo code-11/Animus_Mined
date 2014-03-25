@@ -27,7 +27,7 @@ public class ladderController : MonoBehaviour
 						m_hitLadder = (coll [0].CompareTag ("Ladder"));
 						//Debug.Log (m_hitLadder);
 						if (m_hitLadder) {
-								Debug.Log ("Hit Ladder");
+								//Debug.Log ("Hit Ladder");
 								/*transform.position += amountMove;*/
 								CheckForCol (vertDir, onlyLadders, amountMove);
 						}	
