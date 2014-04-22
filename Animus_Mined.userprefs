@@ -2,7 +2,7 @@
   <MonoDevelop.Ide.Workspace />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Controllers\discreteMovement.cs">
     <Files>
-      <File FileName="Assets\Scripts\Controllers\discreteMovement.cs" Line="74" Column="1" />
+      <File FileName="Assets\Scripts\Controllers\discreteMovement.cs" Line="81" Column="15" />
       <File FileName="Assets\Scripts\Controllers\mineController.cs" Line="35" Column="82" />
     </Files>
   </MonoDevelop.Ide.Workbench>
