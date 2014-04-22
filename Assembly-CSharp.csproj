@@ -46,7 +46,6 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Resources\placeOnUse.cs" />
      <Compile Include="Assets\Scripts\Abilities\InvenObject.cs" />
      <Compile Include="Assets\Scripts\Abilities\SupportOnUse.cs" />
      <Compile Include="Assets\Scripts\Abilities\Usability.cs" />
@@ -55,6 +54,7 @@
      <Compile Include="Assets\Scripts\Abilities\mineability.cs" />
      <Compile Include="Assets\Scripts\Abilities\permeability.cs" />
      <Compile Include="Assets\Scripts\Abilities\pickupability.cs" />
+     <Compile Include="Assets\Scripts\Abilities\placeOnUse.cs" />
      <Compile Include="Assets\Scripts\Controllers\Obsolete\DiscreteSpring.cs" />
      <Compile Include="Assets\Scripts\Controllers\Obsolete\ladderController.cs" />
      <Compile Include="Assets\Scripts\Controllers\Obsolete\playerController.cs" />
