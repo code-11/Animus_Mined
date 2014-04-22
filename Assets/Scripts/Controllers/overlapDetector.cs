@@ -11,6 +11,7 @@ public class overlapDetector : MonoBehaviour
 		*/
 		public Hashtable m_olapObjs;
 		public float m_checkRange;
+		public float m_checkEvery = .2f;
 		private bool m_check = true;
 		void Start ()
 		{
@@ -28,7 +29,7 @@ public class overlapDetector : MonoBehaviour
 		}
 		IEnumerator checkOverlap ()
 		{
-				yield return new WaitForSeconds (0.2f);
+				yield return new WaitForSeconds (m_checkEvery);
 				m_check = true;
 				Collider2D[] coll = new Collider2D[5];
 				float scale = m_checkRange;

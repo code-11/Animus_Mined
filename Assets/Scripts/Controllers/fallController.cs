@@ -8,6 +8,7 @@ public class fallController : MonoBehaviour
 		public float m_gravity;
 		public float m_timeToFall;
 		public bool m_waitToFall;
+		public bool m_killOnHit;
 		
 		void GravityWithWait ()
 		{
@@ -71,8 +72,9 @@ public class fallController : MonoBehaviour
 				} else if ((collidersNull) || (leastDiff >= -amountMove.y)) {
 						transform.position += amountMove;
 				}	
-				CheckPlayerHit (downInfoLeft, downInfoRight, leftDiff, rightDiff);
-
+				if (m_killOnHit) {
+						CheckPlayerHit (downInfoLeft, downInfoRight, leftDiff, rightDiff);
+				}
 		}
 		void CheckPlayerHit (RaycastHit2D downInfoLeft, RaycastHit2D downInfoRight, float leftDiff, float rightDiff)
 		{

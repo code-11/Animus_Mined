@@ -1,9 +1,9 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Controllers\discreteMovement.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Controllers\mineController.cs">
     <Files>
       <File FileName="Assets\Scripts\Controllers\discreteMovement.cs" Line="81" Column="15" />
-      <File FileName="Assets\Scripts\Controllers\mineController.cs" Line="35" Column="82" />
+      <File FileName="Assets\Scripts\Controllers\mineController.cs" Line="36" Column="63" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
