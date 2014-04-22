@@ -50,7 +50,7 @@ public class mineController : MonoBehaviour
 						hit = Physics2D.Raycast (new Vector2 (middleTop.position.x, middleTop.position.y), Vector2.up);
 						Debug.DrawLine (middleTop.position, new Vector3 (middleTop.position.x, middleTop.position.y + vecLen, 0));
 						diff = Mathf.Abs (middleTop.position.y - hit.point.y);
-						if ((hit.collider != null) && (diff < .01)) {
+						if (hit.collider != null) {
 								//Debug.Log ("Hit Up");
 								Mine (hit);	
 						}
