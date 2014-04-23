@@ -136,6 +136,13 @@ public class discreteMovement : MonoBehaviour
 				
 		}
 		
+		void killSelf ()
+		{
+				Time.timeScale = 0.3F;
+				Destroy (this.gameObject);
+				Debug.Log ("Game Over");
+		}
+	
 		void makeMove (bool up, bool down, bool left, bool right)
 		{
 				Vector2 pos = transform.position;
