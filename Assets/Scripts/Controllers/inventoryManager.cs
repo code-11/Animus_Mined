@@ -137,13 +137,15 @@ public class inventoryManager : MonoBehaviour
 		}
 		public void UseSelected ()
 		{
-				Usability useScript = getSelObj ().GetComponent<Usability> (); 
-				InvenObject chargeScript = getSelObj ().GetComponent<InvenObject> ();
-				if ((useScript != null) && (chargeScript != null)) {
-						if (useScript.Use (gameObject.transform))
-								chargeScript.decCharges ();
-						if (chargeScript.getCharges () <= 0) {
-								RemoveSelItem ();
+				if (getSelObj () != null) {
+						Usability useScript = getSelObj ().GetComponent<Usability> (); 
+						InvenObject chargeScript = getSelObj ().GetComponent<InvenObject> ();
+						if ((useScript != null) && (chargeScript != null)) {
+								if (useScript.Use (gameObject.transform))
+										chargeScript.decCharges ();
+								if (chargeScript.getCharges () <= 0) {
+										RemoveSelItem ();
+								}
 						}
 				}
 		}
