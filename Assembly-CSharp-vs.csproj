@@ -66,6 +66,7 @@
      <Compile Include="Assets\Scripts\Controllers\overlapDetector.cs" />
      <Compile Include="Assets\Scripts\Guis\InventoryGui.cs" />
      <Compile Include="Assets\Scripts\Guis\QuickSlot.cs" />
+     <Compile Include="Assets\liquidController.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
