@@ -8,7 +8,7 @@ public class liquidController : MonoBehaviour
 		public float m_spreadDelaySlow;
 		public float m_spreadDelayFast;
 		public bool m_checkSpeed;
-		//public bool m_waiting = false;
+		public bool m_waiting = false;
 		private enum m_dirs
 		{
 				up,
@@ -20,27 +20,29 @@ public class liquidController : MonoBehaviour
 		// Use this for initialization
 		void Start ()
 		{
-	
+				m_waiting = false;
 		}
 		// Update is called once per frame
 		void Update ()
 		{
 				//Debug.Log (m_waiting);
 				//if (!m_waiting)
-				StartCoroutine (spreadTimeFast ());
+				if (!m_waiting) {
+						StartCoroutine (spreadTimeFast ());
+				}
 		}
 		
 		IEnumerator spreadTimeFast ()
 		{
-				//m_waiting = true;
+				m_waiting = true;
 				yield return new WaitForSeconds (m_spreadDelayFast);
 				spread ();
-				//m_waiting = false;
+				m_waiting = false;
 		}
 		
 		void spread ()
 		{
-				Debug.Log ("checking");
+				//Debug.Log ("checking");
 				bool anySpread = false;
 				foreach (int dir in m_dirs.GetValues(typeof(m_dirs))) {
 						if (dir == (int)m_dirs.down) {
