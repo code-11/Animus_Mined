@@ -3,7 +3,7 @@ using System.Collections;
 using System.IO;
 using UnityEditor;
 
-public class Save : MonoBehaviour
+public class saveController : MonoBehaviour
 {
 		public string m_saveName;
  

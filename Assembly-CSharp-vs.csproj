@@ -46,7 +46,6 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Resources\Save.cs" />
      <Compile Include="Assets\Scripts\Abilities\InvenObject.cs" />
      <Compile Include="Assets\Scripts\Abilities\SupportOnUse.cs" />
      <Compile Include="Assets\Scripts\Abilities\Usability.cs" />
@@ -61,13 +60,16 @@
      <Compile Include="Assets\Scripts\Controllers\Obsolete\playerController.cs" />
      <Compile Include="Assets\Scripts\Controllers\bombController.cs" />
      <Compile Include="Assets\Scripts\Controllers\discreteMovement.cs" />
+     <Compile Include="Assets\Scripts\Controllers\escManager.cs" />
      <Compile Include="Assets\Scripts\Controllers\fallController.cs" />
      <Compile Include="Assets\Scripts\Controllers\inventoryManager.cs" />
+     <Compile Include="Assets\Scripts\Controllers\liquidController.cs" />
      <Compile Include="Assets\Scripts\Controllers\mineController.cs" />
      <Compile Include="Assets\Scripts\Controllers\overlapDetector.cs" />
+     <Compile Include="Assets\Scripts\Controllers\saveController.cs" />
      <Compile Include="Assets\Scripts\Guis\InventoryGui.cs" />
      <Compile Include="Assets\Scripts\Guis\QuickSlot.cs" />
-     <Compile Include="Assets\liquidController.cs" />
+     <Compile Include="Assets\Scripts\Guis\escGui.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
