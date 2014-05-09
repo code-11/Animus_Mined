@@ -6,11 +6,12 @@ using UnityEditor;
 public class Save : MonoBehaviour
 {
 		public string m_saveName;
-		private StreamWriter  m_fileWriter; 
+ 
+		
 		// Use this for initialization
 		void Start ()
 		{
-				SaveLevel ();
+				SaveAll ();
 		}
 	
 		// Update is called once per frame
@@ -34,10 +35,37 @@ public class Save : MonoBehaviour
 		{
 				return (isHighLevel (go)) && (isPrefab (go)) && (go.activeInHierarchy);
 		}
-		
-		void SaveLevel ()
+		int getCharges (GameObject go)
 		{
-				m_fileWriter = File.CreateText (m_saveName);
+				InvenObject item = go.GetComponent<InvenObject> ();
+				if (item == null) {
+						Debug.Log ("Item in inventory is not an Inven object!");
+						return -1;
+				} else {
+						return item.getCharges ();
+				}
+		}
+
+		void SavePlayer (StreamWriter strWrite)
+		{
+				inventoryManager manager = gameObject.GetComponent<inventoryManager> ();
+				if (manager != null) {
+						ArrayList inven = manager.getInven ();
+						if (inven == null) {
+								inven = new ArrayList ();
+						}
+						foreach (GameObject obj in inven) {
+								if (isPrefab (obj)) {
+										string preName = findPrefabName (obj);
+										int charges = getCharges (obj);
+										strWrite.WriteLine (preName + "," + charges);
+								}
+						}
+				}
+				strWrite.WriteLine ("");
+		}
+		void SaveLevel (StreamWriter strWrite)
+		{
 				object[] allObjects = FindObjectsOfType (typeof(GameObject));
 				foreach (object thisObject in allObjects) {
 						GameObject go = (GameObject)thisObject;
@@ -45,9 +73,15 @@ public class Save : MonoBehaviour
 								float tempX = go.transform.position.x;
 								float tempY = go.transform.position.y;
 								//Debug.Log (isHighLevel (go) + "," + go + "," + (go == isHighLevel (go)));
-								m_fileWriter.WriteLine (findPrefabName (go) + "," + tempX + "," + tempY);
+								strWrite.WriteLine (findPrefabName (go) + "," + tempX + "," + tempY);
 						}
 				}
-				m_fileWriter.Close ();
+		}
+		void SaveAll ()
+		{
+				StreamWriter strWrite = File.CreateText (m_saveName); 
+				SavePlayer (strWrite);
+				SaveLevel (strWrite);
+				strWrite.Close ();
 		}
 }
