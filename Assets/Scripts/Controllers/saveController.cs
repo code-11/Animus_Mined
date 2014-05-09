@@ -11,7 +11,7 @@ public class saveController : MonoBehaviour
 		// Use this for initialization
 		void Start ()
 		{
-				SaveAll ();
+				//SaveAll ();
 		}
 	
 		// Update is called once per frame
@@ -19,6 +19,11 @@ public class saveController : MonoBehaviour
 		{
 	
 		}
+		public void setName (string filepath)
+		{
+				m_saveName = filepath;
+		}
+		
 		bool isPrefab (GameObject go)
 		{
 				return (PrefabUtility.GetPrefabParent (go)) != null;
@@ -77,7 +82,7 @@ public class saveController : MonoBehaviour
 						}
 				}
 		}
-		void SaveAll ()
+		public void SaveAll ()
 		{
 				StreamWriter strWrite = File.CreateText (m_saveName); 
 				SavePlayer (strWrite);

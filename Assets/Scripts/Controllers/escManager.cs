@@ -63,11 +63,18 @@ public class escManager : MonoBehaviour
 		
 		void loadFile ()
 		{
-				string filePath = EditorUtility.OpenFilePanel ("Open File", "", "csv");
+				Debug.Log ("Loading");
 		}
 		void saveFile ()
 		{
-				Debug.Log ("Saving");
+				string filePath = EditorUtility.SaveFilePanel ("Open File", "", "save001", "csv");
+				saveController saver = gameObject.GetComponent<saveController> ();
+				if (saver == null) {
+						Debug.Log ("Error opening file");
+				} else {
+						saver.setName (filePath);
+						saver.SaveAll ();
+				}
 		}
 		void shiftLeft ()
 		{
@@ -90,19 +97,9 @@ public class escManager : MonoBehaviour
 		void runEsc ()
 		{
 				escGui escMenu = gameObject.GetComponent<escGui> ();
-				bool selLeft = Input.GetKeyDown ("q");
-				bool selRight = Input.GetKeyDown ("e");
-				bool rPress = Input.GetKeyDown ("r");
+				;
 				bool escPress = Input.GetKeyDown ("escape");
-				if (rPress) {
-						UseSelected ();
-				}
-				if (selLeft) {
-						shiftLeft ();
-				}
-				if (selRight) {
-						shiftRight ();
-				}
+
 				if (escPress) {
 						Debug.Log ("pressed Esc");
 						if (escMenuUp == true) {
@@ -113,6 +110,24 @@ public class escManager : MonoBehaviour
 								escMenu.enabled = true;
 						}
 						//StartCoroutine (viewIven ());
+				}
+				if (escMenuUp) {
+						getInput ();
+				}
+		}
+		void getInput ()
+		{
+				bool selLeft = Input.GetKeyDown ("q");
+				bool selRight = Input.GetKeyDown ("e");
+				bool rPress = Input.GetKeyDown ("r");
+				if (rPress) {
+						UseSelected ();
+				}
+				if (selLeft) {
+						shiftLeft ();
+				}
+				if (selRight) {
+						shiftRight ();
 				}
 		}
 }
