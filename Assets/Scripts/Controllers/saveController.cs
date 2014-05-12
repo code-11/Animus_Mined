@@ -53,6 +53,8 @@ public class saveController : MonoBehaviour
 
 		void SavePlayer (StreamWriter strWrite)
 		{
+				strWrite.WriteLine (transform.position.x + "," + transform.position.y);
+				strWrite.WriteLine ("");
 				inventoryManager manager = gameObject.GetComponent<inventoryManager> ();
 				if (manager != null) {
 						ArrayList inven = manager.getInven ();

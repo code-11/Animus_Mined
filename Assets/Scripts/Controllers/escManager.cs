@@ -97,7 +97,6 @@ public class escManager : MonoBehaviour
 		void runEsc ()
 		{
 				escGui escMenu = gameObject.GetComponent<escGui> ();
-				;
 				bool escPress = Input.GetKeyDown ("escape");
 
 				if (escPress) {

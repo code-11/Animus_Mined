@@ -1,9 +1,12 @@
-prefabPickUp,5
+-1,0.8800001
+
+prefabPickUp,3
+prefabBombPickUp,1
 prefabSuppPickUp1,2
 
 prefabLadder,3,3
 prefabInvBlk,6,0
-prefabBombPickUp,1,1.961896
+prefabRegolith,5,1
 prefabHypersthene,-10.5,1.5
 prefabInvBlk,5,0
 prefabInvBlk,4,0
@@ -24,7 +27,7 @@ prefabRock,6,2
 prefabFactory,-2,1
 prefabInvBlk,-3,0
 prefabRegolith,7,1.001
-player,1,0.8800001
+player,-1,0.8800001
 prefabInvBlk,-2,0
 prefabRegolith,8,1
 prefabLadder,1,3

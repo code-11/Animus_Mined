@@ -1,13 +1,13 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Controllers\saveController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Controllers\escManager.cs">
     <Files>
+      <File FileName="Assets\Scripts\Controllers\escManager.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Abilities\InvenObject.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Guis\InventoryGui.cs" Line="24" Column="9" />
-      <File FileName="Assets\Scripts\Controllers\inventoryManager.cs" Line="41" Column="1" />
-      <File FileName="Assets\Scripts\Controllers\escManager.cs" Line="40" Column="26" />
-      <File FileName="Assets\Scripts\Controllers\saveController.cs" Line="4" Column="1" />
-      <File FileName="Assets\Scripts\Guis\escGui.cs" Line="34" Column="16" />
+      <File FileName="Assets\Scripts\Guis\InventoryGui.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Controllers\inventoryManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Controllers\saveController.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Guis\escGui.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
