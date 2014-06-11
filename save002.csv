@@ -1,9 +1,9 @@
--1,0.8800001
-
-prefabPickUp,3
-prefabBombPickUp,1
-prefabSuppPickUp1,2
-
+-1,0.8800001,
+,,
+prefabPickUp,3,
+prefabBombPickUp,1,
+prefabSuppPickUp1,2,
+,,
 prefabLadder,3,3
 prefabInvBlk,6,0
 prefabRegolith,5,1

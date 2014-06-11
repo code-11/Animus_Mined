@@ -63,7 +63,14 @@ public class escManager : MonoBehaviour
 		
 		void loadFile ()
 		{
-				Debug.Log ("Loading");
+				string filePath = EditorUtility.OpenFilePanel ("Open File", "", "csv");
+				loadController loader = gameObject.GetComponent<loadController> ();
+				if (loader == null) {
+						Debug.Log ("Error opening file");
+				} else {
+						loader.setName (filePath);
+						loader.LoadAll ();
+				}
 		}
 		void saveFile ()
 		{
