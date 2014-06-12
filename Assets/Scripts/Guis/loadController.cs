@@ -2,6 +2,7 @@
 using System.Collections;
 using System.IO;
 using System.Text;
+using System.Linq;
 
 public class loadController : MonoBehaviour
 {
@@ -24,10 +25,30 @@ public class loadController : MonoBehaviour
 				reader.ReadLine ();
 				return new Vector2 (xPos, yPos);
 		}
-		private GameObject MakePlayer (Vector2 playerPos)
+		private void MovePlayer (Vector2 playerPos)
 		{
-				return (GameObject)Instantiate (m_player, new Vector3 (playerPos.x, playerPos.y + 3, 0), Quaternion.identity);
+				gameObject.transform.position = new Vector3 (playerPos.x, playerPos.y, 0);
+				//return (GameObject)Instantiate (m_player, new Vector3 (playerPos.x, playerPos.y + 3, 0), Quaternion.identity);
 		}
+		private string rightPath (string name)
+		{
+				string[] namesInFolder = {
+						"prefabBombPickUp",
+						"prefabPickUp",
+						"prefabQuartzPickUp",
+						"prefabRegolithPickUp",
+						"prefabRockPickUp",
+						"prefabSupportPickUp"
+				}; 
+				if (namesInFolder.Contains (name)) {
+						return "PickUps/" + name;
+				} else {
+						return name;
+				}
+				
+		}
+		
+		
 		private void SetInventory (GameObject player, StreamReader reader)
 		{
 				inventoryManager manager = player.GetComponent<inventoryManager> ();
@@ -35,15 +56,18 @@ public class loadController : MonoBehaviour
 				string itemLine = reader.ReadLine ();
 				if (itemLine != "") {
 						string[] lines = itemLine.Split (new char[]{','});
-						GameObject theItemPrefab = Resources.Load (lines [0]) as GameObject;
+						GameObject theItemPrefab = Resources.Load (rightPath (lines [0])) as GameObject;
 						GameObject theItem = (GameObject)Instantiate (theItemPrefab, new Vector3 (0, 0, 0), Quaternion.identity);
-						//Not sure that 0,0,0 was right place to put objects... what state are they actually in?
+						//For some reason, adding theItem spawns a ladder. No idea how this is happening.
+						//manager.AddItem (theItem);
+						//theItem.SetActive (false);
+						Debug.Log (lines [0]);
 				}
 		}
 		private int LoadPlayer (StreamReader reader)
 		{
 				Vector2 playerPos = LoadPosition (reader);
-				//GameObject player = MakePlayer (playerPos);
+				MovePlayer (playerPos);
 				SetInventory (gameObject, reader);
 				return 0;
 		}
