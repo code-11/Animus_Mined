@@ -38,7 +38,7 @@ public class loadController : MonoBehaviour
 						"prefabQuartzPickUp",
 						"prefabRegolithPickUp",
 						"prefabRockPickUp",
-						"prefabSupportPickUp"
+						"prefabSuppPickUp"
 				}; 
 				if (namesInFolder.Contains (name)) {
 						return "PickUps/" + name;
@@ -48,28 +48,45 @@ public class loadController : MonoBehaviour
 				
 		}
 		
-		
 		private void SetInventory (GameObject player, StreamReader reader)
 		{
 				inventoryManager manager = player.GetComponent<inventoryManager> ();
-			
+				
 				string itemLine = reader.ReadLine ();
 				if (itemLine != "") {
-						string[] lines = itemLine.Split (new char[]{','});
-						GameObject theItemPrefab = Resources.Load (rightPath (lines [0])) as GameObject;
-						GameObject theItem = (GameObject)Instantiate (theItemPrefab, new Vector3 (0, 0, 0), Quaternion.identity);
-						//For some reason, adding theItem spawns a ladder. No idea how this is happening.
-						//manager.AddItem (theItem);
-						//theItem.SetActive (false);
-						Debug.Log (lines [0]);
+						while (itemLine!=",,") {
+						
+								string[] lines = itemLine.Split (new char[]{','});
+								GameObject theItemPrefab = Resources.Load (rightPath (lines [0])) as GameObject;
+								//Debug.Log (itemLine);
+								GameObject theItem = (GameObject)Instantiate (theItemPrefab, new Vector3 (0, 0, 0), Quaternion.identity);
+								InvenObject chargeManager = theItem.GetComponent<InvenObject> ();
+								chargeManager.setCharges (int.Parse (lines [1]));
+																								
+								//For some reason, adding theItem spawns a ladder. No idea how this is happening.
+								manager.AddItem (theItem);
+								theItem.SetActive (false);
+								itemLine = reader.ReadLine ();
+						}
 				}
 		}
-		private int LoadPlayer (StreamReader reader)
+		private void LoadEnvironment (StreamReader reader)
+		{
+				string itemLine = reader.ReadLine ();
+				if (itemLine != "") {
+						while (itemLine!=",,") {
+								string[] lines = itemLine.Split (new char[]{','});
+								GameObject theItemPrefab = Resources.Load (rightPath (lines [0])) as GameObject;
+								GameObject theItem = (GameObject)Instantiate (theItemPrefab, new Vector3 (0, 0, 0), Quaternion.identity);
+								itemLine = TextReader.ReadLine ();
+						}
+				}
+		}
+		private void LoadPlayer (StreamReader reader)
 		{
 				Vector2 playerPos = LoadPosition (reader);
 				MovePlayer (playerPos);
 				SetInventory (gameObject, reader);
-				return 0;
 		}
 		public void LoadAll ()
 		{

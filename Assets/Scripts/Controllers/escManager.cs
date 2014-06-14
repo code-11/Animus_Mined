@@ -125,7 +125,7 @@ public class escManager : MonoBehaviour
 		{
 				bool selLeft = Input.GetKeyDown ("q");
 				bool selRight = Input.GetKeyDown ("e");
-				bool rPress = Input.GetKeyDown ("r");
+				bool rPress = Input.GetKeyDown ("f");
 				if (rPress) {
 						UseSelected ();
 				}
