@@ -3,6 +3,7 @@ using System.Collections;
 using System.IO;
 using System.Text;
 using System.Linq;
+using UnityEditor;
 
 public class loadController : MonoBehaviour
 {
@@ -14,6 +15,44 @@ public class loadController : MonoBehaviour
 		public void setName (string name)
 		{
 				m_fileName = name;
+		}
+		
+		public void Awake ()
+		{
+				DontDestroyOnLoad (transform.gameObject);
+		
+		}
+		bool isHighLevel (GameObject go)
+		{
+				return (go == go.transform.root.gameObject);
+		}
+		
+		bool meetsRestrict (GameObject go)
+		{
+				return (isHighLevel (go)) && (go.activeInHierarchy) && (!go.CompareTag ("Player"));
+		}
+		
+		private void handleLiquids (GameObject go)
+		{
+				liquidController possibleLiq = go.GetComponent<liquidController> ();
+				if (possibleLiq == null) {
+						return;
+				} else {
+						possibleLiq.m_spread = false;
+						possibleLiq.m_waiting = true;
+				}		
+		}
+		
+		void DeleteAll ()
+		{
+				object[] allObjects = FindObjectsOfType (typeof(GameObject));
+				foreach (object thisObject in allObjects) {
+						GameObject go = (GameObject)thisObject;
+						if (meetsRestrict (go)) {
+								handleLiquids (go);
+								Destroy (go);
+						} 
+				}
 		}
 		
 		private Vector2 LoadPosition (StreamReader reader)
@@ -76,9 +115,20 @@ public class loadController : MonoBehaviour
 				if (itemLine != "") {
 						while (itemLine!=",,") {
 								string[] lines = itemLine.Split (new char[]{','});
-								GameObject theItemPrefab = Resources.Load (rightPath (lines [0])) as GameObject;
-								GameObject theItem = (GameObject)Instantiate (theItemPrefab, new Vector3 (0, 0, 0), Quaternion.identity);
-								itemLine = TextReader.ReadLine ();
+								if (lines [0] != "player") {
+										GameObject theItemPrefab = Resources.Load (rightPath (lines [0])) as GameObject;
+										if (theItemPrefab == null) {
+												Debug.Log (lines [0]);
+										}
+										float xPos = float.Parse (lines [1]);
+										float yPos = float.Parse (lines [2]);
+										Instantiate (theItemPrefab, new Vector3 (xPos, yPos, 0), Quaternion.identity);
+								}
+								itemLine = reader.ReadLine ();
+								if (itemLine == null) {
+										break;
+								}
+								
 						}
 				}
 		}
@@ -88,9 +138,13 @@ public class loadController : MonoBehaviour
 				MovePlayer (playerPos);
 				SetInventory (gameObject, reader);
 		}
+		
 		public void LoadAll ()
 		{
+				DeleteAll ();
 				StreamReader reader = new StreamReader (m_fileName, Encoding.Default);
 				LoadPlayer (reader);
+				LoadEnvironment (reader);
+				Debug.Log ("Done Loading");
 		}
 }

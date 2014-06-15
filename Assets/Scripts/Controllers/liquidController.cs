@@ -61,11 +61,17 @@ public class liquidController : MonoBehaviour
 				Vector2 newPos = new Vector2 (transform.position.x + devX, transform.position.y + devY);
 				Physics2D.OverlapPointNonAlloc (newPos, hits);
 				if ((m_spread) && (hits [0] == null)) {
-						GameObject spawn = (GameObject)Instantiate (m_toSpread, new Vector3 (newPos.x, newPos.y, 0), Quaternion.identity);
-						liquidController brain = spawn.GetComponent<liquidController> ();
-						brain.m_toSpread = m_toSpread;
-						brain.m_spread = true;	
-						toReturn = true;
+						try {
+								GameObject spawn = (GameObject)Instantiate (m_toSpread, new Vector3 (newPos.x, newPos.y, 0), Quaternion.identity);
+					
+								liquidController brain = spawn.GetComponent<liquidController> ();
+								brain.m_toSpread = m_toSpread;
+								brain.m_spread = true;	
+								toReturn = true;
+						} catch (MissingReferenceException) {
+								toReturn = false;
+								Destroy (gameObject);
+						}
 				} else {
 						toReturn = false;
 				}

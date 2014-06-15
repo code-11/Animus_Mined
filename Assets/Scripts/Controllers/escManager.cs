@@ -69,6 +69,7 @@ public class escManager : MonoBehaviour
 						Debug.Log ("Error opening file");
 				} else {
 						loader.setName (filePath);
+						//loader.switchLoad ();
 						loader.LoadAll ();
 				}
 		}
