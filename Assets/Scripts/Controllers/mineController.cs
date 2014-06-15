@@ -15,9 +15,9 @@ public class mineController : MonoBehaviour
 				MineLogic ();
 		}
 		
-		void Mine (RaycastHit2D blockHit)
+		void Mine (Collider2D blockHit)
 		{
-				mineability target = blockHit.collider.gameObject.GetComponent<mineability> ();
+				mineability target = blockHit.gameObject.GetComponent<mineability> ();
 				if (target != null) {
 						target.SetHealth (target.GetHealth () - m_mineStr);
 				}
@@ -28,39 +28,30 @@ public class mineController : MonoBehaviour
 				float horizDir = Input.GetAxis ("Horizontal");
 				float vertDir = Input.GetAxis ("Vertical");
 				float vecLen = 1;
-				float diff;
-				RaycastHit2D hit;
+				Collider2D[] hits = new Collider2D[1];
 				if (horizDir > 0) {
-						hit = Physics2D.Raycast (new Vector2 (rightMiddle.position.x, rightMiddle.position.y), Vector2.right);
-						Debug.DrawLine (rightMiddle.position, new Vector3 (rightMiddle.position.x + vecLen, rightMiddle.position.y, 0));
-						diff = Mathf.Abs (rightMiddle.position.x - hit.point.x);
-						if ((hit.collider != null) && (diff < .01)) {
-								//Debug.Log ("Hit Right");
-								Mine (hit);	
+						Physics2D.OverlapPointNonAlloc (new Vector2 (transform.position.x + vecLen, transform.position.y), hits);
+						if (hits [0] != null) { 
+								
+								Mine (hits [0]);	
 						}
 				} else if (horizDir < 0) {
-						hit = Physics2D.Raycast (new Vector2 (leftMiddle.position.x, leftMiddle.position.y), -Vector2.right);
-						Debug.DrawLine (leftMiddle.position, new Vector3 (leftMiddle.position.x - vecLen, leftMiddle.position.y, 0));
-						diff = Mathf.Abs (leftMiddle.position.x - hit.point.x);
-						if ((hit.collider != null) && (diff < .01)) {
+						Physics2D.OverlapPointNonAlloc (new Vector2 (transform.position.x - vecLen, transform.position.y), hits);
+						if (hits [0] != null) {
 								//Debug.Log ("Hit Left");
-								Mine (hit);	
+								Mine (hits [0]);	
 						}
 				} else if (vertDir > 0) {
-						hit = Physics2D.Raycast (new Vector2 (middleTop.position.x, middleTop.position.y), Vector2.up);
-						Debug.DrawLine (middleTop.position, new Vector3 (middleTop.position.x, middleTop.position.y + vecLen, 0));
-						diff = Mathf.Abs (middleTop.position.y - hit.point.y);
-						if (hit.collider != null) {
+						Physics2D.OverlapPointNonAlloc (new Vector2 (transform.position.x, transform.position.y + vecLen), hits);
+						if (hits [0] != null) {
 								//Debug.Log ("Hit Up");
-								Mine (hit);	
+								Mine (hits [0]);	
 						}
 				} else if (vertDir < 0) {
-						hit = Physics2D.Raycast (new Vector2 (middleBottom.position.x, middleBottom.position.y), -Vector2.up);
-						Debug.DrawLine (middleBottom.position, new Vector3 (middleBottom.position.x, middleBottom.position.y - vecLen, 0));
-						diff = Mathf.Abs (middleBottom.position.y - hit.point.y);
-						if ((hit.collider != null) && (diff < .01)) {
+						Physics2D.OverlapPointNonAlloc (new Vector2 (transform.position.x, transform.position.y - vecLen), hits);
+						if (hits [0] != null) {
 								//Debug.Log ("Hit Down");
-								Mine (hit);	
+								Mine (hits [0]);	
 						}
 				}
 		}
