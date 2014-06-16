@@ -1,30 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class escGui : MonoBehaviour
+public class StartingGui : escGui
 {
-		private float width = 400;
-		private float height = 400;
-		public float centerX;
-		public float localY;
-		// Use this for initialization
-		void OnGUI ()
-		{
-				runGui ();
-		}
-		
-		private void makeBackround ()
-		{
-				centerX = Screen.width / 2;
-				float centerY = Screen.height / 2;
-				float localX = centerX - (width / 2);
-				localY = centerY - (height / 2);
-				GUI.Box (new Rect (localX, localY, width, height), "Menu");
-		}
-	
 		private void restOfGui ()
 		{
-				escManager manager = gameObject.GetComponent<escManager> ();
+				startingManager manager = gameObject.GetComponent<startingManager> ();
 				if (manager != null) {
 						ArrayList items = manager.getItems ();
 						int i = 0;
@@ -43,9 +24,4 @@ public class escGui : MonoBehaviour
 				}
 		}
 	
-		void runGui ()
-		{
-				makeBackround ();
-				restOfGui ();
-		}
 }

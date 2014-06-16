@@ -27,11 +27,11 @@ public class escManager : MonoBehaviour
 				
 		}
 		// Use this for initialization
-		private int m_numSelected;
-		private ArrayList m_menuList;
-		private bool escMenuUp = false;
+		public  int m_numSelected;
+		public ArrayList m_menuList;
+		public bool escMenuUp = false;
 		
-		void Start ()
+		public virtual void addAllItems ()
 		{
 				m_menuList = new ArrayList ();	
 				menuItem item1 = new menuItem ("Load Game", loadFile);
@@ -40,6 +40,12 @@ public class escManager : MonoBehaviour
 				m_menuList.Add (item2);
 				m_numSelected = 0;
 		}
+	
+		public void Start ()
+		{
+				addAllItems ();
+		}
+
 		void Update ()
 		{
 				runEsc ();
@@ -59,9 +65,8 @@ public class escManager : MonoBehaviour
 		public ArrayList getItems ()
 		{
 				return m_menuList;
-		}
-		
-		void loadFile ()
+		}		
+		public void loadFile ()
 		{
 				string filePath = EditorUtility.OpenFilePanel ("Open File", "", "csv");
 				loadController loader = gameObject.GetComponent<loadController> ();
@@ -73,7 +78,7 @@ public class escManager : MonoBehaviour
 						loader.LoadAll ();
 				}
 		}
-		void saveFile ()
+		public void saveFile ()
 		{
 				string filePath = EditorUtility.SaveFilePanel ("Open File", "", "save001", "csv");
 				saveController saver = gameObject.GetComponent<saveController> ();
@@ -102,7 +107,7 @@ public class escManager : MonoBehaviour
 		{
 				getSelObj ().useAction ();
 		}
-		void runEsc ()
+		public virtual void runEsc ()
 		{
 				escGui escMenu = gameObject.GetComponent<escGui> ();
 				bool escPress = Input.GetKeyDown ("escape");
@@ -122,7 +127,7 @@ public class escManager : MonoBehaviour
 						getInput ();
 				}
 		}
-		void getInput ()
+		public void getInput ()
 		{
 				bool selLeft = Input.GetKeyDown ("q");
 				bool selRight = Input.GetKeyDown ("e");
