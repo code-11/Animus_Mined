@@ -59,6 +59,7 @@
      <Compile Include="Assets\Scripts\Controllers\Obsolete\ladderController.cs" />
      <Compile Include="Assets\Scripts\Controllers\Obsolete\playerController.cs" />
      <Compile Include="Assets\Scripts\Controllers\bombController.cs" />
+     <Compile Include="Assets\Scripts\Controllers\craftController.cs" />
      <Compile Include="Assets\Scripts\Controllers\discreteMovement.cs" />
      <Compile Include="Assets\Scripts\Controllers\escManager.cs" />
      <Compile Include="Assets\Scripts\Controllers\fallController.cs" />
