@@ -30,18 +30,27 @@ public class craftController : MonoBehaviour
 		}
 		private ArrayList m_recipes = new ArrayList ();
 		
-		private lookUpPrefab(string name){
-			//TODO: fill his out
+		private string lookUpPrefab (string name)
+		{
+				switch (name) {
+				case "Bomb":
+						return "PickUps/prefabBombPickUp";
+				case "Ladder":
+						return "PickUps/prefabPickUp";
+				default:
+						return "PickUps/prefabSupportPickUp";
+				}
 		}
 		
 		private GameObject createResult (string name, int amount)
 		{
 				Debug.Log ("Trying to instantiate: " + name);
-				GameObject newObj = (GameObject)Instantiate ((GameObject)Resources.Load (name), new Vector3 (0, 0, 0), Quaternion.identity);
-				newObj.SetActive (false);
+				string prefabName = lookUpPrefab (name);
+				GameObject newObj = (GameObject)Instantiate ((GameObject)Resources.Load (prefabName), new Vector3 (0, 0, 0), Quaternion.identity);
 				InvenObject chargeScript = newObj.GetComponent<InvenObject> ();
 				chargeScript.setStackName (name);	
 				chargeScript.setCharges (amount);
+				newObj.SetActive (false);
 				return newObj;
 		}
 		private Recipe getRecipeByNum (int num)
