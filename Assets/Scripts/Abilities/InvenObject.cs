@@ -5,7 +5,11 @@ public class InvenObject : MonoBehaviour
 {
 		public int m_charges = 0; 
 		public string m_stackName;
-	
+		
+		public void setStackName (string name)
+		{
+				m_stackName = name;
+		}
 		public string getStackName ()
 		{
 				return m_stackName;
