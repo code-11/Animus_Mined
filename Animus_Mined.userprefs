@@ -1,13 +1,10 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Controllers\craftController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\craftGui.cs">
     <Files>
-      <File FileName="Assets\Scripts\Controllers\craftController.cs" Line="41" Column="42" />
-      <File FileName="Assets\Scripts\Abilities\permeability.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Controllers\escManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Abilities\Usability.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Abilities\InvenObject.cs" Line="11" Column="24" />
-      <File FileName="Assets\Scripts\Controllers\inventoryManager.cs" Line="103" Column="26" />
+      <File FileName="Assets\Scripts\Guis\escGui.cs" Line="22" Column="5" />
+      <File FileName="Assets\craftGui.cs" Line="44" Column="28" />
+      <File FileName="Assets\Scripts\Controllers\craftController.cs" Line="125" Column="8" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -67,6 +67,7 @@
      <Compile Include="Assets\Scripts\Controllers\liquidController.cs" />
      <Compile Include="Assets\Scripts\Controllers\loadController.cs" />
      <Compile Include="Assets\Scripts\Controllers\mineController.cs" />
+     <Compile Include="Assets\Scripts\Controllers\newGameController.cs" />
      <Compile Include="Assets\Scripts\Controllers\overlapDetector.cs" />
      <Compile Include="Assets\Scripts\Controllers\saveController.cs" />
      <Compile Include="Assets\Scripts\Controllers\startingManager.cs" />
@@ -74,7 +75,7 @@
      <Compile Include="Assets\Scripts\Guis\QuickSlot.cs" />
      <Compile Include="Assets\Scripts\Guis\StartingGui.cs" />
      <Compile Include="Assets\Scripts\Guis\escGui.cs" />
-     <Compile Include="Assets\newGameController.cs" />
+     <Compile Include="Assets\craftGui.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

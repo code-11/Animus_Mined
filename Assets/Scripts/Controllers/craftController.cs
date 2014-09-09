@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class craftController : MonoBehaviour
 {
-		private class Recipe :Object
+		public class Recipe :Object
 		{
 				private Dictionary<string,int> m_input;
 				private Dictionary<string,int> m_output;
@@ -29,6 +29,11 @@ public class craftController : MonoBehaviour
 				}
 		}
 		private ArrayList m_recipes = new ArrayList ();
+		
+		public ArrayList getRecipes ()
+		{
+				return m_recipes;
+		}
 		
 		private string lookUpPrefab (string name)
 		{
@@ -73,6 +78,50 @@ public class craftController : MonoBehaviour
 				m_recipes.Add (new Recipe (1,
 		            new Dictionary<string,int>{{"Iron",1},{"Regolith",1}},
 					new Dictionary<string,int>{{"Ladder",2}}
+				));
+				m_recipes.Add (new Recipe (1,
+		                           new Dictionary<string,int>{{"Iron",1},{"Regolith",1}},
+		new Dictionary<string,int>{{"Ladder",2}}
+				));
+				m_recipes.Add (new Recipe (1,
+		                           new Dictionary<string,int>{{"Iron",1},{"Regolith",1}},
+		new Dictionary<string,int>{{"Ladder",2}}
+				));
+				m_recipes.Add (new Recipe (1,
+		                           new Dictionary<string,int>{{"Iron",1},{"Regolith",1}},
+		new Dictionary<string,int>{{"Ladder",2}}
+				));
+				m_recipes.Add (new Recipe (1,
+		                           new Dictionary<string,int>{{"Iron",1},{"Regolith",1}},
+		new Dictionary<string,int>{{"Ladder",2}}
+				));
+				m_recipes.Add (new Recipe (1,
+		                           new Dictionary<string,int>{{"Iron",1},{"Regolith",1}},
+		new Dictionary<string,int>{{"Ladder",2}}
+				));
+				m_recipes.Add (new Recipe (1,
+		                           new Dictionary<string,int>{{"Iron",1},{"Regolith",1}},
+		new Dictionary<string,int>{{"Ladder",2}}
+				));
+				m_recipes.Add (new Recipe (1,
+		                           new Dictionary<string,int>{{"Iron",1},{"Regolith",1}},
+		new Dictionary<string,int>{{"Ladder",2}}
+				));
+				m_recipes.Add (new Recipe (1,
+		                           new Dictionary<string,int>{{"Iron",1},{"Regolith",1}},
+		new Dictionary<string,int>{{"Ladder",2}}
+				));
+				m_recipes.Add (new Recipe (1,
+		                           new Dictionary<string,int>{{"Iron",1},{"Regolith",1}},
+		new Dictionary<string,int>{{"Ladder",2}}
+				));
+				m_recipes.Add (new Recipe (1,
+		                           new Dictionary<string,int>{{"Iron",1},{"Regolith",1}},
+		new Dictionary<string,int>{{"Ladder",2}}
+				));
+				m_recipes.Add (new Recipe (1,
+		                           new Dictionary<string,int>{{"Iron",1},{"Regolith",1}},
+		new Dictionary<string,int>{{"Ladder",2}}
 				));
 		}
 		void createRecipeByNum (int recipeNum)
