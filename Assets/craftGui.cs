@@ -3,19 +3,19 @@ using System.Collections;
 
 public class craftGui : MonoBehaviour
 {
-		public craftController m_craftCtrl;
+		private craftController m_craftCtrl;
 		private float width = 800;
 		private float height = 600;
-		public float centerX;
-		public float localY;
-		public float leftMost;
+		private float centerX;
+		private float localY;
+		private float leftMost;
 		private float bottom;
 		// Use this for initialization
 		void OnGUI ()
 		{
 				runGui ();
 		}
-		private void start ()
+		private void Start ()
 		{
 				m_craftCtrl = gameObject.GetComponent<craftController> ();
 				
@@ -28,12 +28,12 @@ public class craftGui : MonoBehaviour
 				localY = centerY - (height / 2);
 				leftMost = localX;
 				bottom = centerY + (height / 2);
-				GUI.Box (new Rect (localX, localY, width, height), "Menu");
+				GUI.Box (new Rect (localX, localY, width, height), "Crafting");
 		}
 		private void drawAllRecipes ()
 		{
 				
-				float tempX = leftMost;
+				float tempX = leftMost + 20;
 				float tempY = localY + 50;
 				int yPad = 70;
 				int xPad = 220;

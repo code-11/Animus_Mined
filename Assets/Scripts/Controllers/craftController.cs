@@ -29,6 +29,8 @@ public class craftController : MonoBehaviour
 				}
 		}
 		private ArrayList m_recipes = new ArrayList ();
+		private bool guiMenuUp = false;
+		private craftGui m_craftGui;
 		
 		public ArrayList getRecipes ()
 		{
@@ -70,7 +72,8 @@ public class craftController : MonoBehaviour
 		}
 		void Start ()
 		{
-		
+				m_craftGui = gameObject.GetComponent<craftGui> ();
+				
 				m_recipes.Add (new Recipe (0,
 					new Dictionary<string,int>{{"Regolith",1},{"Nickel",1}},
 					new Dictionary<string,int>{{"Bomb",2}}
@@ -191,11 +194,29 @@ public class craftController : MonoBehaviour
 				return possible;
 				//Debug.Log (possible [0]);
 		}
+		public bool checkForFactory ()
+		{
+				int onlyPlayer = 1 << 9;
+				int allButPlayer = ~onlyPlayer;
+				Collider2D hit = Physics2D.OverlapPoint (new Vector2 (gameObject.transform.position.x, gameObject.transform.position.y), allButPlayer);
+				if (hit != null) {
+						return hit.name == "prefabFactory";
+				} else {
+						return false;
+				}
+		}
 		// Update is called once per frame
 		void Update ()
 		{
 				bool yPres = Input.GetKeyDown ("y");
-				if (yPres) {
+				if (yPres && checkForFactory ()) {
+						if (guiMenuUp == true) {
+								guiMenuUp = false;
+								m_craftGui.enabled = false;
+						} else {
+								guiMenuUp = true;
+								m_craftGui.enabled = true;
+						}
 						createRecipeByNum (0);
 				}
 		}
