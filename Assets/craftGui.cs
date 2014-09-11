@@ -3,7 +3,7 @@ using System.Collections;
 
 public class craftGui : MonoBehaviour
 {
-		private craftController m_craftCtrl;
+		private craftManager m_craftCtrl;
 		private float width = 800;
 		private float height = 600;
 		private float centerX;
@@ -17,7 +17,7 @@ public class craftGui : MonoBehaviour
 		}
 		private void Start ()
 		{
-				m_craftCtrl = gameObject.GetComponent<craftController> ();
+				m_craftCtrl = gameObject.GetComponent<craftManager> ();
 				
 		}
 		private void makeBackround ()
@@ -37,17 +37,23 @@ public class craftGui : MonoBehaviour
 				float tempY = localY + 50;
 				int yPad = 70;
 				int xPad = 220;
-				foreach (craftController.Recipe recipe in m_craftCtrl.getRecipes()) {
-						drawRecipe (recipe, tempX, tempY);
+				int recipeNum = 0;
+				foreach (craftManager.Recipe recipe in m_craftCtrl.getRecipes()) {
+						if (recipeNum == m_craftCtrl.getNumSelected ()) {
+								drawRecipe (recipe, tempX, tempY, true);
+						} else {
+								drawRecipe (recipe, tempX, tempY);
+						}
 						tempY += yPad;
 						if (tempY + yPad > bottom) {
 								tempY = localY + 50;
 								tempX += xPad;
-						}			
+						}
+						recipeNum += 1;			
 						
 				}
 		}
-		private void drawRecipe (craftController.Recipe recipe, float x, float y)
+		private void drawRecipe (craftManager.Recipe recipe, float x, float y, bool makeSelected=false)
 		{
 				string renderText = "";
 				int i = 0;
@@ -67,7 +73,12 @@ public class craftGui : MonoBehaviour
 						}
 						
 				}
-				GUI.TextArea (new Rect (x, y, 200, 50), renderText);
+				if (makeSelected) {
+						GUI.color = Color.yellow;
+				} else {
+						GUI.color = Color.white;
+				}
+				GUI.Button (new Rect (x, y, 200, 50), renderText);
 				//GUI.Box (new Rect (localX, localY, width, height), "Menu");
 		}
 		void runGui ()

@@ -107,8 +107,17 @@ public class discreteMovement : MonoBehaviour
 						permeability perm = hit [0].gameObject.GetComponent<permeability> ();
 						bool permeable = checkPerm (perm, dir);
 						return permeable;
-				} else
+				} else {
+						craftManager craftMan = gameObject.GetComponent<craftManager> ();
+						if (craftMan != null) {
+								if (craftMan.getGuiMenuUp ()) {
+										return false;
+								}
+						} else {
+								Debug.Log ("Play does not have a craftManager somehow");
+						}
 						return true;
+				}
 		}
 		bool ladderPresent (Vector2 checkSpot)
 		{

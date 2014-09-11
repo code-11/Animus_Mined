@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class craftController : MonoBehaviour
+public class craftManager : MonoBehaviour
 {
 		public class Recipe :Object
 		{
@@ -31,6 +31,16 @@ public class craftController : MonoBehaviour
 		private ArrayList m_recipes = new ArrayList ();
 		private bool guiMenuUp = false;
 		private craftGui m_craftGui;
+		private int numSelected = 0;
+		
+		public int getNumSelected ()
+		{
+				return numSelected;
+		}
+		public bool getGuiMenuUp ()
+		{
+				return guiMenuUp;
+		}
 		
 		public ArrayList getRecipes ()
 		{
@@ -82,50 +92,25 @@ public class craftController : MonoBehaviour
 		            new Dictionary<string,int>{{"Iron",1},{"Regolith",1}},
 					new Dictionary<string,int>{{"Ladder",2}}
 				));
-				m_recipes.Add (new Recipe (1,
-		                           new Dictionary<string,int>{{"Iron",1},{"Regolith",1}},
-		new Dictionary<string,int>{{"Ladder",2}}
-				));
-				m_recipes.Add (new Recipe (1,
-		                           new Dictionary<string,int>{{"Iron",1},{"Regolith",1}},
-		new Dictionary<string,int>{{"Ladder",2}}
-				));
-				m_recipes.Add (new Recipe (1,
-		                           new Dictionary<string,int>{{"Iron",1},{"Regolith",1}},
-		new Dictionary<string,int>{{"Ladder",2}}
-				));
-				m_recipes.Add (new Recipe (1,
-		                           new Dictionary<string,int>{{"Iron",1},{"Regolith",1}},
-		new Dictionary<string,int>{{"Ladder",2}}
-				));
-				m_recipes.Add (new Recipe (1,
-		                           new Dictionary<string,int>{{"Iron",1},{"Regolith",1}},
-		new Dictionary<string,int>{{"Ladder",2}}
-				));
-				m_recipes.Add (new Recipe (1,
-		                           new Dictionary<string,int>{{"Iron",1},{"Regolith",1}},
-		new Dictionary<string,int>{{"Ladder",2}}
-				));
-				m_recipes.Add (new Recipe (1,
-		                           new Dictionary<string,int>{{"Iron",1},{"Regolith",1}},
-		new Dictionary<string,int>{{"Ladder",2}}
-				));
-				m_recipes.Add (new Recipe (1,
-		                           new Dictionary<string,int>{{"Iron",1},{"Regolith",1}},
-		new Dictionary<string,int>{{"Ladder",2}}
-				));
-				m_recipes.Add (new Recipe (1,
-		                           new Dictionary<string,int>{{"Iron",1},{"Regolith",1}},
-		new Dictionary<string,int>{{"Ladder",2}}
-				));
-				m_recipes.Add (new Recipe (1,
-		                           new Dictionary<string,int>{{"Iron",1},{"Regolith",1}},
-		new Dictionary<string,int>{{"Ladder",2}}
-				));
-				m_recipes.Add (new Recipe (1,
-		                           new Dictionary<string,int>{{"Iron",1},{"Regolith",1}},
-		new Dictionary<string,int>{{"Ladder",2}}
-				));
+				m_recipes.Add (new Recipe (2, new Dictionary<string,int>{{"E",1},{"Regolith",1}}, new Dictionary<string,int>{{"Ladder",2}}));
+				m_recipes.Add (new Recipe (3, new Dictionary<string,int>{{"Iron",1},{"Regolith",1}}, new Dictionary<string,int>{{"Ladder",2}}));
+				m_recipes.Add (new Recipe (4, new Dictionary<string,int>{{"Iron",1},{"Regolith",1}}, new Dictionary<string,int>{{"Ladder",2}}));
+				m_recipes.Add (new Recipe (5, new Dictionary<string,int>{{"Iron",1},{"Regolith",1}}, new Dictionary<string,int>{{"Ladder",2}}));
+				m_recipes.Add (new Recipe (6, new Dictionary<string,int>{{"Iron",1},{"Regolith",1}}, new Dictionary<string,int>{{"Ladder",2}}));
+				m_recipes.Add (new Recipe (7, new Dictionary<string,int>{{"Iron",1},{"Regolith",1}}, new Dictionary<string,int>{{"Ladder",2}}));
+				m_recipes.Add (new Recipe (8, new Dictionary<string,int>{{"Iron",1},{"Regolith",1}}, new Dictionary<string,int>{{"Ladder",2}}));
+				m_recipes.Add (new Recipe (9, new Dictionary<string,int>{{"Iron",1},{"Regolith",1}}, new Dictionary<string,int>{{"Ladder",2}}));
+				m_recipes.Add (new Recipe (10, new Dictionary<string,int>{{"Iron",1},{"Regolith",1}}, new Dictionary<string,int>{{"Ladder",2}}));
+				m_recipes.Add (new Recipe (11, new Dictionary<string,int>{{"Iron",1},{"Regolith",1}}, new Dictionary<string,int>{{"Ladder",2}}));
+				m_recipes.Add (new Recipe (12, new Dictionary<string,int>{{"Iron",1},{"Regolith",1}}, new Dictionary<string,int>{{"Ladder",2}}));
+				m_recipes.Add (new Recipe (13, new Dictionary<string,int>{{"Iron",1},{"Regolith",1}}, new Dictionary<string,int>{{"Ladder",2}}));
+				m_recipes.Add (new Recipe (14, new Dictionary<string,int>{{"Iron",1},{"Regolith",1}}, new Dictionary<string,int>{{"Ladder",2}}));
+				m_recipes.Add (new Recipe (15, new Dictionary<string,int>{{"Iron",1},{"Regolith",1}}, new Dictionary<string,int>{{"Ladder",2}}));
+				m_recipes.Add (new Recipe (16, new Dictionary<string,int>{{"Iron",1},{"Regolith",1}}, new Dictionary<string,int>{{"Ladder",2}}));
+				m_recipes.Add (new Recipe (17, new Dictionary<string,int>{{"Iron",1},{"Regolith",1}}, new Dictionary<string,int>{{"Ladder",2}}));
+				m_recipes.Add (new Recipe (18, new Dictionary<string,int>{{"Iron",1},{"Regolith",1}}, new Dictionary<string,int>{{"Ladder",2}}));
+				m_recipes.Add (new Recipe (19, new Dictionary<string,int>{{"Iron",1},{"Regolith",1}}, new Dictionary<string,int>{{"Ladder",2}}));
+				m_recipes.Add (new Recipe (20, new Dictionary<string,int>{{"Iron",1},{"Regolith",1}}, new Dictionary<string,int>{{"Ladder",2}}));
 		}
 		void createRecipeByNum (int recipeNum)
 		{
@@ -206,7 +191,41 @@ public class craftController : MonoBehaviour
 				}
 		}
 		// Update is called once per frame
-		void Update ()
+		public void selection ()
+		{
+				bool wPres = Input.GetKeyDown ("w");
+				bool aPres = Input.GetKeyDown ("a");
+				bool sPres = Input.GetKeyDown ("s");
+				bool dPres = Input.GetKeyDown ("d");
+				bool rPres = Input.GetKeyDown ("r");
+				int NUM_PER_COLUMN = 7;
+				int NUM_PER_ROW = 3;
+				if (wPres) {
+						if ((numSelected % NUM_PER_COLUMN) != 0) {
+								numSelected -= 1;
+								
+						}
+				} else if (sPres) {
+						if ((numSelected + 1) % NUM_PER_COLUMN != 0) {
+								numSelected += 1;
+								
+						}
+				} else if (aPres) {
+						if (numSelected > NUM_PER_COLUMN - 1) {
+								numSelected -= NUM_PER_COLUMN;
+								
+						}
+				} else if (dPres) {
+						if (numSelected < (NUM_PER_COLUMN * (NUM_PER_ROW - 1))) {
+								numSelected += NUM_PER_COLUMN;	
+						}
+				}
+				if (rPres) {
+						createRecipeByNum (numSelected);
+				}
+				
+		}
+		public void runCraft ()
 		{
 				bool yPres = Input.GetKeyDown ("y");
 				if (yPres && checkForFactory ()) {
@@ -217,7 +236,14 @@ public class craftController : MonoBehaviour
 								guiMenuUp = true;
 								m_craftGui.enabled = true;
 						}
-						createRecipeByNum (0);
+						//createRecipeByNum (0);
 				}
+				if (guiMenuUp) {
+						selection ();
+				}
+		}
+		void Update ()
+		{
+				runCraft ();
 		}
 }
