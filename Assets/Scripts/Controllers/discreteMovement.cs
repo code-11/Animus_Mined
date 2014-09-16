@@ -108,13 +108,16 @@ public class discreteMovement : MonoBehaviour
 						bool permeable = checkPerm (perm, dir);
 						return permeable;
 				} else {
+						msgManager msgMan = gameObject.GetComponent<msgManager> ();
 						craftManager craftMan = gameObject.GetComponent<craftManager> ();
-						if (craftMan != null) {
+						if (craftMan != null && msgMan != null) {
 								if (craftMan.getGuiMenuUp ()) {
+										return false;
+								} else if (msgMan.getMsgGuiUp ()) {
 										return false;
 								}
 						} else {
-								Debug.Log ("Play does not have a craftManager somehow");
+								Debug.Log ("Play does not have a craftManager or msgManager somehow");
 						}
 						return true;
 				}

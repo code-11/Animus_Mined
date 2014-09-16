@@ -1,12 +1,13 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Controllers\craftManager.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Controllers\discreteMovement.cs">
     <Files>
-      <File FileName="Assets\Scripts\Controllers\craftManager.cs" Line="235" Column="15" />
-      <File FileName="Assets\Scripts\Guis\escGui.cs" Line="30" Column="17" />
-      <File FileName="Assets\craftGui.cs" Line="44" Column="15" />
+      <File FileName="Assets\msgGui.cs" Line="75" Column="13" />
+      <File FileName="Assets\msgManager.cs" Line="74" Column="26" />
+      <File FileName="Assets\Scripts\Controllers\craftManager.cs" Line="182" Column="1" />
+      <File FileName="Assets\craftGui.cs" Line="76" Column="1" />
       <File FileName="Assets\Scripts\Controllers\escManager.cs" Line="33" Column="3" />
-      <File FileName="Assets\Scripts\Controllers\discreteMovement.cs" Line="115" Column="10" />
+      <File FileName="Assets\Scripts\Controllers\discreteMovement.cs" Line="104" Column="42" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
