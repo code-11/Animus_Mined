@@ -77,7 +77,11 @@ public class loadController : MonoBehaviour
 						"prefabQuartzPickUp",
 						"prefabRegolithPickUp",
 						"prefabRockPickUp",
-						"prefabSuppPickUp"
+						"prefabSuppPickUp",
+						"prefabIronPickUp",
+						"prefabMagnesiumPickUp",
+						"prefabNickelPickUp"
+						
 				}; 
 				if (namesInFolder.Contains (name)) {
 						return "PickUps/" + name;
@@ -93,11 +97,11 @@ public class loadController : MonoBehaviour
 				
 				string itemLine = reader.ReadLine ();
 				if (itemLine != "") {
-						while (itemLine!=",,") {
+						while ((itemLine!=",,")&&(itemLine!="")) {
 						
 								string[] lines = itemLine.Split (new char[]{','});
 								GameObject theItemPrefab = Resources.Load (rightPath (lines [0])) as GameObject;
-								//Debug.Log (itemLine);
+								Debug.Log ("Trying to make:" + rightPath (lines [0]));
 								GameObject theItem = (GameObject)Instantiate (theItemPrefab, new Vector3 (0, 0, 0), Quaternion.identity);
 								InvenObject chargeManager = theItem.GetComponent<InvenObject> ();
 								chargeManager.setCharges (int.Parse (lines [1]));
@@ -138,11 +142,30 @@ public class loadController : MonoBehaviour
 				MovePlayer (playerPos);
 				SetInventory (gameObject, reader);
 		}
+		private void LoadMessages (StreamReader reader)
+		{
+				msgManager manager = gameObject.GetComponent<msgManager> ();
+				string firstLine = reader.ReadLine ();
+				if (firstLine != "") {
+						string[] lines = firstLine.Split (new char[]{','});
+						int i = 0;
+						foreach (string line in lines) {
+								if (line == "0") {
+										manager.activate (i);
+								}
+								i += 1;
+						}
+						manager.reevalUnLocked ();
+				}
+				reader.ReadLine ();
+				//Debug.Log ("read msgs");
+		}
 		
 		public void LoadAll ()
 		{
 				DeleteAll ();
 				StreamReader reader = new StreamReader (m_fileName, Encoding.Default);
+				LoadMessages (reader);
 				LoadPlayer (reader);
 				LoadEnvironment (reader);
 				Debug.Log ("Done Loading");

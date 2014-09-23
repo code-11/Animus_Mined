@@ -51,6 +51,23 @@ public class saveController : MonoBehaviour
 				}
 		}
 
+		void SaveMessages (StreamWriter strWrite)
+		{
+				msgManager manager = gameObject.GetComponent<msgManager> ();
+				if (manager != null) {
+						foreach (msgManager.Message msg in manager.getAllMessagesIncludingUnlock()) {
+								if (msg.isLocked ()) {
+										strWrite.Write ("1,");
+								} else {
+										strWrite.Write ("0,");
+								}
+						}
+						strWrite.Write ("\n\n");
+				} else {
+						Debug.Log ("Player has no message manager");
+				}
+		}
+
 		void SavePlayer (StreamWriter strWrite)
 		{
 				strWrite.WriteLine (transform.position.x + "," + transform.position.y);
@@ -87,6 +104,7 @@ public class saveController : MonoBehaviour
 		public void SaveAll ()
 		{
 				StreamWriter strWrite = File.CreateText (m_saveName); 
+				SaveMessages (strWrite);
 				SavePlayer (strWrite);
 				SaveLevel (strWrite);
 				strWrite.Close ();

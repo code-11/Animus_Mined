@@ -62,7 +62,7 @@ public class msgManager : MonoBehaviour
 				reevalUnLocked ();
 			
 		}
-		private void reevalUnLocked ()
+		public void reevalUnLocked ()
 		{
 				m_unlocked = new ArrayList ();
 				foreach (Message msg in m_messages) {
@@ -78,6 +78,10 @@ public class msgManager : MonoBehaviour
 		public void activate (int msg)
 		{
 				((Message)m_messages [msg]).unlock ();
+		}
+		public ArrayList getAllMessagesIncludingUnlock ()
+		{
+				return m_messages;
 		}
 		public ArrayList getAllMessages ()
 		{
