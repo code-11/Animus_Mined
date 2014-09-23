@@ -122,7 +122,7 @@ public class msgManager : MonoBehaviour
 				int allButPlayer = ~onlyPlayer;
 				Collider2D hit = Physics2D.OverlapPoint (new Vector2 (gameObject.transform.position.x, gameObject.transform.position.y), allButPlayer);
 				if (hit != null) {
-						return hit.name == "ansible";
+						return hit.name == "prefabAnsible";
 				} else {
 						return false;
 				}
