@@ -79,7 +79,7 @@ public class msgManager : MonoBehaviour
 		{
 				((Message)m_messages [msg]).unlock ();
 		}
-		public ArrayList getAllMessagesIncludingUnlock ()
+		public ArrayList getAllMessagesIncludingLock ()
 		{
 				return m_messages;
 		}

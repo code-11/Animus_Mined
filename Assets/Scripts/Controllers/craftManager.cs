@@ -52,10 +52,17 @@ public class craftManager : MonoBehaviour
 		{
 				return guiMenuUp;
 		}
-		
+		public ArrayList getAllRecipesIncludingLock ()
+		{
+				return m_allRecipes;
+		}
 		public ArrayList getRecipes ()
 		{
 				return m_unlocked;
+		}
+		public void activate (int recipeNum)
+		{
+				((Recipe)m_allRecipes [recipeNum]).setLocked (false);
 		}
 		
 		private string lookUpPrefab (string name)

@@ -142,6 +142,23 @@ public class loadController : MonoBehaviour
 				MovePlayer (playerPos);
 				SetInventory (gameObject, reader);
 		}
+		private void LoadResearch (StreamReader reader)
+		{
+				craftManager manager = gameObject.GetComponent<craftManager> ();
+				string firstLine = reader.ReadLine ();
+				if (firstLine != "") {
+						string[] lines = firstLine.Split (new char[]{','});
+						int i = 0;
+						foreach (string line in lines) {
+								if (line == "0") {
+										manager.activate (i);
+								}
+								i += 1;
+						}
+						manager.calculateUnlocked ();
+				}
+				reader.ReadLine ();
+		}
 		private void LoadMessages (StreamReader reader)
 		{
 				msgManager manager = gameObject.GetComponent<msgManager> ();
@@ -165,6 +182,7 @@ public class loadController : MonoBehaviour
 		{
 				DeleteAll ();
 				StreamReader reader = new StreamReader (m_fileName, Encoding.Default);
+				LoadResearch (reader);
 				LoadMessages (reader);
 				LoadPlayer (reader);
 				LoadEnvironment (reader);

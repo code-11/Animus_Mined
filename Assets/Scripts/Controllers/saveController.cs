@@ -51,11 +51,29 @@ public class saveController : MonoBehaviour
 				}
 		}
 
+		void SaveResearch (StreamWriter strWrite)
+		{
+				craftManager manager = gameObject.GetComponent<craftManager> ();
+				if (manager != null) {
+						foreach (craftManager.Recipe recipe in manager.getAllRecipesIncludingLock()) {
+								if (recipe.isLocked ()) {
+										strWrite.Write ("1,");
+								} else {
+										strWrite.Write ("0,");
+								}
+						}
+						strWrite.Write ("\n\n");
+						
+				} else {
+						Debug.Log ("Player has no craft manager");
+				}
+		}
+
 		void SaveMessages (StreamWriter strWrite)
 		{
 				msgManager manager = gameObject.GetComponent<msgManager> ();
 				if (manager != null) {
-						foreach (msgManager.Message msg in manager.getAllMessagesIncludingUnlock()) {
+						foreach (msgManager.Message msg in manager.getAllMessagesIncludingLock()) {
 								if (msg.isLocked ()) {
 										strWrite.Write ("1,");
 								} else {
@@ -104,6 +122,7 @@ public class saveController : MonoBehaviour
 		public void SaveAll ()
 		{
 				StreamWriter strWrite = File.CreateText (m_saveName); 
+				SaveResearch (strWrite);
 				SaveMessages (strWrite);
 				SavePlayer (strWrite);
 				SaveLevel (strWrite);
