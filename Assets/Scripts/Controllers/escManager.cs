@@ -6,140 +6,144 @@ using UnityEditor;
 
 public class escManager : MonoBehaviour
 {
-		public class menuItem
-		{
-				private string m_desc;
-				private Action m_cmd;
+	public class menuItem
+	{
+		private string m_desc;
+		private Action m_cmd;
 				
-				public menuItem (string desc, Action cmd)
-				{
-						m_desc = desc;
-						m_cmd = cmd;
-				}
-				public void useAction ()
-				{
-						m_cmd ();
-				}
-				public string getDesc ()
-				{
-						return m_desc;
-				}
-				
-		}
-		// Use this for initialization
-		public  int m_numSelected;
-		public ArrayList m_menuList;
-		public bool escMenuUp = false;
-		
-		public virtual void addAllItems ()
+		public menuItem (string desc, Action cmd)
 		{
-				m_menuList = new ArrayList ();	
-				menuItem item1 = new menuItem ("Load Game", loadFile);
-				menuItem item2 = new menuItem ("Save Game", saveFile);
-				m_menuList.Add (item1);
-				m_menuList.Add (item2);
-				m_numSelected = 0;
+			m_desc = desc;
+			m_cmd = cmd;
 		}
+		public void useAction ()
+		{
+			m_cmd ();
+		}
+		public string getDesc ()
+		{
+			return m_desc;
+		}
+				
+	}
+	// Use this for initialization
+	public  int m_numSelected;
+	public ArrayList m_menuList;
+	public bool escMenuUp = false;
+	public bool getEscMenuUp ()
+	{
+		return escMenuUp;
+	}
+	public virtual void addAllItems ()
+	{
+		m_menuList = new ArrayList ();	
+		menuItem item1 = new menuItem ("Load Game", loadFile);
+		menuItem item2 = new menuItem ("Save Game", saveFile);
+		m_menuList.Add (item1);
+		m_menuList.Add (item2);
+		m_numSelected = 0;
+	}
 	
-		public void Start ()
-		{
-				addAllItems ();
-		}
+	public void Start ()
+	{
+		addAllItems ();
+	}
 
-		void Update ()
-		{
-				runEsc ();
+	void Update ()
+	{
+		runEsc ();
+	}
+	private menuItem getSelObj ()
+	{
+		if (m_menuList.Count > 0) {
+			return (menuItem)m_menuList [m_numSelected];
+		} else {
+			return null;
 		}
-		private menuItem getSelObj ()
-		{
-				if (m_menuList.Count > 0) {
-						return (menuItem)m_menuList [m_numSelected];
-				} else {
-						return null;
-				}
+	}
+	public int getSelNum ()
+	{
+		return m_numSelected;
+	}
+	public ArrayList getItems ()
+	{
+		return m_menuList;
+	}		
+	public void loadFile ()
+	{
+		string filePath = EditorUtility.OpenFilePanel ("Open File", "", "csv");
+		loadController loader = gameObject.GetComponent<loadController> ();
+		if ((loader == null) || (filePath == "")) {
+			Debug.Log ("Error opening file");
+		} else {
+			Debug.Log ("filePath" + filePath);
+			loader.setName (filePath);
+			//loader.switchLoad ();
+			loader.LoadAll ();
 		}
-		public int getSelNum ()
-		{
-				return m_numSelected;
+	}
+	public void saveFile ()
+	{
+		string filePath = EditorUtility.SaveFilePanel ("Open File", "", "save001", "csv");
+		saveController saver = gameObject.GetComponent<saveController> ();
+		if ((saver == null) || (filePath == "")) { 
+			Debug.Log ("Error opening file");
+		} else {
+			saver.setName (filePath);
+			saver.SaveAll ();
 		}
-		public ArrayList getItems ()
-		{
-				return m_menuList;
-		}		
-		public void loadFile ()
-		{
-				string filePath = EditorUtility.OpenFilePanel ("Open File", "", "csv");
-				loadController loader = gameObject.GetComponent<loadController> ();
-				if (loader == null) {
-						Debug.Log ("Error opening file");
-				} else {
-						loader.setName (filePath);
-						//loader.switchLoad ();
-						loader.LoadAll ();
-				}
+	}
+	void shiftLeft ()
+	{
+		if (m_numSelected == 0) {
+			m_numSelected = 0;
+		} else {
+			m_numSelected -= 1;
 		}
-		public void saveFile ()
-		{
-				string filePath = EditorUtility.SaveFilePanel ("Open File", "", "save001", "csv");
-				saveController saver = gameObject.GetComponent<saveController> ();
-				if (saver == null) {
-						Debug.Log ("Error opening file");
-				} else {
-						saver.setName (filePath);
-						saver.SaveAll ();
-				}
+	}
+	void shiftRight ()
+	{
+		if (m_numSelected < m_menuList.Count - 1) {
+			m_numSelected += 1;
 		}
-		void shiftLeft ()
-		{
-				if (m_numSelected == 0) {
-						m_numSelected = 0;
-				} else {
-						m_numSelected -= 1;
-				}
-		}
-		void shiftRight ()
-		{
-				if (m_numSelected < m_menuList.Count - 1) {
-						m_numSelected += 1;
-				}
-		}
-		void UseSelected ()
-		{
-				getSelObj ().useAction ();
-		}
-		public virtual void runEsc ()
-		{
-				escGui escMenu = gameObject.GetComponent<escGui> ();
-				bool escPress = Input.GetKeyDown ("escape");
+	}
+	void UseSelected ()
+	{
+		getSelObj ().useAction ();
+	}
+	public virtual void runEsc ()
+	{
+		escGui escMenu = gameObject.GetComponent<escGui> ();
+		bool escPress = Input.GetKeyDown ("escape");
 
-				if (escPress) {
-						Debug.Log ("pressed Esc");
-						if (escMenuUp == true) {
-								escMenuUp = false;
-								escMenu.enabled = false;
-						} else {
-								escMenuUp = true;
-								escMenu.enabled = true;
-						}
-						//StartCoroutine (viewIven ());
-				}
-				if (escMenuUp) {
-						getInput ();
-				}
+		if (escPress) {
+			Debug.Log ("pressed Esc");
+			if (escMenuUp == true) {
+				escMenuUp = false;
+				escMenu.enabled = false;
+			} else {
+				escMenuUp = true;
+				escMenu.enabled = true;
+			}
+			//StartCoroutine (viewIven ());
 		}
-		public void getInput ()
-		{
-				bool selLeft = Input.GetKeyDown ("q");
-				bool selRight = Input.GetKeyDown ("e");
-				bool rPress = Input.GetKeyDown ("f");
-				if (rPress) {
-						UseSelected ();
-				}
-				if (selLeft) {
-						shiftLeft ();
-				}
-				if (selRight) {
-						shiftRight ();
-				}
+		if (escMenuUp) {
+			getInput ();
 		}
+	}
+	public void getInput ()
+	{
+		bool selLeft = Input.GetKeyDown ("w");
+		bool selRight = Input.GetKeyDown ("s");
+		bool rPress = Input.GetKeyDown ("r");
+		if (rPress) {
+			UseSelected ();
+		}
+		if (selLeft) {
+			shiftLeft ();
+		}
+		if (selRight) {
+			shiftRight ();
+		}
+	}
 }
