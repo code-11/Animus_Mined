@@ -63,6 +63,7 @@ public class craftManager : MonoBehaviour
 		public void activate (int recipeNum)
 		{
 				((Recipe)m_allRecipes [recipeNum]).setLocked (false);
+				calculateUnlocked ();
 		}
 		
 		private string lookUpPrefab (string name)
@@ -114,7 +115,7 @@ public class craftManager : MonoBehaviour
 				m_allRecipes.Add (new Recipe (0,
 					new Dictionary<string,int>{{"Regolith",1},{"Nickel",1}},
 					new Dictionary<string,int>{{"Bomb",2}},
-					false
+					true
 				));
 				m_allRecipes.Add (new Recipe (1,
 		            new Dictionary<string,int>{{"Iron",1},{"Regolith",1}},

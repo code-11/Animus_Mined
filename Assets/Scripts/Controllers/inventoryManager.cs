@@ -109,17 +109,26 @@ public class inventoryManager : MonoBehaviour
 
 		public void AddItem (GameObject item)
 		{
+				//Debug.Log ("Item " + item + " added");
 				if (!m_inventory.Contains (item)) {
 						InvenObject chargeScript = item.GetComponent<InvenObject> ();
-						string name = chargeScript.getStackName ();
-						foreach (GameObject obj in m_inventory) {
-								InvenObject objChargeScript = obj.GetComponent<InvenObject> ();
-								if (objChargeScript.getStackName () == name) {
-										objChargeScript.incrCharges (chargeScript.getCharges ());
-										return;
-								}
+						behaviorOnPickup pickupScript = item.GetComponent<behaviorOnPickup> ();
+						if (pickupScript != null) {
+								Debug.Log ("pickuping the thing");
+								pickupScript.onPickup (gameObject);
 						}
-						m_inventory.Add (item);
+						if (chargeScript != null) {
+								string name = chargeScript.getStackName ();
+								foreach (GameObject obj in m_inventory) {
+										InvenObject objChargeScript = obj.GetComponent<InvenObject> ();
+										if (objChargeScript.getStackName () == name) {
+												objChargeScript.incrCharges (chargeScript.getCharges ());
+												return;
+										}
+								}
+								m_inventory.Add (item);
+						}
+
 				}
 		}
 		public void RemoveSelItem ()
