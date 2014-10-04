@@ -1,13 +1,11 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Controllers\craftManager.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\onPickUpMessage.cs">
     <Files>
       <File FileName="Assets\Scripts\Controllers\craftManager.cs" Line="115" Column="27" />
-      <File FileName="Assets\Scripts\Controllers\overlapDetector.cs" Line="40" Column="11" />
-      <File FileName="Assets\Scripts\Controllers\inventoryManager.cs" Line="118" Column="42" />
-      <File FileName="Assets\behaviorOnPickup.cs" Line="6" Column="50" />
-      <File FileName="Assets\onPickUpResearch.cs" Line="14" Column="34" />
-      <File FileName="Assets\Scripts\Controllers\craftManager.cs" Line="115" Column="27" />
+      <File FileName="Assets\onPickUpMessage.cs" Line="17" Column="26" />
+      <File FileName="Assets\Scripts\Abilities\onPickUpResearch.cs" Line="4" Column="1" />
+      <File FileName="Assets\Scripts\Controllers\msgManager.cs" Line="59" Column="44" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

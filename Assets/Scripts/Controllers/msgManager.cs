@@ -56,7 +56,7 @@ public class msgManager : MonoBehaviour
 					new Message(false,false,"Test","WHOLE MESSAGE"),
 					new Message(false,false,"Test2","Derp"),
 					new Message(false,false,"Test3","WHOLE MESSAGE"),
-					new Message(false,true,"Test4","WHOLE MESSAGE"),
+					new Message(false,true,"Test4","Hidden"),
 					new Message(false,false,"Test5","WHOLE MESSAGE"),
 				};
 				reevalUnLocked ();
@@ -78,6 +78,7 @@ public class msgManager : MonoBehaviour
 		public void activate (int msg)
 		{
 				((Message)m_messages [msg]).unlock ();
+				reevalUnLocked ();
 		}
 		public ArrayList getAllMessagesIncludingLock ()
 		{
