@@ -1,11 +1,12 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Controllers\escManager.cs">
     <Files>
-      <File FileName="Assets\Scripts\Controllers\loadController.cs" Line="154" Column="9" />
-      <File FileName="Assets\Scripts\Controllers\newGameController.cs" Line="90" Column="32" />
-      <File FileName="Assets\Scripts\Guis\escGui.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Controllers\escManager.cs" Line="101" Column="28" />
+      <File FileName="Assets\Scripts\Controllers\discreteMovement.cs" Line="109" Column="54" />
+      <File FileName="Assets\Scripts\Controllers\loadController.cs" Line="110" Column="35" />
+      <File FileName="Assets\Scripts\Controllers\newGameController.cs" Line="83" Column="4" />
+      <File FileName="Assets\Scripts\Guis\escGui.cs" Line="5" Column="2" />
+      <File FileName="Assets\Scripts\Controllers\escManager.cs" Line="61" Column="21" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -26,7 +26,7 @@ public class escManager : MonoBehaviour
 				}
 				
 		}
-		// Use this for initialization
+		public bool startingGame;
 		public  int m_numSelected;
 		public ArrayList m_menuList;
 		public bool escMenuUp = false;
@@ -45,7 +45,23 @@ public class escManager : MonoBehaviour
 				m_menuList.Add (item3);
 				m_numSelected = 0;
 		}
-	
+		private void disableSpecial ()
+		{
+				GameObject special = GameObject.Find ("specialInvBlk");
+				if (special != null) {
+						special.SetActive (false);
+				}
+		}
+		public void startGame ()
+		{
+				QuickSlot quick = gameObject.GetComponent<QuickSlot> ();
+				if (quick != null) {
+						disableSpecial ();
+						disableSpecial ();
+						disableSpecial ();
+						quick.enabled = true;
+				}
+		}
 		public void Start ()
 		{
 				addAllItems ();
@@ -73,6 +89,10 @@ public class escManager : MonoBehaviour
 		}		
 		public void loadFile ()
 		{
+				if (startingGame) {
+						startingGame = false;
+						startGame ();
+				}
 				string filePath = EditorUtility.OpenFilePanel ("Open File", "", "csv");
 				loadController loader = gameObject.GetComponent<loadController> ();
 				if ((loader == null) || (filePath == "")) {
@@ -97,6 +117,10 @@ public class escManager : MonoBehaviour
 		}
 		public void newFile ()
 		{
+				if (startingGame) {
+						startingGame = false;
+						startGame ();
+				}
 				newGameController constructer = gameObject.GetComponent<newGameController> ();
 				constructer.makeNewGame ();
 		
@@ -121,6 +145,14 @@ public class escManager : MonoBehaviour
 		}
 		public virtual void runEsc ()
 		{
+				if (startingGame) {
+						discreteMovement mov = gameObject.GetComponent<discreteMovement> ();
+/*						if (mov != null) {
+								//mov.m_allowMovement = false;
+						} else {
+								Debug.Log ("Couldn't find discrete movement controller");
+						}*/
+				}
 				escGui escMenu = gameObject.GetComponent<escGui> ();
 				bool escPress = Input.GetKeyDown ("escape");
 
