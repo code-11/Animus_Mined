@@ -56,6 +56,8 @@ public class escManager : MonoBehaviour
 		{
 				QuickSlot quick = gameObject.GetComponent<QuickSlot> ();
 				if (quick != null) {
+						SpriteRenderer renderer = gameObject.GetComponentInChildren<SpriteRenderer> ();
+						renderer.enabled = true;
 						disableSpecial ();
 						disableSpecial ();
 						disableSpecial ();
