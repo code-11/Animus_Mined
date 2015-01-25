@@ -62,6 +62,11 @@ public class escManager : MonoBehaviour
 						disableSpecial ();
 						disableSpecial ();
 						quick.enabled = true;
+						if (escMenuUp) {
+								escGui escMenu = gameObject.GetComponent<escGui> ();
+								escMenu.enabled = false;
+								escMenuUp = false;
+						}
 				}
 		}
 		public void Start ()
