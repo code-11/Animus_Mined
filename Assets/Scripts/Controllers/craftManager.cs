@@ -205,7 +205,7 @@ public class craftManager : MonoBehaviour
 								}
 						}
 				} else {
-						Debug.Log ("Inventory componenet missing");
+						Debug.Log ("Inventory component missing");
 				}
 				return possible;
 				//Debug.Log (possible [0]);
@@ -216,7 +216,7 @@ public class craftManager : MonoBehaviour
 				int allButPlayer = ~onlyPlayer;
 				Collider2D hit = Physics2D.OverlapPoint (new Vector2 (gameObject.transform.position.x, gameObject.transform.position.y), allButPlayer);
 				if (hit != null) {
-						return hit.name == "prefabFactory";
+						return hit.name == "prefabFactory" || hit.name == "prefabFactory(Clone)";
 				} else {
 						return false;
 				}
