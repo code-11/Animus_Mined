@@ -21,9 +21,10 @@ public class newGameController : MonoBehaviour
 			
 				//If a feature is special, it can only be spawned once
 				private bool m_special;
+				private string m_name;
 				private bool m_placed = false;
 				private string[,] m_filling;
-				public Feature (int sx, int sy, int minX, int maxX, int minY, int maxY, float prob, bool spec)
+				public Feature (int sx, int sy, int minX, int maxX, int minY, int maxY, float prob, bool spec, string name)
 				{
 						//Enter -1 for maximum size for maxX and MaxY
 						//size is measured from the top lefthand corner. 
@@ -35,6 +36,7 @@ public class newGameController : MonoBehaviour
 						m_maxY = maxY;
 						m_prob = prob;
 						m_special = spec;
+						m_name = name;
 				}
 				public void genFilling (string[] possiblePrefabNames)
 				{
@@ -46,6 +48,10 @@ public class newGameController : MonoBehaviour
 								}
 						}
 						m_filling = newFilling;
+				}
+				public string getName ()
+				{
+						return m_name;
 				}
 				public void loadFilling (string[,] filling)
 				{
@@ -74,7 +80,17 @@ public class newGameController : MonoBehaviour
 				}
 				public bool withinZone (int x, int y)
 				{
-						return (((x >= m_minX) && (x <= m_maxX)) && ((y >= m_minY) && (y <= m_maxY)));
+						bool withinX = ((x >= m_minX) && (x <= m_maxX));
+						bool withinY = ((y >= m_minY) && (y <= m_maxY));
+						return (withinX && withinY);
+/*						if (withinX && withinY) {
+								return true;
+						} else {
+								if (!withinX) { 
+										Debug.Log ("x" + x + " minX:" + m_minX + " maxX:" + m_maxX + " Failed within Zone due to x restrict");
+								}
+								return false;
+						}*/
 				}
 				public bool withinWorld (int x, int y, int mapMaxX, int mapMaxY)
 				{
@@ -131,7 +147,7 @@ public class newGameController : MonoBehaviour
 		private static int m_endX = 20;
 		private static int m_endY = 20;
 		//In world coordinates
-		private static int m_startX = 6;
+		private static int m_startX = (m_endX / 2) - 3;
 		private static int m_startY = -9;
 		//The generation coordinates are 'display' cordinates meaning that (0,0) is top left
 		//No idea why I did that
@@ -167,15 +183,15 @@ public class newGameController : MonoBehaviour
 				string l = "PickUps/prefabPickUp";
 				string a = "";
 				
-				int center = m_endX / 2;
-				Debug.Log (center - 4);
+				
+				//Debug.Log (center - 4);
 		
 				//Trick to thinking about the filling: rotate all subarrays clockwise and put together in order
-				Feature surface = new Feature (m_endX, 3, 0, 0, 0, 0, 99, true);
+/*				Feature surface = new Feature (m_endX, 3, 0, 0, 0, 0, 99, true,"Surface");
 				surface.genFilling (new string[] {p,g});
-				features.Add (surface);
-				
-				Feature startingArea = new Feature (7, 6, 5, 5, 5, 5, 99, true);
+				features.Add (surface);*/
+				int wldstrtY = flipY (m_startY);
+				Feature startingArea = new Feature (7, 6, m_startX - 1, m_startX - 1, wldstrtY - 4, wldstrtY - 4, 99, true, "StartingArea");
 				startingArea.loadFilling (new string[,]{
 					{r,r,p,p,k,p},
 					{r,p,a,a,a,r},
@@ -224,7 +240,6 @@ public class newGameController : MonoBehaviour
 												feat.placeInMatrix (x, y, matrix);
 												feat.placeInWorld (x, y);
 												feat.setAsPlaced ();
-												Debug.Log ("feature placed at:" + x + "," + y);
 										}
 								}
 						}
