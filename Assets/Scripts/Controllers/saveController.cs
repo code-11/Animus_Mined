@@ -116,6 +116,8 @@ public class saveController : MonoBehaviour
 								float tempY = go.transform.position.y;
 								//Debug.Log (isHighLevel (go) + "," + go + "," + (go == isHighLevel (go)));
 								strWrite.WriteLine (findPrefabName (go) + "," + tempX + "," + tempY);
+						} else {
+								Debug.Log (go.name + " Does not meet saving restrictions");
 						}
 				}
 		}

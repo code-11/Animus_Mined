@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEditor;
 
 public class newGameController : MonoBehaviour
 {
@@ -169,12 +170,14 @@ public class newGameController : MonoBehaviour
 				if (name != "") {
 						if (name != "prefabHypersthene") {
 								GameObject thePrefab = Resources.Load (name) as GameObject;
-								Instantiate (thePrefab, new Vector3 (x, flipY (y), 0), Quaternion.identity);
+								GameObject theObj = (GameObject)PrefabUtility.InstantiatePrefab (thePrefab);
+								theObj.transform.position = new Vector3 (x, flipY (y), 0);
 						} else {
 								GameObject thePrefab = Resources.Load (name) as GameObject;
 								float fixedX = x + .5f;
 								float fixedY = flipY (y) - .5f;
-								Instantiate (thePrefab, new Vector3 (fixedX, fixedY, 0), Quaternion.identity);
+								GameObject theObj = (GameObject)PrefabUtility.InstantiatePrefab (thePrefab);
+								theObj.transform.position = new Vector3 (fixedX, fixedY, 0);
 						}
 				}
 		}

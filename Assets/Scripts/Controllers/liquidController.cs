@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEditor;
 
 public class liquidController : MonoBehaviour
 {
@@ -62,8 +63,9 @@ public class liquidController : MonoBehaviour
 				Physics2D.OverlapPointNonAlloc (newPos, hits);
 				if ((m_spread) && (hits [0] == null)) {
 						try {
-								GameObject spawn = (GameObject)Instantiate (m_toSpread, new Vector3 (newPos.x, newPos.y, 0), Quaternion.identity);
-					
+								//GameObject spawn = (GameObject)Instantiate (m_toSpread, new Vector3 (newPos.x, newPos.y, 0), Quaternion.identity);
+								GameObject spawn = (GameObject)PrefabUtility.InstantiatePrefab (m_toSpread);
+								spawn.transform.position = new Vector3 (newPos.x, newPos.y, 0);
 								liquidController brain = spawn.GetComponent<liquidController> ();
 								brain.m_toSpread = m_toSpread;
 								brain.m_spread = true;	

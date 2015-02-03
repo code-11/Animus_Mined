@@ -126,7 +126,9 @@ public class loadController : MonoBehaviour
 										}
 										float xPos = float.Parse (lines [1]);
 										float yPos = float.Parse (lines [2]);
-										Instantiate (theItemPrefab, new Vector3 (xPos, yPos, 0), Quaternion.identity);
+										GameObject theObj = (GameObject)PrefabUtility.InstantiatePrefab (theItemPrefab);
+										theObj.transform.position = new Vector3 (xPos, yPos, 0);
+										//Instantiate (theItemPrefab, new Vector3 (xPos, yPos, 0), Quaternion.identity);
 								}
 								itemLine = reader.ReadLine ();
 								if (itemLine == null) {
