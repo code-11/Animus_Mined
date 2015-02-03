@@ -104,6 +104,12 @@ public class newGameController : MonoBehaviour
 						if (m_maxY == -1) {
 								m_maxY = mapMaxY - m_sizeY;
 						}
+						if (m_maxX == -2) {
+								m_maxX = mapMaxX - m_sizeX - 1;
+						}
+						if (m_maxY == -2) {
+								m_maxY = mapMaxY - m_sizeY - 1;
+						}
 /*						Debug.Log ("Feature size set to:" + m_maxX + "," + m_maxY);
 */
 				}
@@ -144,11 +150,12 @@ public class newGameController : MonoBehaviour
 		}
 		private string m_fileName;
 		private ArrayList features = new ArrayList (); 
-		private static int m_endX = 20;
-		private static int m_endY = 20;
+		public static int m_endX = 20;
+		public static int m_endY = 20;
+		public static int m_surfaceSize = 3;
 		//In world coordinates
 		private static int m_startX = (m_endX / 2) - 3;
-		private static int m_startY = -9;
+		private static int m_startY = -(m_surfaceSize + 6);
 		//The generation coordinates are 'display' cordinates meaning that (0,0) is top left
 		//No idea why I did that
 		private bool[,] filledMatrix = new bool[m_endX, m_endY];
@@ -160,8 +167,15 @@ public class newGameController : MonoBehaviour
 		private static void placePrefabInWorld (string name, int x, int y)
 		{
 				if (name != "") {
-						GameObject thePrefab = Resources.Load (name) as GameObject;
-						Instantiate (thePrefab, new Vector3 (x, flipY (y), 0), Quaternion.identity);
+						if (name != "prefabHypersthene") {
+								GameObject thePrefab = Resources.Load (name) as GameObject;
+								Instantiate (thePrefab, new Vector3 (x, flipY (y), 0), Quaternion.identity);
+						} else {
+								GameObject thePrefab = Resources.Load (name) as GameObject;
+								float fixedX = x + .5f;
+								float fixedY = flipY (y) - .5f;
+								Instantiate (thePrefab, new Vector3 (fixedX, fixedY, 0), Quaternion.identity);
+						}
 				}
 		}
 		private void movePlayerToStart (int x, int y)
@@ -177,9 +191,12 @@ public class newGameController : MonoBehaviour
 				string r = "prefabRock";
 				string g = "prefabRegolith";
 				string t = "prefabTaenite";
+				string h = "prefabHypersthene";
+				
 				string i = "prefabInvBlk";
 				string w = "prefabWater";
 				string f = "prefabFactory";
+				
 				string l = "PickUps/prefabPickUp";
 				string a = "";
 				
@@ -187,9 +204,14 @@ public class newGameController : MonoBehaviour
 				//Debug.Log (center - 4);
 		
 				//Trick to thinking about the filling: rotate all subarrays clockwise and put together in order
-/*				Feature surface = new Feature (m_endX, 3, 0, 0, 0, 0, 99, true,"Surface");
+				Feature surface = new Feature (m_endX, m_surfaceSize, 0, 0, 0, 0, 100, true, "Surface");
 				surface.genFilling (new string[] {p,g});
-				features.Add (surface);*/
+				features.Add (surface);
+				
+				Feature end = new Feature (m_endX, 1, 0, 0, m_endY - 1, m_endY - 1, 100, true, "End");
+				end.genFilling (new string[]{i});
+				features.Add (end);
+				
 				int wldstrtY = flipY (m_startY);
 				Feature startingArea = new Feature (7, 6, m_startX - 1, m_startX - 1, wldstrtY - 4, wldstrtY - 4, 99, true, "StartingArea");
 				startingArea.loadFilling (new string[,]{
@@ -203,9 +225,15 @@ public class newGameController : MonoBehaviour
 				});
 				features.Add (startingArea);
 				
-/*				Feature grotto = new Feature (4, 3, 1, 15, 0, 17, 1, false);
+				Feature grotto = new Feature (4, 3, 1, m_endX - 4 - 1, m_surfaceSize, m_endY - 3 - 1, 1, false, "Grotto");
 				grotto.loadFilling (new string[,]{{a,w,p},{a,w,g},{a,w,g},{a,w,g}});
-				features.Add (grotto);*/
+				features.Add (grotto);
+				
+				Feature hyper = new Feature (2, 2, 1, -1, m_surfaceSize, -2, 2, false, "Hyper");
+				hyper.format (m_endX, m_endY);
+				hyper.loadFilling (new string[,]{{h,a},{a,a,}});
+				features.Add (hyper);
+				
 				
 		}
 		private int printHelp (bool inB)
@@ -301,17 +329,17 @@ public class newGameController : MonoBehaviour
 						return "prefabRock";
 				} else if (betwn (135, 145, scaledNum)) {
 						return "prefabTaenite";
-				} else if (scaledNum == 145) {
-						return "prefabTaenite";
+				} else if (betwn (145, 155, scaledNum)) {
+						return "";
 				} else {
-						return "prefabPackedRegolith";
+						return "";
 				}
 		}
 		public void fillRest ()
 		{
 				for (int y=0; y<m_endY; y+=1) {
 						for (int x=0; x<m_endX; x+=1) {
-								int randNum = Random.Range (0, 145);
+								int randNum = Random.Range (0, 155);
 								string prefabName = choose (randNum);
 								if ((prefabName != "") && (filledMatrix [x, y] == false)) {
 										placePrefabInWorld (prefabName, x, y);
@@ -333,6 +361,6 @@ public class newGameController : MonoBehaviour
 				setupFeatures ();
 				fillRest ();
 				movePlayerToStart (m_startX, m_startY);
-				printMatrix (filledMatrix);
+				//printMatrix (filledMatrix);
 		}
 }
