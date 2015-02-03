@@ -8,8 +8,17 @@ public class mineController : MonoBehaviour
 		public Transform rightMiddle;
 		public Transform middleBottom;
 		public Transform middleTop;
+		public LineRenderer mineLaser;
 		public int m_mineStr;
-		
+		void Start ()
+		{
+				mineLaser = gameObject.AddComponent<LineRenderer> ();
+				mineLaser.material = new Material (Shader.Find ("Sprites/Default"));
+				mineLaser.material.color = Color.red;	
+				mineLaser.sortingOrder = 1;
+				mineLaser.SetWidth (0.05F, 0.05F);
+				mineLaser.SetVertexCount (2);
+		}
 		void Update ()
 		{
 				MineLogic ();
@@ -19,7 +28,10 @@ public class mineController : MonoBehaviour
 		{
 				mineability target = blockHit.gameObject.GetComponent<mineability> ();
 				if (target != null) {
+						mineLaser.enabled = true;
 						target.SetHealth (target.GetHealth () - m_mineStr);
+						mineLaser.SetPosition (0, target.transform.position);
+						mineLaser.SetPosition (1, gameObject.transform.position);
 				}
 		}
 		
@@ -53,6 +65,8 @@ public class mineController : MonoBehaviour
 								//Debug.Log ("Hit Down");
 								Mine (hits [0]);	
 						}
+				} else {
+						mineLaser.enabled = false;
 				}
 		}
 }
