@@ -39,6 +39,7 @@ public class fallController : MonoBehaviour
 		{
 				RaycastHit2D downInfoLeft;
 				RaycastHit2D downInfoRight;
+				RaycastHit2D downInfoMiddle;
 		
 				float gravSize = 1F;
 		
@@ -54,6 +55,7 @@ public class fallController : MonoBehaviour
 		
 				downInfoLeft = Physics2D.Raycast (new Vector2 (xPosLeft, yPos), -Vector2.up, gravSize);
 				downInfoRight = Physics2D.Raycast (new Vector2 (xPosRight, yPos), -Vector2.up, gravSize);
+				downInfoMiddle = Physics2D.Raycast (new Vector2 (transform.position.x, yPos), -Vector2.up, gravSize / 2);
 		
 				float leftDiff = Mathf.Abs (yPos - downInfoLeft.point.y);
 				float rightDiff = Mathf.Abs (yPos - downInfoRight.point.y);
@@ -74,6 +76,12 @@ public class fallController : MonoBehaviour
 				}	
 				if (m_killOnHit) {
 						CheckPlayerHit (downInfoLeft, downInfoRight, leftDiff, rightDiff);
+				}
+				if (downInfoMiddle.collider != null) {
+						GameObject hitObj = downInfoMiddle.collider.gameObject;
+						if (hitObj.CompareTag ("PickUp")) {
+								Destroy (hitObj);
+						}
 				}
 		}
 		void CheckPlayerHit (RaycastHit2D downInfoLeft, RaycastHit2D downInfoRight, float leftDiff, float rightDiff)
