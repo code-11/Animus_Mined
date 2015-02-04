@@ -21,7 +21,15 @@ public class mineController : MonoBehaviour
 		}
 		void Update ()
 		{
-				MineLogic ();
+				craftManager craft = gameObject.GetComponent<craftManager> ();
+				msgManager message = gameObject.GetComponent<msgManager> ();
+				escManager escape = gameObject.GetComponent<escManager> ();
+				if ((craft != null) && (message != null) && (escape != null)) {
+						if ((!craft.getGuiMenuUp ()) && (!message.getMsgGuiUp ()) && (!escape.getEscMenuUp ())) {
+								MineLogic ();
+						}
+				}
+				
 		}
 		
 		void Mine (Collider2D blockHit)
