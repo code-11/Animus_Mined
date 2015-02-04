@@ -8,16 +8,14 @@ public class fallController : MonoBehaviour
 		public float m_gravity;
 		public float m_timeToFall;
 		public bool m_waitToFall;
-		public bool m_killOnHit;
+		public bool m_killOnHit; 
+		public bool m_waiting;
+		public bool m_falling; 
 		
 		void GravityWithWait ()
 		{
 				StartCoroutine (GravityTimer ());
-/*				if (m_curTimeToFall <= 0) {
-						Gravity ();
-				} else {
-						m_curTimeToFall -= 1 * Time.deltaTime;
-				}*/
+
 		}
 		bool checkForLadder ()
 		{
@@ -67,13 +65,18 @@ public class fallController : MonoBehaviour
 						leastDiff = rightDiff;
 				}
 				Vector3 amountMove = (new Vector3 (0, m_gravity, 0)) * Time.fixedDeltaTime;
-		
 				bool collidersNull = downInfoLeft.collider == null && downInfoRight.collider == null;
 				if ((leastDiff <= -amountMove.y) /*|| (!collidersNull)*/) {
 						transform.position += (new Vector3 (0, -leastDiff, 0));
+						m_falling = false;
 				} else if ((collidersNull) || (leastDiff >= -amountMove.y)) {
+						if (Mathf.Abs (amountMove.y) > .1) {
+								m_falling = true;
+						} else {
+								m_falling = false;
+						}
 						transform.position += amountMove;
-				}	
+				}
 				if (m_killOnHit) {
 						CheckPlayerHit (downInfoLeft, downInfoRight, leftDiff, rightDiff);
 				}
@@ -96,11 +99,13 @@ public class fallController : MonoBehaviour
 				}				
 			
 				if (leftHitObj != null) {
-						if ((leftHitObj.CompareTag ("Player")) && (leftDiff < .1)) {		
+						if ((leftHitObj.CompareTag ("Player")) && (leftDiff < .1)) {
+								//Debug.Log ("Killing player");
 								leftHitObj.gameObject.SendMessage ("killSelf");
 						}
 				} else if (rightHitObj != null) {
 						if ((rightHitObj.CompareTag ("Player")) && (rightDiff < .1)) {
+								//Debug.Log ("Killing player");
 								rightHitObj.gameObject.SendMessage ("killSelf");
 						}
 				}

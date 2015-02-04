@@ -81,6 +81,7 @@
      <Compile Include="Assets\Scripts\Guis\escGui.cs" />
      <Compile Include="Assets\Scripts\Guis\msgGui.cs" />
      <Compile Include="Assets\alertGui.cs" />
+     <Compile Include="Assets\canGravity.cs" />
      <Compile Include="Assets\onPickUpMessage.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
