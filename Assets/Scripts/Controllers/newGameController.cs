@@ -72,7 +72,7 @@ public class newGameController : MonoBehaviour
 				}
 				public bool shouldGen ()
 				{
-						int randNum = Random.Range (0, 100);
+						int randNum = Random.Range (0, 1000);
 						return (randNum < m_prob);
 				}
 				public bool specialAllow ()
@@ -151,8 +151,8 @@ public class newGameController : MonoBehaviour
 		}
 		private string m_fileName;
 		private ArrayList features = new ArrayList (); 
-		public static int m_endX = 20;
-		public static int m_endY = 20;
+		public static int m_endX = 40;
+		public static int m_endY = 80;
 		public static int m_surfaceSize = 3;
 		//In world coordinates
 		private static int m_startX = (m_endX / 2) - 3;
@@ -195,6 +195,7 @@ public class newGameController : MonoBehaviour
 				string g = "prefabRegolith";
 				string t = "prefabTaenite";
 				string h = "prefabHypersthene";
+				string d = "prefabFeldspar";
 				
 				string i = "prefabInvBlk";
 				string w = "prefabWater";
@@ -207,16 +208,16 @@ public class newGameController : MonoBehaviour
 				//Debug.Log (center - 4);
 		
 				//Trick to thinking about the filling: rotate all subarrays clockwise and put together in order
-				Feature surface = new Feature (m_endX, m_surfaceSize, 0, 0, 0, 0, 100, true, "Surface");
+				Feature surface = new Feature (m_endX, m_surfaceSize, 0, 0, 0, 0, 1000, true, "Surface");
 				surface.genFilling (new string[] {p,g});
 				features.Add (surface);
 				
-				Feature end = new Feature (m_endX, 1, 0, 0, m_endY - 1, m_endY - 1, 100, true, "End");
+				Feature end = new Feature (m_endX, 1, 0, 0, m_endY - 1, m_endY - 1, 1000, true, "End");
 				end.genFilling (new string[]{i});
 				features.Add (end);
 				
 				int wldstrtY = flipY (m_startY);
-				Feature startingArea = new Feature (7, 6, m_startX - 1, m_startX - 1, wldstrtY - 4, wldstrtY - 4, 99, true, "StartingArea");
+				Feature startingArea = new Feature (7, 6, m_startX - 1, m_startX - 1, wldstrtY - 4, wldstrtY - 4, 1000, true, "StartingArea");
 				startingArea.loadFilling (new string[,]{
 					{r,r,p,p,k,p},
 					{r,p,a,a,a,r},
@@ -228,11 +229,23 @@ public class newGameController : MonoBehaviour
 				});
 				features.Add (startingArea);
 				
-				Feature grotto = new Feature (4, 3, 1, m_endX - 4 - 1, m_surfaceSize, m_endY - 3 - 1, 1, false, "Grotto");
+				Feature grotto = new Feature (4, 3, 1, m_endX - 4 - 1, m_surfaceSize, m_endY - 3 - 1, 5, false, "Grotto");
 				grotto.loadFilling (new string[,]{{a,w,p},{a,w,g},{a,w,g},{a,w,g}});
 				features.Add (grotto);
 				
-				Feature hyper = new Feature (2, 2, 1, -1, m_surfaceSize, -2, 2, false, "Hyper");
+				Feature quartz = new Feature (3, 3, 1, -1, m_surfaceSize + (m_endY / 2), -1, 20, false, "Quartz");
+				quartz.format (m_endX, m_endY);
+				quartz.loadFilling (new string[,]{
+					{a,d,r},
+					{d,q,d},
+					{p,d,g}
+				});
+				features.Add (quartz);
+				
+				//Feature (int sx, int sy, int minX, int maxX, int minY, int maxY, float prob, bool spec, string name)
+			
+				
+				Feature hyper = new Feature (2, 2, 1, -1, m_surfaceSize, -2, 20, false, "Hyper");
 				hyper.format (m_endX, m_endY);
 				hyper.loadFilling (new string[,]{{h,a},{a,a,}});
 				features.Add (hyper);
@@ -291,6 +304,15 @@ public class newGameController : MonoBehaviour
 		}
 		private void setupFeatures ()
 		{
+				Feature leftBound = new Feature (1, m_endY, -1, -1, 0, 0, 1000, true, "LeftBound");
+				leftBound.genFilling (new string[]{"prefabInvBlk"});
+				leftBound.placeInWorld (-1, 0);
+				
+				Feature rightBound = new Feature (1, m_endY, m_endX, m_endX, 0, 0, 1000, true, "RightBound");
+				rightBound.genFilling (new string[]{"prefabInvBlk"});
+				rightBound.placeInWorld (m_endX, 0);
+				//evalFeature (-1, 0, filledMatrix, leftBound);
+		
 				foreach (Feature feat in features) {
 						for (int y=0; y< filledMatrix.GetLength(1); y+=1) {
 								for (int x=0; x<filledMatrix.GetLength(0); x+=1) {
@@ -325,7 +347,7 @@ public class newGameController : MonoBehaviour
 				} else if (betwn (10, 60, scaledNum)) {
 						return "prefabPackedRegolith";
 				} else if (betwn (60, 65, scaledNum)) {
-						return "prefabQuartz";
+						return "prefabPackedRegolith";
 				} else if (betwn (65, 105, scaledNum)) {
 						return "prefabRegolith";
 				} else if (betwn (105, 135, scaledNum)) {
