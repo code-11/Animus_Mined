@@ -47,7 +47,11 @@ public class canGravity : MonoBehaviour
 						yield return new WaitForSeconds (m_waitTime);
 						m_waiting = false;
 				} else if (m_curState == State.Fall) {
-						checkPickupsAndPlayer ();
+						if (gameObject.CompareTag ("Hypersthene")) {
+								checkPickupsAndPlayerDouble ();
+						} else {
+								checkPickupsAndPlayer ();
+						}
 						Gravity ();
 						return false;
 				}
@@ -59,7 +63,9 @@ public class canGravity : MonoBehaviour
 						if (hitObj.CompareTag ("PickUp")) {
 								Destroy (hitObj);
 						} else if (hitObj.CompareTag ("Player")) {
-								hitObj.gameObject.SendMessage ("killSelf");
+								if (m_killOnHit) {
+										hitObj.gameObject.SendMessage ("killSelf");
+								}
 						}
 				}
 		}
@@ -78,6 +84,45 @@ public class canGravity : MonoBehaviour
 						}*/
 				} else {
 						return null;
+				}
+		}
+		private void checkPickupsAndPlayerDouble ()
+		{
+				RaycastHit2D downInfoMiddleLeft;
+				RaycastHit2D downInfoMiddleRight;
+				float yPos = m_leftBottom.position.y;
+				float gravSize = m_gravityLen;
+				float middleSize = Mathf.Abs (transform.position.x - m_leftBottom.position.x) / 2;
+				downInfoMiddleLeft = Physics2D.Raycast (new Vector2 ((transform.position.x - middleSize), yPos), -Vector2.up, gravSize / 2);
+				downInfoMiddleRight = Physics2D.Raycast (new Vector2 ((transform.position.x + middleSize), yPos), -Vector2.up, gravSize / 2);
+		
+				if (downInfoMiddleLeft.collider != null) {
+						GameObject hitObj = downInfoMiddleLeft.collider.gameObject;
+						if (hitObj != null) {
+								if (hitObj.CompareTag ("PickUp")) {
+										Destroy (hitObj);
+								} else if (hitObj.CompareTag ("Player")) {
+										if (m_killOnHit) {
+												hitObj.gameObject.SendMessage ("killSelf");
+										}
+								} else {
+										Debug.Log ("Hypersthene: Not sure what I hit");
+								}
+						}
+				}
+				if (downInfoMiddleRight.collider != null) {
+						GameObject hitObj = downInfoMiddleRight.collider.gameObject;
+						if (hitObj != null) {
+								if (hitObj.CompareTag ("PickUp")) {
+										Destroy (hitObj);
+								} else if (hitObj.CompareTag ("Player")) {
+										if (m_killOnHit) {
+												hitObj.gameObject.SendMessage ("killSelf");
+										}
+								} else {
+										Debug.Log ("Hypersthene: Not sure what I hit");
+								}
+						}
 				}
 		}
 		void Gravity ()
@@ -117,11 +162,7 @@ public class canGravity : MonoBehaviour
 						m_curState = State.Wait;
 				} else if ((collidersNull) || (leastDiff >= -amountMove.y)) {
 						transform.position += amountMove;
-				}
-				if (m_killOnHit) {
-						
-						//CheckPlayerHit (downInfoLeft, downInfoRight, leftDiff, rightDiff);
-				}
+				}	
 
 		}
 	
