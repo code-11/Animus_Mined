@@ -4,7 +4,7 @@ using UnityEditor;
 
 public class liquidController : MonoBehaviour
 {
-		public GameObject m_toSpread;
+		public string m_toSpread;
 		public bool m_spread = false;
 		public float m_spreadDelaySlow;
 		public float m_spreadDelayFast;
@@ -64,7 +64,14 @@ public class liquidController : MonoBehaviour
 				if ((m_spread) && (hits [0] == null)) {
 						try {
 								//GameObject spawn = (GameObject)Instantiate (m_toSpread, new Vector3 (newPos.x, newPos.y, 0), Quaternion.identity);
-								GameObject spawn = (GameObject)PrefabUtility.InstantiatePrefab (m_toSpread);
+								GameObject theLiquid = Resources.Load (m_toSpread) as GameObject;
+								if (theLiquid == null) {
+										Debug.Log ("theLiquid is null");
+								}
+								GameObject spawn = (GameObject)PrefabUtility.InstantiatePrefab (theLiquid);
+								if (spawn == null) {
+										Debug.Log ("spawn is null in liquid controller");
+								}
 								spawn.transform.position = new Vector3 (newPos.x, newPos.y, 0);
 								liquidController brain = spawn.GetComponent<liquidController> ();
 								brain.m_toSpread = m_toSpread;
@@ -73,7 +80,7 @@ public class liquidController : MonoBehaviour
 						} catch (MissingReferenceException) {
 								toReturn = false;
 								Destroy (gameObject);
-						}
+						} 
 				} else {
 						toReturn = false;
 				}
