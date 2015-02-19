@@ -51,6 +51,7 @@
      <Compile Include="Assets\Scripts\Abilities\Usability.cs" />
      <Compile Include="Assets\Scripts\Abilities\behaviorOnPickup.cs" />
      <Compile Include="Assets\Scripts\Abilities\bombOnUse.cs" />
+     <Compile Include="Assets\Scripts\Abilities\factoryOnUse.cs" />
      <Compile Include="Assets\Scripts\Abilities\ladderOnUse.cs" />
      <Compile Include="Assets\Scripts\Abilities\mineability.cs" />
      <Compile Include="Assets\Scripts\Abilities\onPickUpResearch.cs" />
@@ -61,6 +62,7 @@
      <Compile Include="Assets\Scripts\Controllers\Obsolete\ladderController.cs" />
      <Compile Include="Assets\Scripts\Controllers\Obsolete\playerController.cs" />
      <Compile Include="Assets\Scripts\Controllers\bombController.cs" />
+     <Compile Include="Assets\Scripts\Controllers\canGravity.cs" />
      <Compile Include="Assets\Scripts\Controllers\craftManager.cs" />
      <Compile Include="Assets\Scripts\Controllers\discreteMovement.cs" />
      <Compile Include="Assets\Scripts\Controllers\escManager.cs" />
@@ -81,7 +83,6 @@
      <Compile Include="Assets\Scripts\Guis\escGui.cs" />
      <Compile Include="Assets\Scripts\Guis\msgGui.cs" />
      <Compile Include="Assets\alertGui.cs" />
-     <Compile Include="Assets\canGravity.cs" />
      <Compile Include="Assets\onPickUpMessage.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -75,6 +75,8 @@ public class craftManager : MonoBehaviour
 						return "PickUps/prefabPickUp";
 				case "Support":
 						return "PickUps/prefabSuppPickup";
+				case "Factory":
+						return "Pickups/prefabFactPickup";
 				default:
 						return "PickUps/prefabPickUp";
 				}
@@ -127,6 +129,11 @@ public class craftManager : MonoBehaviour
 				m_allRecipes.Add (new Recipe (2,
 		            new Dictionary<string,int>{{"Regolith",1},{"Rock",1}},
 					new Dictionary<string,int>{{"Support",1}},
+					false
+				));
+				m_allRecipes.Add (new Recipe (3,
+		            new Dictionary<string,int>{{"Regolith",1}},
+					new Dictionary<string,int>{{"Factory",1}},
 					false
 				));
 				calculateUnlocked ();
