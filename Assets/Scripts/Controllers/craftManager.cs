@@ -38,6 +38,7 @@ public class craftManager : MonoBehaviour
 						return m_recipeNum;
 				}
 		}
+		private alertGui alertCtrl;
 		private ArrayList m_unlocked = new ArrayList ();
 		private ArrayList m_allRecipes = new ArrayList ();
 		private bool guiMenuUp = false;
@@ -115,6 +116,7 @@ public class craftManager : MonoBehaviour
 		void Start ()
 		{
 				m_craftGui = gameObject.GetComponent<craftGui> ();
+				alertCtrl=gameObject.GetComponent<alertGui>();
 				
 				m_allRecipes.Add (new Recipe (0,
 					new Dictionary<string,int>{{"Regolith",1},{"Nickel",1}},
@@ -168,6 +170,7 @@ public class craftManager : MonoBehaviour
 						}
 						
 				} else {
+						alertCtrl.setAlert("Not allowed to make this recipe");
 						Debug.Log ("Not allowed to make this recipe");
 				}
 		}
