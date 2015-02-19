@@ -16,14 +16,14 @@ public class canGravity : MonoBehaviour
 		
 		public bool m_killOnHit;
 		public bool m_waiting = false;
-		private enum State
+		public enum State
 		{
 				Still,
 				Wait,
 				Fall
 		}
 		;
-		private State m_curState = State.Still;
+		public State m_curState = State.Still;
 		// Update is called once per frame
 		void Update ()
 		{
@@ -36,16 +36,17 @@ public class canGravity : MonoBehaviour
 				if (m_curState == State.Still) {
 						if (castMiddle () == null) {
 								//if there is nothing below the block
-								m_curState = State.Fall;
+								m_curState = State.Wait;
 						}
 						m_waiting = true;
-						yield return new WaitForSeconds (m_waitTime);
+						yield return new WaitForSeconds (m_checkTime);
 						m_waiting = false;
 						//Need to wait here
 				} else if (m_curState == State.Wait) {
 						m_waiting = true;
 						yield return new WaitForSeconds (m_waitTime);
 						m_waiting = false;
+						m_curState=State.Fall;
 				} else if (m_curState == State.Fall) {
 						if (gameObject.CompareTag ("Hypersthene")) {
 								checkPickupsAndPlayerDouble ();
@@ -159,7 +160,7 @@ public class canGravity : MonoBehaviour
 				bool collidersNull = downInfoLeft.collider == null && downInfoRight.collider == null;
 				if ((leastDiff <= -amountMove.y) /*|| (!collidersNull)*/) {
 						transform.position += (new Vector3 (0, -leastDiff, 0));
-						m_curState = State.Wait;
+						m_curState = State.Still;
 				} else if ((collidersNull) || (leastDiff >= -amountMove.y)) {
 						transform.position += amountMove;
 				}	

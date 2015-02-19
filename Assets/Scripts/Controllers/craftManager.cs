@@ -73,14 +73,16 @@ public class craftManager : MonoBehaviour
 						return "PickUps/prefabBombPickUp";
 				case "Ladder":
 						return "PickUps/prefabPickUp";
+				case "Support":
+						return "PickUps/prefabSuppPickup";
 				default:
-						return "PickUps/prefabSupportPickUp";
+						return "PickUps/prefabPickUp";
 				}
 		}
 		
 		private GameObject createResult (string name, int amount)
 		{
-				Debug.Log ("Trying to instantiate: " + name);
+				//Debug.Log ("Trying to instantiate: " + name);
 				string prefabName = lookUpPrefab (name);
 				GameObject newObj = (GameObject)Instantiate ((GameObject)Resources.Load (prefabName), new Vector3 (0, 0, 0), Quaternion.identity);
 				InvenObject chargeScript = newObj.GetComponent<InvenObject> ();
@@ -118,8 +120,13 @@ public class craftManager : MonoBehaviour
 					true
 				));
 				m_allRecipes.Add (new Recipe (1,
-		            new Dictionary<string,int>{{"Regolith",1}},
-					new Dictionary<string,int>{{"Ladder",2}},
+		            new Dictionary<string,int>{{"Regolith",2}},
+					new Dictionary<string,int>{{"Ladder",1}},
+					false
+				));
+				m_allRecipes.Add (new Recipe (2,
+		            new Dictionary<string,int>{{"Regolith",1},{"Rock",1}},
+					new Dictionary<string,int>{{"Support",1}},
 					false
 				));
 				calculateUnlocked ();
