@@ -10,7 +10,11 @@ public class loadController : MonoBehaviour
 
 		public string m_fileName;
 		public GameObject m_player;
+		private alertManager alertCtrl;
 
+		public void Start(){
+			alertCtrl=gameObject.GetComponent<alertManager>();
+		}
 		// Use this for initialization
 		public void setName (string name)
 		{
@@ -188,6 +192,7 @@ public class loadController : MonoBehaviour
 				LoadMessages (reader);
 				LoadPlayer (reader);
 				LoadEnvironment (reader);
+				alertCtrl.setAlert("Loaded File "+m_fileName+" Successfully");
 				Debug.Log ("Done Loading");
 		}
 }

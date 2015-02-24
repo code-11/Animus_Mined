@@ -26,6 +26,7 @@ public class escManager : MonoBehaviour
 				}
 				
 		}
+		private alertManager alertCtrl;
 		public bool startingGame;
 		public  int m_numSelected;
 		public ArrayList m_menuList;
@@ -83,7 +84,8 @@ public class escManager : MonoBehaviour
 		}
 		public void Start ()
 		{
-				addAllItems ();
+			alertCtrl=gameObject.GetComponent<alertManager>();
+			addAllItems ();
 		}
 
 		void Update ()
@@ -118,6 +120,7 @@ public class escManager : MonoBehaviour
 				string filePath = EditorUtility.OpenFilePanel ("Open File", "", "csv");
 				loadController loader = gameObject.GetComponent<loadController> ();
 				if ((loader == null) || (filePath == "")) {
+						alertCtrl.setAlert("Error Opening File");
 						Debug.Log ("Error opening file");
 				} else {
 						Debug.Log ("filePath" + filePath);
@@ -131,7 +134,8 @@ public class escManager : MonoBehaviour
 				string filePath = EditorUtility.SaveFilePanel ("Open File", "", "save001", "csv");
 				saveController saver = gameObject.GetComponent<saveController> ();
 				if ((saver == null) || (filePath == "")) { 
-						Debug.Log ("Error opening file");
+						alertCtrl.setAlert("Error Saving File");
+						Debug.Log ("Error saving file");
 				} else {
 						saver.setName (filePath);
 						saver.SaveAll ();
@@ -179,7 +183,7 @@ public class escManager : MonoBehaviour
 				bool escPress = Input.GetKeyDown ("escape");
 
 				if (escPress) {
-						Debug.Log ("pressed Esc");
+						//Debug.Log ("pressed Esc");
 						if (escMenuUp == true) {
 								escMenuUp = false;
 								escMenu.enabled = false;

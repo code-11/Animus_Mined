@@ -114,7 +114,7 @@ public class inventoryManager : MonoBehaviour
 						InvenObject chargeScript = item.GetComponent<InvenObject> ();
 						behaviorOnPickup pickupScript = item.GetComponent<behaviorOnPickup> ();
 						if (pickupScript != null) {
-								Debug.Log ("pickuping the thing");
+								//Debug.Log ("pickuping the thing");
 								pickupScript.onPickup (gameObject);
 						}
 						if (chargeScript != null) {

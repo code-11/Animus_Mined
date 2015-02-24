@@ -6,7 +6,7 @@ public class pickupability : MonoBehaviour
 
 		void OnTriggerEnter (Collider other)
 		{
-				Debug.Log ("Triggered");
+				//Debug.Log ("Triggered");
 				inventoryManager inven = other.gameObject.GetComponent<inventoryManager> ();
 				if (inven != null) {
 						inven.AddItem (gameObject);

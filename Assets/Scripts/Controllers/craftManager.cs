@@ -193,12 +193,13 @@ public class craftManager : MonoBehaviour
 														//Debug.Log (objChargeScript.m_stackName + " != " + ingred.Key);
 												}
 										}
-										Debug.Log ("reqNum: " + reqNum + " curNum: " + curNum);
+										//Debug.Log ("reqNum: " + reqNum + " curNum: " + curNum);
 								}
 								if (reqNum == curNum) {
 										possible.Add (recipe.getRecipeNum ());
 										Debug.Log ("adding to possible: " + recipe.getRecipeNum ());
 								} else {
+
 										Debug.Log ("Didn't make because reqNum: " + reqNum + " curNum: " + curNum);
 								}
 						}
