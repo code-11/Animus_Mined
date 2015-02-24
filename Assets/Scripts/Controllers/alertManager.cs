@@ -12,10 +12,14 @@ public class alertManager : MonoBehaviour {
 			gui= gameObject.GetComponent<alertGui>();
 			setAlert("Started Game");
 	}
-	
-	// Update is called once per frame
 	void Update () {
-	
+		if (Input.GetKeyDown ("c")){
+			if (gui.enabled == true) {
+					gui.enabled = false;
+			} else {
+					gui.enabled = true;
+			}
+		}
 	}
 
 	public string timeSinceLast(){
