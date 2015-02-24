@@ -54,6 +54,7 @@
      <Compile Include="Assets\Scripts\Abilities\factoryOnUse.cs" />
      <Compile Include="Assets\Scripts\Abilities\ladderOnUse.cs" />
      <Compile Include="Assets\Scripts\Abilities\mineability.cs" />
+     <Compile Include="Assets\Scripts\Abilities\onPickUpMessage.cs" />
      <Compile Include="Assets\Scripts\Abilities\onPickUpResearch.cs" />
      <Compile Include="Assets\Scripts\Abilities\permeability.cs" />
      <Compile Include="Assets\Scripts\Abilities\pickupability.cs" />
@@ -61,6 +62,7 @@
      <Compile Include="Assets\Scripts\Controllers\Obsolete\DiscreteSpring.cs" />
      <Compile Include="Assets\Scripts\Controllers\Obsolete\ladderController.cs" />
      <Compile Include="Assets\Scripts\Controllers\Obsolete\playerController.cs" />
+     <Compile Include="Assets\Scripts\Controllers\alertManager.cs" />
      <Compile Include="Assets\Scripts\Controllers\bombController.cs" />
      <Compile Include="Assets\Scripts\Controllers\canGravity.cs" />
      <Compile Include="Assets\Scripts\Controllers\craftManager.cs" />
@@ -79,11 +81,10 @@
      <Compile Include="Assets\Scripts\Guis\InventoryGui.cs" />
      <Compile Include="Assets\Scripts\Guis\QuickSlot.cs" />
      <Compile Include="Assets\Scripts\Guis\StartingGui.cs" />
+     <Compile Include="Assets\Scripts\Guis\alertGui.cs" />
      <Compile Include="Assets\Scripts\Guis\craftGui.cs" />
      <Compile Include="Assets\Scripts\Guis\escGui.cs" />
      <Compile Include="Assets\Scripts\Guis\msgGui.cs" />
-     <Compile Include="Assets\alertGui.cs" />
-     <Compile Include="Assets\onPickUpMessage.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
