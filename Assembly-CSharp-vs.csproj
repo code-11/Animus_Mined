@@ -66,6 +66,7 @@
      <Compile Include="Assets\Scripts\Controllers\bombController.cs" />
      <Compile Include="Assets\Scripts\Controllers\canGravity.cs" />
      <Compile Include="Assets\Scripts\Controllers\craftManager.cs" />
+     <Compile Include="Assets\Scripts\Controllers\deathController.cs" />
      <Compile Include="Assets\Scripts\Controllers\discreteMovement.cs" />
      <Compile Include="Assets\Scripts\Controllers\escManager.cs" />
      <Compile Include="Assets\Scripts\Controllers\fallController.cs" />
@@ -85,7 +86,6 @@
      <Compile Include="Assets\Scripts\Guis\craftGui.cs" />
      <Compile Include="Assets\Scripts\Guis\escGui.cs" />
      <Compile Include="Assets\Scripts\Guis\msgGui.cs" />
-     <Compile Include="Assets\deathController.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

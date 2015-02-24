@@ -200,6 +200,7 @@ public class newGameController : MonoBehaviour
 				string i = "prefabInvBlk";
 				string w = "prefabWater";
 				string f = "prefabFactory";
+				string e = "prefabReplicator";
 				
 				string l = "PickUps/prefabPickUp";
 				string a = "";
@@ -223,7 +224,7 @@ public class newGameController : MonoBehaviour
 					{r,p,a,a,a,r},
 					{g,p,a,a,l,r},
 					{p,p,a,a,f,p},
-					{r,a,a,r,r,p},
+					{r,a,a,a,e,p},
 					{r,a,a,a,g,r},
 					{r,p,p,g,g,r}
 				});
