@@ -5,7 +5,7 @@ public class craftGui : MonoBehaviour
 {
 		private craftManager m_craftCtrl;
 		private float width = 800;
-		private float height = 600;
+		private float height = 370;
 		private float centerX;
 		private float localY;
 		private float leftMost;

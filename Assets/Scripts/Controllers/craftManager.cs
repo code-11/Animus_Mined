@@ -261,7 +261,7 @@ public class craftManager : MonoBehaviour
 		}
 		public void runCraft ()
 		{
-				bool yPres = Input.GetKeyDown ("y");
+				bool yPres = Input.GetKeyDown ("f");
 				if (yPres && checkForFactory ()) {
 						if (guiMenuUp == true) {
 								guiMenuUp = false;

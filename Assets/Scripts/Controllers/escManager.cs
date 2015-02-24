@@ -40,9 +40,11 @@ public class escManager : MonoBehaviour
 				menuItem item1 = new menuItem ("New Game", newFile);
 				menuItem item2 = new menuItem ("Load Game", loadFile);
 				menuItem item3 = new menuItem ("Save Game", saveFile);
+				menuItem item4 = new menuItem ("Exit Game", exitGame);
 				m_menuList.Add (item1);
 				m_menuList.Add (item2);
 				m_menuList.Add (item3);
+				m_menuList.Add (item4);
 				m_numSelected = 0;
 		}
 		private void disableSpecial ()
@@ -52,6 +54,15 @@ public class escManager : MonoBehaviour
 						special.SetActive (false);
 				}
 		}
+		private void disableStartScreen()
+		{
+				GameObject title = GameObject.Find("OpenTitle");
+				if (title!=null){
+						title.SetActive(false);
+				}
+		}
+		//Cleans up all the starting game objects and moves the player around.
+		//Also takes away the gui.
 		public void startGame ()
 		{
 				QuickSlot quick = gameObject.GetComponent<QuickSlot> ();
@@ -61,6 +72,7 @@ public class escManager : MonoBehaviour
 						disableSpecial ();
 						disableSpecial ();
 						disableSpecial ();
+						disableStartScreen();
 						quick.enabled = true;
 						if (escMenuUp) {
 								escGui escMenu = gameObject.GetComponent<escGui> ();
@@ -94,6 +106,9 @@ public class escManager : MonoBehaviour
 		{
 				return m_menuList;
 		}		
+		public void exitGame(){
+				Application.Quit();
+		}
 		public void loadFile ()
 		{
 				if (startingGame) {

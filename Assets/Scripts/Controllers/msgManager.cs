@@ -131,7 +131,7 @@ public class msgManager : MonoBehaviour
 		private void guiToggle ()
 		{
 				msgGui gui = gameObject.GetComponent<msgGui> ();
-				bool yPres = Input.GetKeyDown ("y");
+				bool yPres = Input.GetKeyDown ("f");
 				if (yPres && ansiblePresent ()) {
 						if (msgGuiUp == true) {
 								msgGuiUp = false;

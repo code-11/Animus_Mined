@@ -10,7 +10,7 @@ public class InventoryGui : MonoBehaviour
 				GUI.Box (new Rect (170, Screen.height - 110, 1000, 100), "Inventory");
 				inventoryManager manager = gameObject.GetComponent<inventoryManager> ();
 				int x = 190;
-				int y = Screen.height - 90;
+				int y = Screen.height - 80;
 				
 				int i = 0;
 				if (manager.getInven ().Count > 0) {
