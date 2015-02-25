@@ -75,9 +75,11 @@ public class craftManager : MonoBehaviour
 				case "Ladder":
 						return "PickUps/prefabPickUp";
 				case "Support":
-						return "PickUps/prefabSuppPickup";
+						return "PickUps/prefabSuppPickUp";
 				case "Factory":
-						return "Pickups/prefabFactPickup";
+						return "PickUps/prefabFactPickUp";
+				case "Replicator":
+						return "PickUps/prefabReprPickUp";
 				default:
 						return "PickUps/prefabPickUp";
 				}
@@ -119,23 +121,34 @@ public class craftManager : MonoBehaviour
 				alertCtrl=gameObject.GetComponent<alertManager>();
 				
 				m_allRecipes.Add (new Recipe (0,
-					new Dictionary<string,int>{{"Regolith",1},{"Nickel",1}},
-					new Dictionary<string,int>{{"Bomb",2}},
-					true
+		            new Dictionary<string,int>{{"Regolith",4}},
+					new Dictionary<string,int>{{"Rock",1}},
+					false
 				));
 				m_allRecipes.Add (new Recipe (1,
 		            new Dictionary<string,int>{{"Regolith",2}},
 					new Dictionary<string,int>{{"Ladder",1}},
 					false
 				));
+
 				m_allRecipes.Add (new Recipe (2,
 		            new Dictionary<string,int>{{"Regolith",1},{"Rock",1}},
 					new Dictionary<string,int>{{"Support",1}},
 					false
 				));
 				m_allRecipes.Add (new Recipe (3,
-		            new Dictionary<string,int>{{"Regolith",1}},
+					new Dictionary<string,int>{{"Iron",1},{"Nickel",1}},
+					new Dictionary<string,int>{{"Bomb",1}},
+					false
+				));
+				m_allRecipes.Add (new Recipe (4,
+		            new Dictionary<string,int>{{"Iron",2},{"Quartz",2}},
 					new Dictionary<string,int>{{"Factory",1}},
+					false
+				));
+				m_allRecipes.Add (new Recipe (5,
+		            new Dictionary<string,int>{{"Iron",4},{"Quartz",4}},
+					new Dictionary<string,int>{{"Replicator",1}},
 					false
 				));
 				calculateUnlocked ();
