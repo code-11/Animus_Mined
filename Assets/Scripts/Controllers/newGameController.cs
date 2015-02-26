@@ -196,6 +196,7 @@ public class newGameController : MonoBehaviour
 				string t = "prefabTaenite";
 				string h = "prefabHypersthene";
 				string d = "prefabFeldspar";
+				string m = "prefabMagnesium";
 				
 				string i = "prefabInvBlk";
 				string w = "prefabWater";
@@ -230,6 +231,16 @@ public class newGameController : MonoBehaviour
 				});
 				features.Add (startingArea);
 				
+				Feature magnesiumInclusion = new Feature(4,5,1,-1,m_surfaceSize+(m_endY/2),-1,2, false,"Magnesium");
+				magnesiumInclusion.format (m_endX, m_endY);
+				magnesiumInclusion.loadFilling (new string[,]{
+					{h,a,d,r,r},
+					{a,a,m,h,a},
+					{r,h,a,a,a},
+					{g,a,a,g,p}
+				});
+				features.Add(magnesiumInclusion);
+
 				Feature grotto = new Feature (4, 3, 1, m_endX - 4 - 1, m_surfaceSize, m_endY - 3 - 1, 5, false, "Grotto");
 				grotto.loadFilling (new string[,]{{a,w,p},{a,w,g},{a,w,g},{a,w,g}});
 				features.Add (grotto);
