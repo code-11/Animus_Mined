@@ -254,9 +254,10 @@ public class craftManager : MonoBehaviour
 				bool dPres = Input.GetKeyDown ("d");
 				bool rPres = Input.GetKeyDown ("r");
 				int MAX_NUM_PER_ROW = 3;
-				int NUM_COLS = m_unlocked.Count / 7;
-				int LAST_NUM_PER_ROW = m_unlocked.Count % 7;
-				int MAX_NUM_PER_COLUMN = 7;
+				int MAX_NUM_PER_COLUMN = 4;
+				int NUM_COLS = m_unlocked.Count / MAX_NUM_PER_COLUMN;
+				int LAST_NUM_PER_ROW = m_unlocked.Count % MAX_NUM_PER_COLUMN;
+				
 				if (wPres) {
 						if ((numSelected % MAX_NUM_PER_COLUMN) != 0) {
 								numSelected -= 1;
