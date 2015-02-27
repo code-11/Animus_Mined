@@ -155,7 +155,7 @@ public class craftManager : MonoBehaviour
 		}
 		void createRecipeByNum (int recipeNum)
 		{
-				ArrayList allowedNums = evalPossible ();
+				ArrayList allowedNums = evalPossible (recipeNum);
 				if (allowedNums.Contains (recipeNum)) {
 						Recipe desRecipe = getRecipeByNum (recipeNum);
 						inventoryManager inven = gameObject.GetComponent<inventoryManager> ();
@@ -183,18 +183,20 @@ public class craftManager : MonoBehaviour
 						}
 						
 				} else {
-						alertCtrl.setAlert("Not allowed to make this recipe");
+						//alertCtrl.setAlert("Not allowed to make this recipe");
 						Debug.Log ("Not allowed to make this recipe");
 				}
 		}
-		ArrayList evalPossible ()
+		ArrayList evalPossible (int recipeNum)
 		{
 				ArrayList possible = new ArrayList (); 
 				inventoryManager inven = gameObject.GetComponent<inventoryManager> ();
 				if (inven != null) {
 						foreach (Recipe recipe in m_unlocked) {
+								//reqNum is confusingly, number of requirements, ie if 1A +2B =3C, reqNum=2
 								int reqNum = recipe.getInput ().Count;
 								int curNum = 0;
+								string debugInfo="";
 								foreach (var ingred in recipe.getInput()) {
 										foreach (GameObject invenObj in inven.getInven()) {
 												InvenObject objChargeScript = invenObj.GetComponent<InvenObject> ();
@@ -202,8 +204,11 @@ public class craftManager : MonoBehaviour
 														//Debug.Log (objChargeScript.m_stackName + " = " + ingred.Key);
 														curNum += 1;
 														
-												} else {
-														//Debug.Log (objChargeScript.m_stackName + " != " + ingred.Key);
+												} 
+												if((objChargeScript.m_stackName==ingred.Key)&&(objChargeScript.m_charges<ingred.Value)) {
+													if (recipe.getRecipeNum()==recipeNum){
+														debugInfo="Didn't make because needed " + ingred.Value +" "+ingred.Key+" but inventory has "+objChargeScript.m_charges;
+													}
 												}
 										}
 										//Debug.Log ("reqNum: " + reqNum + " curNum: " + curNum);
@@ -212,8 +217,15 @@ public class craftManager : MonoBehaviour
 										possible.Add (recipe.getRecipeNum ());
 										Debug.Log ("adding to possible: " + recipe.getRecipeNum ());
 								} else {
-
-										Debug.Log ("Didn't make because reqNum: " + reqNum + " curNum: " + curNum);
+									if (recipe.getRecipeNum()==recipeNum){
+										Debug.Log ("Couldn't make recipe");
+										if (debugInfo!=""){
+											//If had ingredient but not enough charges
+											alertCtrl.setAlert(debugInfo);
+										}else{
+											alertCtrl.setAlert("Didn't make because missing ingredient");
+										}
+									}
 								}
 						}
 				} else {
