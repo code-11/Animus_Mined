@@ -13,6 +13,7 @@ public class craftGui : MonoBehaviour
 		// Use this for initialization
 		void OnGUI ()
 		{
+				GUI.skin.button.wordWrap = true;
 				runGui ();
 		}
 		private void Start ()
