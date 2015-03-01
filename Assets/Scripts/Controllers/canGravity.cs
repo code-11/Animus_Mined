@@ -61,13 +61,8 @@ public class canGravity : MonoBehaviour
 		{
 				GameObject hitObj = castMiddle ();
 				if (hitObj != null) {
-						if (hitObj.CompareTag ("PickUp")) {
-								Destroy (hitObj);
-						} else if (hitObj.CompareTag ("Player")) {
-								if (m_killOnHit) {
-										hitObj.gameObject.SendMessage ("killSelf");
-								}
-						}
+							//Debug.Log("Falling object hit something 1");
+							hitLogic(hitObj);
 				}
 		}
 		//Returns object thats below the block. 
@@ -87,6 +82,27 @@ public class canGravity : MonoBehaviour
 						return null;
 				}
 		}
+
+		private void hitLogic(GameObject hitObj){
+			//Debug.Log("Falling object hit something 2");
+			if (hitObj.CompareTag ("PickUp")) {
+					Destroy (hitObj);
+			} else if (hitObj.CompareTag ("Player")) {
+					if (m_killOnHit) {
+							hitObj.gameObject.SendMessage ("killSelf");
+					}
+			}else if (hitObj.CompareTag("Liquid")){
+					liquidController liqCtrl=hitObj.GetComponent<liquidController>();
+					if (liqCtrl!=null){
+						//Debug.Log("Liquid was non-null");
+						liqCtrl.ifHit(this.gameObject);
+						//Debug.Log("Theoretically called ifHit");
+					}
+			} else {
+					//Debug.Log ("Hit a rock");
+			}
+		}
+
 		private void checkPickupsAndPlayerDouble ()
 		{
 				RaycastHit2D downInfoMiddleLeft;
@@ -100,29 +116,13 @@ public class canGravity : MonoBehaviour
 				if (downInfoMiddleLeft.collider != null) {
 						GameObject hitObj = downInfoMiddleLeft.collider.gameObject;
 						if (hitObj != null) {
-								if (hitObj.CompareTag ("PickUp")) {
-										Destroy (hitObj);
-								} else if (hitObj.CompareTag ("Player")) {
-										if (m_killOnHit) {
-												hitObj.gameObject.SendMessage ("killSelf");
-										}
-								} else {
-										Debug.Log ("Hypersthene: Not sure what I hit");
-								}
+							hitLogic(hitObj);
 						}
 				}
 				if (downInfoMiddleRight.collider != null) {
 						GameObject hitObj = downInfoMiddleRight.collider.gameObject;
 						if (hitObj != null) {
-								if (hitObj.CompareTag ("PickUp")) {
-										Destroy (hitObj);
-								} else if (hitObj.CompareTag ("Player")) {
-										if (m_killOnHit) {
-												hitObj.gameObject.SendMessage ("killSelf");
-										}
-								} else {
-										Debug.Log ("Hypersthene: Not sure what I hit");
-								}
+							hitLogic(hitObj);
 						}
 				}
 		}

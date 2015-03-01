@@ -10,6 +10,7 @@ public class liquidController : MonoBehaviour
 		public float m_spreadDelayFast;
 		public bool m_checkSpeed;
 		public bool m_waiting = false;
+		public bool m_killPlayerOnInside=true;
 		private enum m_dirs
 		{
 				up,
@@ -32,7 +33,7 @@ public class liquidController : MonoBehaviour
 						StartCoroutine (spreadTimeFast ());
 				}
 		}
-		
+		public virtual void ifHit(GameObject obj){}
 		IEnumerator spreadTimeFast ()
 		{
 				m_waiting = true;
@@ -55,13 +56,18 @@ public class liquidController : MonoBehaviour
 						}
 				}
 		}
-		
+		//return whether it has spread
 		bool spreadPoint (int devX, int devY)
 		{
 				bool toReturn;
 				Vector2 newPos = new Vector2 (transform.position.x + devX, transform.position.y + devY);
 				Physics2D.OverlapPointNonAlloc (newPos, hits);
-				if ((m_spread) && (hits [0] == null)) {
+				//If it is in spreading mode and (the space is empty or if it would hit the player)
+				bool hitPlayer=false;
+				if (hits[0]!=null){
+					hitPlayer=(hits[0].gameObject).CompareTag("Player");
+				}
+				if ((m_spread) && ((hits [0] == null)|| hitPlayer)) {
 						try {
 								//GameObject spawn = (GameObject)Instantiate (m_toSpread, new Vector3 (newPos.x, newPos.y, 0), Quaternion.identity);
 								GameObject theLiquid = Resources.Load (m_toSpread) as GameObject;
@@ -82,7 +88,7 @@ public class liquidController : MonoBehaviour
 								Destroy (gameObject);
 						} 
 				} else {
-						toReturn = false;
+					toReturn = false;
 				}
 				
 				hits [0] = null;

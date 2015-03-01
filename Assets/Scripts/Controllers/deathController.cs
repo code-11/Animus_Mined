@@ -24,9 +24,26 @@ public class deathController : MonoBehaviour {
 			Debug.Log ("Game Over");
 		}
 	}
+	void checkLiquid(){
+		int onlyPlayer = 1 << 9;
+		int allButPlayer = ~onlyPlayer;
+		Collider2D[] hit = new Collider2D[1];
+ 		Physics2D.OverlapPointNonAlloc (gameObject.transform.position, hit, allButPlayer);
+ 		if (hit[0]!=null){
+ 			GameObject obj=(GameObject) hit[0].gameObject;
+ 			if (obj.CompareTag("Liquid")){
+ 				liquidController liqCtrl=obj.GetComponent<liquidController>();
+ 				if (liqCtrl.m_killPlayerOnInside){
+ 					killSelf();
+ 				}
+			}else{
+				//Debug.Log("Somehow inside a non-liquid object");
+			}
+ 		}
+	}
 	
 	// Update is called once per frame
 	void Update () {
-	
+		checkLiquid();
 	}
 }
