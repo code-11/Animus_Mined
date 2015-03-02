@@ -61,10 +61,8 @@ public class inventoryManager : MonoBehaviour
 				}
 		}
 		private void winLogic(){
-					Destroy (this.gameObject);
-					alertCtrl.setAlert("Backing up Consciousness. Sending Recovery Beacon.");
-					Application.LoadLevel("winScene");
-					//Debug.Log ("Mission Sucessful");
+					deathController deathCtrl=gameObject.GetComponent<deathController>(); 
+					deathCtrl.win();
 		}
 		void runInven ()
 		{

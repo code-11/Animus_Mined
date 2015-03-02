@@ -19,11 +19,19 @@ public class deathController : MonoBehaviour {
 			repr.lessBody();
 		}else{
 			//Time.timeScale = 0.3F;
+			lose();
+			//Debug.Log ("Game Over");
+		}
+	}
+	public void lose(){
 			Destroy (this.gameObject);
 			alertCtrl.setAlert("Backing up Consciousness. Sending Emergency Beacon.");
 			Application.LoadLevel("loseScene");
-			//Debug.Log ("Game Over");
-		}
+	}
+	public void win(){
+			Destroy(this.gameObject);
+			alertCtrl.setAlert("Backing up Consciousness. Sending Recovery Beacon.");
+			Application.LoadLevel("winScene");
 	}
 	void checkLiquid(){
 		int onlyPlayer = 1 << 9;
