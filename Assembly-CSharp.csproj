@@ -89,6 +89,7 @@
      <Compile Include="Assets\Scripts\Guis\craftGui.cs" />
      <Compile Include="Assets\Scripts\Guis\escGui.cs" />
      <Compile Include="Assets\Scripts\Guis\msgGui.cs" />
+     <Compile Include="Assets\returnToMenu.cs" />
      <Compile Include="Assets\winToken.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

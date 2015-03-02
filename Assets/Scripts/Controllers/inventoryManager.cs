@@ -63,7 +63,8 @@ public class inventoryManager : MonoBehaviour
 		private void winLogic(){
 					Destroy (this.gameObject);
 					alertCtrl.setAlert("Backing up Consciousness. Sending Recovery Beacon.");
-					Debug.Log ("Mission Sucessful");
+					Application.LoadLevel("winScene");
+					//Debug.Log ("Mission Sucessful");
 		}
 		void runInven ()
 		{

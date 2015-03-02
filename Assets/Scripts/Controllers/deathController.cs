@@ -18,10 +18,11 @@ public class deathController : MonoBehaviour {
 			replicatorController repr =a_replicator.GetComponent<replicatorController>();
 			repr.lessBody();
 		}else{
-			Time.timeScale = 0.3F;
+			//Time.timeScale = 0.3F;
 			Destroy (this.gameObject);
 			alertCtrl.setAlert("Backing up Consciousness. Sending Emergency Beacon.");
-			Debug.Log ("Game Over");
+			Application.LoadLevel("loseScene");
+			//Debug.Log ("Game Over");
 		}
 	}
 	void checkLiquid(){
