@@ -126,6 +126,9 @@ public class canGravity : MonoBehaviour
 						}
 				}
 		}
+		private bool hitPlayer(RaycastHit2D hit){
+				return hit.collider.gameObject.CompareTag("Player");
+		}
 		void Gravity ()
 		{
 				RaycastHit2D downInfoLeft;
@@ -160,7 +163,11 @@ public class canGravity : MonoBehaviour
 				bool collidersNull = downInfoLeft.collider == null && downInfoRight.collider == null;
 				if ((leastDiff <= -amountMove.y) /*|| (!collidersNull)*/) {
 						transform.position += (new Vector3 (0, -leastDiff, 0));
-						m_curState = State.Still;
+						if (hitPlayer(downInfoRight)||hitPlayer(downInfoLeft)){
+							m_curState=State.Fall;
+						}else{
+							m_curState = State.Still;
+						}
 				} else if ((collidersNull) || (leastDiff >= -amountMove.y)) {
 						transform.position += amountMove;
 				}	

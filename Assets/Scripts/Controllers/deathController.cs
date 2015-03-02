@@ -3,7 +3,8 @@ using System.Collections;
 
 public class deathController : MonoBehaviour {
 	private alertManager alertCtrl;
-
+	public float m_deathDelay;
+	public bool m_killCamUp;
 	// Use this for initialization
 	void Start () {
 		alertCtrl=gameObject.GetComponent<alertManager>();
@@ -14,14 +15,52 @@ public class deathController : MonoBehaviour {
 		GameObject a_replicator=GameObject.Find("prefabReplicator");
 		if (a_replicator!=null){
 			alertCtrl.setAlert("Uploading Neural Net");
-			gameObject.transform.position=a_replicator.transform.position;
-			replicatorController repr =a_replicator.GetComponent<replicatorController>();
-			repr.lessBody();
+
+			StartCoroutine (killCam ());
+
 		}else{
 			//Time.timeScale = 0.3F;
 			lose();
-			//Debug.Log ("Game Over");
 		}
+	}
+	private void reestablish(){
+		GameObject a_replicator=GameObject.Find("prefabReplicator");
+		if(a_replicator!=null){
+				this.gameObject.transform.position=a_replicator.transform.position;
+				replicatorController repr =a_replicator.GetComponent<replicatorController>();
+				repr.lessBody();
+			}else{
+				Debug.Log("replicator destroyed during kill cam somehow");
+			}
+	}
+	public bool getKillCamUp(){
+		return m_killCamUp;
+	}
+	private void zDisplace(){
+		Vector3 curPos=gameObject.transform.position;
+		float x=curPos.x;
+		float y=curPos.y;
+		float z=curPos.z;
+		Vector3 newPos=new Vector3(x,y,z-1);
+		gameObject.transform.position=newPos;
+	}
+	private IEnumerator killCam(){
+		
+		//Time.timeScale = 0.3F;
+		SpriteRenderer renderer = gameObject.GetComponentInChildren<SpriteRenderer> ();
+		BoxCollider2D collider = gameObject.GetComponent<BoxCollider2D> ();
+
+		m_killCamUp=true;
+		renderer.enabled=false;
+		collider.enabled=false;
+		zDisplace();
+		yield return new WaitForSeconds (m_deathDelay);
+		//Time.timeScale = 1F;
+		renderer.enabled=true;
+		collider.enabled=true;
+		m_killCamUp=false;
+		reestablish();
+
 	}
 	public void lose(){
 			Destroy (this.gameObject);
@@ -53,6 +92,8 @@ public class deathController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		checkLiquid();
+		if (!m_killCamUp){
+			checkLiquid();
+		}
 	}
 }

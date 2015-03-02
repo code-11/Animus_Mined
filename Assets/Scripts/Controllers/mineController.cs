@@ -24,8 +24,9 @@ public class mineController : MonoBehaviour
 				craftManager craft = gameObject.GetComponent<craftManager> ();
 				msgManager message = gameObject.GetComponent<msgManager> ();
 				escManager escape = gameObject.GetComponent<escManager> ();
-				if ((craft != null) && (message != null) && (escape != null)) {
-						if ((!craft.getGuiMenuUp ()) && (!message.getMsgGuiUp ()) && (!escape.getEscMenuUp ())) {
+				deathController deathMan= gameObject.GetComponent<deathController>();
+				if ((craft != null) && (message != null) && (escape != null)&&(deathMan!=null)) {
+						if ((!craft.getGuiMenuUp ()) && (!message.getMsgGuiUp ()) && (!escape.getEscMenuUp ())&&(!deathMan.getKillCamUp())) {
 								MineLogic ();
 						}
 				}

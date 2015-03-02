@@ -106,13 +106,16 @@ public class discreteMovement : MonoBehaviour
 				msgManager msgMan = gameObject.GetComponent<msgManager> ();
 				craftManager craftMan = gameObject.GetComponent<craftManager> ();
 				escManager escMan = gameObject.GetComponent<escManager> ();
+				deathController deathMan= gameObject.GetComponent<deathController>();
 				//Evil Hack to disable movement when menus are up
-				if (craftMan != null && msgMan != null && escMan != null) {
+				if (craftMan != null && msgMan != null && escMan != null && deathMan != null) {
 						if (craftMan.getGuiMenuUp ()) {
 								return false;
 						} else if (msgMan.getMsgGuiUp ()) {
 								return false;
 						} else if (escMan.getEscMenuUp ()) {
+								return false;
+						} else if (deathMan.getKillCamUp()){
 								return false;
 						}
 						if (hit [0] != null) {
