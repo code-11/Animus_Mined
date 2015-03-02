@@ -59,6 +59,7 @@
      <Compile Include="Assets\Scripts\Abilities\permeability.cs" />
      <Compile Include="Assets\Scripts\Abilities\pickupability.cs" />
      <Compile Include="Assets\Scripts\Abilities\placeOnUse.cs" />
+     <Compile Include="Assets\Scripts\Abilities\replicatorOnUse.cs" />
      <Compile Include="Assets\Scripts\Controllers\Obsolete\DiscreteSpring.cs" />
      <Compile Include="Assets\Scripts\Controllers\Obsolete\ladderController.cs" />
      <Compile Include="Assets\Scripts\Controllers\Obsolete\playerController.cs" />
@@ -77,8 +78,10 @@
      <Compile Include="Assets\Scripts\Controllers\msgManager.cs" />
      <Compile Include="Assets\Scripts\Controllers\newGameController.cs" />
      <Compile Include="Assets\Scripts\Controllers\overlapDetector.cs" />
+     <Compile Include="Assets\Scripts\Controllers\replicatorController.cs" />
      <Compile Include="Assets\Scripts\Controllers\saveController.cs" />
      <Compile Include="Assets\Scripts\Controllers\startingManager.cs" />
+     <Compile Include="Assets\Scripts\Controllers\waterController.cs" />
      <Compile Include="Assets\Scripts\Guis\InventoryGui.cs" />
      <Compile Include="Assets\Scripts\Guis\QuickSlot.cs" />
      <Compile Include="Assets\Scripts\Guis\StartingGui.cs" />
@@ -86,9 +89,7 @@
      <Compile Include="Assets\Scripts\Guis\craftGui.cs" />
      <Compile Include="Assets\Scripts\Guis\escGui.cs" />
      <Compile Include="Assets\Scripts\Guis\msgGui.cs" />
-     <Compile Include="Assets\replicatorController.cs" />
-     <Compile Include="Assets\replicatorOnUse.cs" />
-     <Compile Include="Assets\waterController.cs" />
+     <Compile Include="Assets\winToken.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

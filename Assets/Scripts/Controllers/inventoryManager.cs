@@ -13,6 +13,7 @@ public class inventoryManager : MonoBehaviour
 		//public GameObject m_placeholder;
 		private bool invenUp = false;
 		private int m_numSelected = 0;
+		private alertManager alertCtrl;
 		
 		public GameObject getSelObj ()
 		{
@@ -34,6 +35,8 @@ public class inventoryManager : MonoBehaviour
 		{
 /*				GameObject m_startItems[]={};*/
 				m_inventory = new ArrayList ();
+				alertCtrl=gameObject.GetComponent<alertManager>();
+
 /*				foreach (var item in m_startItems) {
 						m_inventory.Add (m_inventory.Count, item);
 				}*/
@@ -57,7 +60,11 @@ public class inventoryManager : MonoBehaviour
 						m_numSelected += 1;
 				}
 		}
-		
+		private void winLogic(){
+					Destroy (this.gameObject);
+					alertCtrl.setAlert("Backing up Consciousness. Sending Recovery Beacon.");
+					Debug.Log ("Mission Sucessful");
+		}
 		void runInven ()
 		{
 				InventoryGui invenGui = gameObject.GetComponent<InventoryGui> ();
@@ -109,6 +116,9 @@ public class inventoryManager : MonoBehaviour
 
 		public void AddItem (GameObject item)
 		{
+				if (item.name=="prefabArtifactPickUp"){
+					winLogic();
+				}
 				//Debug.Log ("Item " + item + " added");
 				if (!m_inventory.Contains (item)) {
 						InvenObject chargeScript = item.GetComponent<InvenObject> ();
