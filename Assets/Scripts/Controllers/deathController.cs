@@ -57,6 +57,8 @@ public class deathController : MonoBehaviour {
 		collider.enabled=false;
 		zDisplace();
 		grenderer.enabled=true;
+		//Debug.Log("TEst");
+		StartCoroutine (stretch (ghost));
 		yield return new WaitForSeconds (m_deathDelay);
 		//Time.timeScale = 1F;
 		grenderer.enabled=false;
@@ -65,6 +67,23 @@ public class deathController : MonoBehaviour {
 		m_killCamUp=false;
 		reestablish();
 
+	}
+	private IEnumerator stretch(GameObject ghost){
+		float delta=.01f;
+		float total=m_deathDelay/4;
+		SpriteRenderer grenderer = ghost.GetComponent<SpriteRenderer>();
+
+		Vector3 start=ghost.transform.localScale;
+		Vector3 end= new Vector3(start.x,start.y+5,start.z);
+		while (total>0){
+			yield return new WaitForSeconds(delta);
+			total-=delta;
+			ghost.transform.localScale = Vector3.Lerp (end, start, total / (m_deathDelay/4));
+			grenderer.color= new Color(1f,1f,1f,Mathf.Lerp(0f,1f,total/(m_deathDelay/4)));
+		}
+		
+		grenderer.enabled=false;
+		ghost.transform.localScale =start;
 	}
 	public void lose(){
 			Destroy (this.gameObject);
