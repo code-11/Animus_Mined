@@ -31,6 +31,9 @@ public class inventoryManager : MonoBehaviour
 		{
 				return m_numSelected;
 		}
+		public void resetInven(){
+				m_inventory=new ArrayList ();
+		}
 		void Start ()
 		{
 /*				GameObject m_startItems[]={};*/

@@ -3,15 +3,18 @@ using System.Collections;
 
 public class deathController : MonoBehaviour {
 	private alertManager alertCtrl;
+	private inventoryManager invenCtrl;
 	public float m_deathDelay;
 	public bool m_killCamUp;
 	// Use this for initialization
 	void Start () {
 		alertCtrl=gameObject.GetComponent<alertManager>();
+		invenCtrl=gameObject.GetComponent<inventoryManager>();
 
 	} 
 	void killSelf ()
 	{
+		invenCtrl.resetInven();
 		GameObject a_replicator=GameObject.Find("prefabReplicator");
 		if (a_replicator!=null){
 			alertCtrl.setAlert("Uploading Neural Net");
