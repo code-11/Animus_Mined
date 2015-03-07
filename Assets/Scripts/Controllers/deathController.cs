@@ -49,13 +49,17 @@ public class deathController : MonoBehaviour {
 		//Time.timeScale = 0.3F;
 		SpriteRenderer renderer = gameObject.GetComponentInChildren<SpriteRenderer> ();
 		BoxCollider2D collider = gameObject.GetComponent<BoxCollider2D> ();
+		GameObject ghost= (transform.Find("ghost")).gameObject;
+		SpriteRenderer grenderer = ghost.GetComponent<SpriteRenderer>();
 
 		m_killCamUp=true;
 		renderer.enabled=false;
 		collider.enabled=false;
 		zDisplace();
+		grenderer.enabled=true;
 		yield return new WaitForSeconds (m_deathDelay);
 		//Time.timeScale = 1F;
+		grenderer.enabled=false;
 		renderer.enabled=true;
 		collider.enabled=true;
 		m_killCamUp=false;
