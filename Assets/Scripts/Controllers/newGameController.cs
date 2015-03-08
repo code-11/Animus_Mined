@@ -339,8 +339,7 @@ public class newGameController : MonoBehaviour
 				Feature rightBound = new Feature (1, m_endY, m_endX, m_endX, 0, 0, 1000, true, "RightBound");
 				rightBound.genFilling (new string[]{"prefabInvBlk"});
 				rightBound.placeInWorld (m_endX, 0);
-				//evalFeature (-1, 0, filledMatrix, leftBound);
-		
+
 				foreach (Feature feat in features) {
 						for (int y=0; y< filledMatrix.GetLength(1); y+=1) {
 								for (int x=0; x<filledMatrix.GetLength(0); x+=1) {

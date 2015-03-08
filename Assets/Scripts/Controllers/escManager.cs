@@ -146,9 +146,14 @@ public class escManager : MonoBehaviour
 				if (startingGame) {
 						startingGame = false;
 						startGame ();
+						newGameController constructer = gameObject.GetComponent<newGameController> ();
+						constructer.makeNewGame ();
+				}else{
+						startingGame=true;
+						Destroy (this.gameObject);
+						Application.LoadLevel("startingScene");
 				}
-				newGameController constructer = gameObject.GetComponent<newGameController> ();
-				constructer.makeNewGame ();
+				
 		
 		}
 		void shiftLeft ()
