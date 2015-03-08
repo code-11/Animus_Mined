@@ -205,6 +205,7 @@ public class newGameController : MonoBehaviour
 				
 				string l = "PickUps/prefabPickUp";
 				string A = "PickUps/prefabArtifactPickUp";
+				string B = "PickUps/prefabBombPickUp";
 				string a = "";
 				
 				
@@ -224,7 +225,7 @@ public class newGameController : MonoBehaviour
 				startingArea.loadFilling (new string[,]{
 					{r,r,p,p,k,p},
 					{r,p,a,a,a,r},
-					{g,p,a,a,l,r},
+					{g,p,a,a,B,r},
 					{p,p,a,a,f,p},
 					{r,a,a,a,e,p},
 					{r,a,a,a,g,r},
@@ -236,7 +237,7 @@ public class newGameController : MonoBehaviour
 				endArtifact.genFilling(new string[]{A});
 				features.Add(endArtifact);
 				
-				Feature magnesiumInclusion = new Feature(4,5,1,-1,m_surfaceSize+(m_endY/2),-1,2, false,"Magnesium");
+				Feature magnesiumInclusion = new Feature(4,5,1,-1,m_surfaceSize+(m_endY/3),-1,2, false,"Magnesium");
 				magnesiumInclusion.format (m_endX, m_endY);
 				magnesiumInclusion.loadFilling (new string[,]{
 					{h,a,d,r,r},

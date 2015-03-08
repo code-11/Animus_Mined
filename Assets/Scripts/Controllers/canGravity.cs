@@ -127,7 +127,11 @@ public class canGravity : MonoBehaviour
 				}
 		}
 		private bool hitPlayer(RaycastHit2D hit){
-				return hit.collider.gameObject.CompareTag("Player");
+			if (hit.collider!=null){
+					return hit.collider.gameObject.CompareTag("Player");
+				}else{
+					return false;
+				}
 		}
 		void Gravity ()
 		{

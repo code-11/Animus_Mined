@@ -17,11 +17,15 @@ public class inventoryManager : MonoBehaviour
 		
 		public GameObject getSelObj ()
 		{
+			if (m_inventory!=null){
 				if (m_inventory.Count > 0) {
 						return (GameObject)m_inventory [m_numSelected];
 				} else {
 						return null;
 				}
+			}else{
+				return null;
+			}
 		}
 		public void setSelNum (int newNum)
 		{
@@ -33,6 +37,7 @@ public class inventoryManager : MonoBehaviour
 		}
 		public void resetInven(){
 				m_inventory=new ArrayList ();
+				m_numSelected = 0;
 		}
 		void Start ()
 		{
@@ -107,12 +112,14 @@ public class inventoryManager : MonoBehaviour
 		{
 				overlapDetector waitItems = gameObject.GetComponent<overlapDetector> ();
 				if (waitItems != null) {
+					if (waitItems.m_olapObjs!=null){
 						if (waitItems.m_olapObjs.ContainsKey ("PickUp")) {
 								GameObject theObj = (GameObject)waitItems.m_olapObjs ["PickUp"];
 								AddItem (theObj);
 								theObj.SetActive (false);
 								waitItems.m_olapObjs.Remove ("PickUp");
 						}
+					}
 				}
 		}
 

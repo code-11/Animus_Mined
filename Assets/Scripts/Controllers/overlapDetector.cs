@@ -34,11 +34,13 @@ public class overlapDetector : MonoBehaviour
 				Collider2D[] coll = new Collider2D[5];
 				float scale = m_checkRange;
 				int numHit = Physics2D.OverlapCircleNonAlloc ((Vector2)transform.position, scale, coll, Physics.AllLayers);
-				for (int i=0; i<numHit; i++) {
-						if (!m_olapObjs.ContainsKey (coll [i].gameObject.tag)) {
-								m_olapObjs.Add (coll [i].gameObject.tag, coll [i].gameObject);
-								//Debug.Log (coll [i].gameObject);
-						}
+				if (m_olapObjs!=null){
+					for (int i=0; i<numHit; i++) {
+							if (!m_olapObjs.ContainsKey (coll [i].gameObject.tag)) {
+									m_olapObjs.Add (coll [i].gameObject.tag, coll [i].gameObject);
+									//Debug.Log (coll [i].gameObject);
+							}
+					}
 				}
 		}
 }
