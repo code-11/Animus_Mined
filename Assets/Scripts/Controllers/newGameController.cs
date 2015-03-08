@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-using UnityEditor;
+//using UnityEditor;
 
 public class newGameController : MonoBehaviour
 {
@@ -170,14 +170,18 @@ public class newGameController : MonoBehaviour
 				if (name != "") {
 						if (name != "prefabHypersthene") {
 								GameObject thePrefab = Resources.Load (name) as GameObject;
-								GameObject theObj = (GameObject)PrefabUtility.InstantiatePrefab (thePrefab);
-								theObj.transform.position = new Vector3 (x, flipY (y), 0);
+								GameObject theObj = (GameObject)Instantiate(thePrefab, new Vector3 (x, flipY (y), 0),Quaternion.identity);
+								theObj.name= theObj.name.Remove(theObj.name.Length-7,7);
+								//GameObject theObj = (GameObject)PrefabUtility.InstantiatePrefab (thePrefab);
+								//theObj.transform.position = new Vector3 (x, flipY (y), 0);
 						} else {
 								GameObject thePrefab = Resources.Load (name) as GameObject;
 								float fixedX = x + .5f;
 								float fixedY = flipY (y) - .5f;
-								GameObject theObj = (GameObject)PrefabUtility.InstantiatePrefab (thePrefab);
-								theObj.transform.position = new Vector3 (fixedX, fixedY, 0);
+								GameObject theObj = (GameObject)Instantiate(thePrefab, new Vector3 (fixedX, fixedY, 0),Quaternion.identity);
+								theObj.name= theObj.name.Remove(theObj.name.Length-7,7);
+								//GameObject theObj = (GameObject)PrefabUtility.InstantiatePrefab (thePrefab);
+								//theObj.transform.position = new Vector3 (fixedX, fixedY, 0);
 						}
 				}
 		}
@@ -225,7 +229,7 @@ public class newGameController : MonoBehaviour
 				startingArea.loadFilling (new string[,]{
 					{r,r,p,p,k,p},
 					{r,p,a,a,a,r},
-					{g,p,a,a,B,r},
+					{g,p,a,a,l,r},
 					{p,p,a,a,f,p},
 					{r,a,a,a,e,p},
 					{r,a,a,a,g,r},

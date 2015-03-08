@@ -21,6 +21,7 @@ public class mineability : MonoBehaviour
 				if (m_health <= 0) {
 						if ((m_drop != null) && (doesDrop ())) {
 								GameObject theDrop = (GameObject)Instantiate (m_drop, new Vector3 (transform.position.x, transform.position.y, 0), Quaternion.identity);
+								theDrop.name= theDrop.name.Remove(theDrop.name.Length-7,7);
 								InvenObject inven = theDrop.GetComponent<InvenObject> ();
 								inven.setCharges (m_numDrop);
 						}

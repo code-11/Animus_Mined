@@ -3,7 +3,7 @@ using System.Collections;
 using System.IO;
 using System.Text;
 using System.Linq;
-using UnityEditor;
+//using UnityEditor;
 
 public class loadController : MonoBehaviour
 {
@@ -84,7 +84,8 @@ public class loadController : MonoBehaviour
 						"prefabSuppPickUp",
 						"prefabIronPickUp",
 						"prefabMagnesiumPickUp",
-						"prefabNickelPickUp"
+						"prefabNickelPickUp",
+						"prefabArtifactPickUp"
 						
 				}; 
 				if (namesInFolder.Contains (name)) {
@@ -107,6 +108,8 @@ public class loadController : MonoBehaviour
 								GameObject theItemPrefab = Resources.Load (rightPath (lines [0])) as GameObject;
 								Debug.Log ("Trying to make:" + rightPath (lines [0]));
 								GameObject theItem = (GameObject)Instantiate (theItemPrefab, new Vector3 (0, 0, 0), Quaternion.identity);
+								theItem.name= theItem.name.Remove(theItem.name.Length-7,7);
+								
 								InvenObject chargeManager = theItem.GetComponent<InvenObject> ();
 								chargeManager.setCharges (int.Parse (lines [1]));
 																								
@@ -126,13 +129,21 @@ public class loadController : MonoBehaviour
 								if (lines [0] != "player") {
 										GameObject theItemPrefab = Resources.Load (rightPath (lines [0])) as GameObject;
 										if (theItemPrefab == null) {
-												Debug.Log (lines [0]);
+												Debug.Log("failed to prefab: "+rightPath(lines [0]));
 										}
 										float xPos = float.Parse (lines [1]);
 										float yPos = float.Parse (lines [2]);
-										GameObject theObj = (GameObject)PrefabUtility.InstantiatePrefab (theItemPrefab);
-										theObj.transform.position = new Vector3 (xPos, yPos, 0);
-										//Instantiate (theItemPrefab, new Vector3 (xPos, yPos, 0), Quaternion.identity);
+										GameObject theObj=(GameObject)Instantiate (theItemPrefab, new Vector3 (xPos, yPos, 0), Quaternion.identity);
+										//GameObject theObj = (GameObject)PrefabUtility.InstantiatePrefab (theItemPrefab);
+										if (theObj!=null){
+											theObj.transform.position = new Vector3 (xPos, yPos, 0);
+											string oldName=theObj.name;
+											//Removes the '(Clone)' added to instantiated objects
+											theObj.name= oldName.Remove(oldName.Length-7,7);
+										}else{
+												Debug.Log("failed to instantiate: "+theItemPrefab);
+										}
+										
 								}
 								itemLine = reader.ReadLine ();
 								if (itemLine == null) {

@@ -90,6 +90,8 @@ public class craftManager : MonoBehaviour
 				//Debug.Log ("Trying to instantiate: " + name);
 				string prefabName = lookUpPrefab (name);
 				GameObject newObj = (GameObject)Instantiate ((GameObject)Resources.Load (prefabName), new Vector3 (0, 0, 0), Quaternion.identity);
+				newObj.name= newObj.name.Remove(newObj.name.Length-7,7);
+
 				InvenObject chargeScript = newObj.GetComponent<InvenObject> ();
 				chargeScript.setStackName (name);	
 				chargeScript.setCharges (amount);

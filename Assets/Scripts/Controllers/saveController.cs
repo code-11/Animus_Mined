@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.IO;
-using UnityEditor;
+//using UnityEditor;
 
 public class saveController : MonoBehaviour
 {
@@ -23,7 +23,7 @@ public class saveController : MonoBehaviour
 		{
 				m_saveName = filepath;
 		}
-		
+		/*
 		bool isPrefab (GameObject go)
 		{
 				return (PrefabUtility.GetPrefabParent (go)) != null;
@@ -32,13 +32,17 @@ public class saveController : MonoBehaviour
 		{
 				return ((GameObject)PrefabUtility.GetPrefabParent (go)).name;
 		}
+		*/
 		bool isHighLevel (GameObject go)
 		{
 				return (go == go.transform.root.gameObject);
 		}
-		bool meetsRestrict (GameObject go)
+		/*bool meetsRestrict (GameObject go)
 		{
 				return (isHighLevel (go)) && (isPrefab (go)) && (go.activeInHierarchy);
+		}*/
+		bool meetsLaxRestrict(GameObject go){
+				return (isHighLevel (go)) && (go.activeInHierarchy);
 		}
 		int getCharges (GameObject go)
 		{
@@ -97,11 +101,8 @@ public class saveController : MonoBehaviour
 								inven = new ArrayList ();
 						}
 						foreach (GameObject obj in inven) {
-								if (isPrefab (obj)) {
-										string preName = findPrefabName (obj);
 										int charges = getCharges (obj);
-										strWrite.WriteLine (preName + "," + charges);
-								}
+										strWrite.WriteLine (obj.name + "," + charges);
 						}
 				}
 				strWrite.WriteLine ("");
@@ -111,11 +112,12 @@ public class saveController : MonoBehaviour
 				object[] allObjects = FindObjectsOfType (typeof(GameObject));
 				foreach (object thisObject in allObjects) {
 						GameObject go = (GameObject)thisObject;
-						if (meetsRestrict (go)) {
+						if(meetsLaxRestrict(go)){
 								float tempX = go.transform.position.x;
 								float tempY = go.transform.position.y;
 								//Debug.Log (isHighLevel (go) + "," + go + "," + (go == isHighLevel (go)));
-								strWrite.WriteLine (findPrefabName (go) + "," + tempX + "," + tempY);
+								strWrite.WriteLine (go.name + "," + tempX + "," + tempY);
+
 						} else {
 								Debug.Log (go.name + " Does not meet saving restrictions");
 						}

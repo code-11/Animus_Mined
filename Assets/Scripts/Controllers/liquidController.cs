@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-using UnityEditor;
+//using UnityEditor;
 
 public class liquidController : MonoBehaviour
 {
@@ -74,14 +74,18 @@ public class liquidController : MonoBehaviour
 								if (theLiquid == null) {
 										Debug.Log ("theLiquid is null");
 								}
-								GameObject spawn = (GameObject)PrefabUtility.InstantiatePrefab (theLiquid);
+								//GameObject spawn = (GameObject)PrefabUtility.InstantiatePrefab (theLiquid);
+								GameObject spawn = (GameObject)Instantiate(theLiquid,new Vector3 (newPos.x, newPos.y, 0),Quaternion.identity);
 								if (spawn == null) {
 										Debug.Log ("spawn is null in liquid controller");
+								}else{
+										spawn.name= spawn.name.Remove(spawn.name.Length-7,7);
+										liquidController brain = spawn.GetComponent<liquidController> ();
+										brain.m_toSpread = m_toSpread;
+										brain.m_spread = true;	
 								}
-								spawn.transform.position = new Vector3 (newPos.x, newPos.y, 0);
-								liquidController brain = spawn.GetComponent<liquidController> ();
-								brain.m_toSpread = m_toSpread;
-								brain.m_spread = true;	
+								//spawn.transform.position = new Vector3 (newPos.x, newPos.y, 0);
+
 								toReturn = true;
 						} catch (MissingReferenceException) {
 								toReturn = false;

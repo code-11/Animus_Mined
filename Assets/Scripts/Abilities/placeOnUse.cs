@@ -35,7 +35,12 @@ public abstract class placeOnUse : Usability
 				int allButPlayer = ~onlyPlayer;
 				Collider2D blockerInfo = Physics2D.OverlapCircle (new Vector2 (x, y), .4f, allButPlayer);
 				if (blockerInfo == null) {
-						Instantiate (m_block, new Vector3 (x, y, 0), Quaternion.identity);
+						GameObject newObj=(GameObject)Instantiate (m_block, new Vector3 (x, y, 0), Quaternion.identity);
+						if (newObj!=null){
+								newObj.name= newObj.name.Remove(newObj.name.Length-7,7);
+						}else{
+								Debug.Log("Error in placeonUse, prefab failed to instatiate");
+						}
 						return true;
 				} else {
 						return false;
