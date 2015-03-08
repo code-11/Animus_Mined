@@ -99,7 +99,7 @@ public class loadController : MonoBehaviour
 		private void SetInventory (GameObject player, StreamReader reader)
 		{
 				inventoryManager manager = player.GetComponent<inventoryManager> ();
-				
+				manager.resetInven();
 				string itemLine = reader.ReadLine ();
 				if (itemLine != "") {
 						while ((itemLine!=",,")&&(itemLine!="")) {
@@ -109,7 +109,7 @@ public class loadController : MonoBehaviour
 								Debug.Log ("Trying to make:" + rightPath (lines [0]));
 								GameObject theItem = (GameObject)Instantiate (theItemPrefab, new Vector3 (0, 0, 0), Quaternion.identity);
 								theItem.name= theItem.name.Remove(theItem.name.Length-7,7);
-								
+
 								InvenObject chargeManager = theItem.GetComponent<InvenObject> ();
 								chargeManager.setCharges (int.Parse (lines [1]));
 																								

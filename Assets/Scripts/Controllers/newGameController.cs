@@ -189,6 +189,12 @@ public class newGameController : MonoBehaviour
 		{
 				GameObject player = GameObject.FindGameObjectWithTag ("Player");
 				player.transform.position = new Vector3 (x, y, 0);
+				inventoryManager invenCtrl=gameObject.GetComponent<inventoryManager>();
+				if (invenCtrl!=null){
+					invenCtrl.resetInven();
+				}else{
+					Debug.Log("missing inventory");
+				}
 		}
 		private void createTest ()
 		{
