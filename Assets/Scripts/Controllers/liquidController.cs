@@ -18,7 +18,7 @@ public class liquidController : MonoBehaviour
 				left,
 				right}
 		;
-		private Collider2D[] hits = new Collider2D[1];
+		private Collider2D[] hits = new Collider2D[2];
 		// Use this for initialization
 		void Start ()
 		{
@@ -65,7 +65,7 @@ public class liquidController : MonoBehaviour
 				//If it is in spreading mode and (the space is empty or if it would hit the player)
 				bool hitPlayer=false;
 				if (hits[0]!=null){
-					hitPlayer=(hits[0].gameObject).CompareTag("Player");
+					hitPlayer=((hits[0].gameObject).CompareTag("Player")) && (hits[1]==null);
 				}
 				if ((m_spread) && ((hits [0] == null)|| hitPlayer)) {
 						try {
