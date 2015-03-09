@@ -91,9 +91,6 @@
      <Compile Include="Assets\Scripts\Guis\escGui.cs" />
      <Compile Include="Assets\Scripts\Guis\msgGui.cs" />
      <Compile Include="Assets\winToken.cs" />
- <Reference Include="System.Windows.Forms">
- <HintPath>Assets\Plugins\System.Windows.Forms.dll</HintPath>
- </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -2,7 +2,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using System;
-using UnityEditor;
+//using UnityEditor;
+using System.IO;
+using System.Text;
+using System.Linq;
 
 public class escManager : MonoBehaviour
 {
@@ -113,16 +116,24 @@ public class escManager : MonoBehaviour
 		}
 		public void loadFile ()
 		{
-				if (startingGame) {
-						startingGame = false;
-						startGame ();
-				}
-				string filePath = EditorUtility.OpenFilePanel ("Open File", "", "csv");
+				//string filePath = EditorUtility.OpenFilePanel ("Open File", "", "csv");
+				string filePath="TheSave.csv";
 				loadController loader = gameObject.GetComponent<loadController> ();
-				if ((loader == null) || (filePath == "")) {
+				bool fail=false;				
+				try{
+						StreamReader reader = new StreamReader (filePath, Encoding.Default);
+				}catch{
+						fail=true;
+				}
+
+				if ((loader == null) || (filePath == "") || (fail)) {
 						alertCtrl.setAlert("Error Opening File");
 						Debug.Log ("Error opening file");
 				} else {
+						if (startingGame) {
+							startingGame = false;
+							startGame ();
+						}
 						Debug.Log ("filePath" + filePath);
 						loader.setName (filePath);
 						//loader.switchLoad ();
@@ -131,7 +142,8 @@ public class escManager : MonoBehaviour
 		}
 		public void saveFile ()
 		{
-				string filePath = EditorUtility.SaveFilePanel ("Open File", "", "save001", "csv");
+				//string filePath = EditorUtility.SaveFilePanel ("Open File", "", "save001", "csv");
+				string filePath="TheSave.csv";
 				saveController saver = gameObject.GetComponent<saveController> ();
 				if ((saver == null) || (filePath == "")) { 
 						alertCtrl.setAlert("Error Saving File");

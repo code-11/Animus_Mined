@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-using UnityEditor;
+//using UnityEditor;
 
 public class startingManager : escManager
 {
@@ -17,14 +17,14 @@ public class startingManager : escManager
 	
 		private void newGame ()
 		{
-				string filePath = EditorUtility.SaveFilePanel ("Create New File", "", "save001", "csv");
+				/*string filePath = EditorUtility.SaveFilePanel ("Create New File", "", "save001", "csv");
 				newGameController saver = gameObject.GetComponent<newGameController> ();
 				if (saver == null) {
 						Debug.Log ("Error making new game");
 				} else {
 						saver.setName (filePath);
 						saver.makeNewGame ();
-				}
+				}*/
 		}
 		public override void runEsc ()
 		{
