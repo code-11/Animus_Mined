@@ -41,6 +41,8 @@ public class mineController : MonoBehaviour
 						target.SetHealth (target.GetHealth () - m_mineStr);
 						mineLaser.SetPosition (0, target.transform.position);
 						mineLaser.SetPosition (1, gameObject.transform.position);
+				}else{
+					mineLaser.enabled=false;
 				}
 		}
 		
@@ -55,24 +57,32 @@ public class mineController : MonoBehaviour
 						if (hits [0] != null) { 
 								
 								Mine (hits [0]);	
+						}else{
+							mineLaser.enabled=false;
 						}
 				} else if (horizDir < 0) {
 						Physics2D.OverlapPointNonAlloc (new Vector2 (transform.position.x - vecLen, transform.position.y), hits);
 						if (hits [0] != null) {
 								//Debug.Log ("Hit Left");
 								Mine (hits [0]);	
+						}else{
+							mineLaser.enabled=false;
 						}
 				} else if (vertDir > 0) {
 						Physics2D.OverlapPointNonAlloc (new Vector2 (transform.position.x, transform.position.y + vecLen), hits);
 						if (hits [0] != null) {
 								//Debug.Log ("Hit Up");
 								Mine (hits [0]);	
+						}else{
+							mineLaser.enabled=false;
 						}
 				} else if (vertDir < 0) {
 						Physics2D.OverlapPointNonAlloc (new Vector2 (transform.position.x, transform.position.y - vecLen), hits);
 						if (hits [0] != null) {
 								//Debug.Log ("Hit Down");
 								Mine (hits [0]);	
+						}else{
+							mineLaser.enabled=false;
 						}
 				} else {
 						mineLaser.enabled = false;
