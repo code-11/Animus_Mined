@@ -144,12 +144,12 @@ public class craftManager : MonoBehaviour
 					false
 				));
 				m_allRecipes.Add (new Recipe (4,
-		            new Dictionary<string,int>{{"Iron",2},{"Quartz",2},{"Nickel",1},{"Rock",2}},
+		            new Dictionary<string,int>{{"Iron",2},{"Quartz",1},{"Nickel",1},{"Rock",2}},
 					new Dictionary<string,int>{{"Factory",1}},
 					false
 				));
 				m_allRecipes.Add (new Recipe (5,
-		            new Dictionary<string,int>{{"Iron",4},{"Quartz",4},{"Rock",4}},
+		            new Dictionary<string,int>{{"Iron",4},{"Quartz",2},{"Rock",4}},
 					new Dictionary<string,int>{{"Replicator",1}},
 					false
 				));
