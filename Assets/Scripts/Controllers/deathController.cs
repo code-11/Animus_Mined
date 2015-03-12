@@ -12,7 +12,7 @@ public class deathController : MonoBehaviour {
 		invenCtrl=gameObject.GetComponent<inventoryManager>();
 
 	} 
-	void killSelf ()
+	public void killSelf ()
 	{
 		invenCtrl.resetInven();
 		GameObject a_replicator=GameObject.Find("prefabReplicator");

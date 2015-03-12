@@ -41,10 +41,10 @@ public class escManager : MonoBehaviour
 		public virtual void addAllItems ()
 		{
 				m_menuList = new ArrayList ();	
-				menuItem item1 = new menuItem ("New Game", newFile);
+				menuItem item1 = new menuItem ("New Game/Back to Main Menu", newFile);
 				menuItem item2 = new menuItem ("Load Game", loadFile);
 				menuItem item3 = new menuItem ("Save Game", saveFile);
-				menuItem item4 = new menuItem ("Exit Game", exitGame);
+				menuItem item4 = new menuItem ("Exit Game/Self-Destruct", exitGame);
 				m_menuList.Add (item1);
 				m_menuList.Add (item2);
 				m_menuList.Add (item3);
@@ -112,7 +112,12 @@ public class escManager : MonoBehaviour
 				return m_menuList;
 		}		
 		public void exitGame(){
+			if(startingGame){
 				Application.Quit();
+			}else{
+				deathController deathCtrl= gameObject.GetComponent<deathController>();
+				deathCtrl.killSelf();
+			}
 		}
 		public void loadFile ()
 		{
