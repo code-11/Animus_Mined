@@ -10,12 +10,14 @@ public class msgGui : MonoBehaviour
 		public float localY;
 		private float leftMost;
 		private msgManager manager;
+		private InputManager inCtrl;
 		private bool ranAlready = true;
 		// Use this for initialization
 		
 		private void Start ()
 		{
 				manager = gameObject.GetComponent<msgManager> ();
+				inCtrl=gameObject.GetComponent<InputManager>();
 		}
 		void OnGUI ()
 		{
@@ -62,8 +64,8 @@ public class msgGui : MonoBehaviour
 		private void doSelection ()
 		{
 				if (!ranAlready) {
-						bool wDown = Input.GetKeyDown ("w");
-						bool sDown = Input.GetKeyDown ("s");
+						bool wDown = inCtrl.upMovePress();
+						bool sDown = inCtrl.downMovePress();
 						if (wDown) {
 								//Debug.Log ("UP");
 								manager.selectUp ();

@@ -6,14 +6,17 @@ public class alertManager : MonoBehaviour {
 	public string m_alert;
 	public float m_lastAlertTime=0;
 	private alertGui gui;
+	private InputManager inCtrl;
 
 	void Start ()
 	{
 			gui= gameObject.GetComponent<alertGui>();
 			setAlert("Started Game");
+			inCtrl=gameObject.GetComponent<InputManager>();
+
 	}
 	void Update () {
-		if (Input.GetKeyDown ("c")){
+		if (inCtrl.alertPress()){
 			if (gui.enabled == true) {
 					gui.enabled = false;
 			} else {

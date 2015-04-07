@@ -4,6 +4,7 @@ using System.Collections;
 public class mineController : MonoBehaviour
 {
 		// Update is called once per frame
+		private InputManager inCtrl;
 		public Transform leftMiddle;
 		public Transform rightMiddle;
 		public Transform middleBottom;
@@ -12,6 +13,7 @@ public class mineController : MonoBehaviour
 		public int m_mineStr;
 		void Start ()
 		{
+				inCtrl=gameObject.GetComponent<InputManager>();
 				mineLaser = gameObject.AddComponent<LineRenderer> ();
 				mineLaser.material = new Material (Shader.Find ("Sprites/Default"));
 				mineLaser.material.color = Color.red;	
@@ -52,7 +54,7 @@ public class mineController : MonoBehaviour
 				float vertDir = Input.GetAxis ("Vertical");
 				float vecLen = 1;
 				Collider2D[] hits = new Collider2D[1];
-				if (horizDir > 0) {
+				if (inCtrl.rightMinePress()) {
 						Physics2D.OverlapPointNonAlloc (new Vector2 (transform.position.x + vecLen, transform.position.y), hits);
 						if (hits [0] != null) { 
 								
@@ -60,7 +62,7 @@ public class mineController : MonoBehaviour
 						}else{
 							mineLaser.enabled=false;
 						}
-				} else if (horizDir < 0) {
+				} else if (inCtrl.leftMinePress()) {
 						Physics2D.OverlapPointNonAlloc (new Vector2 (transform.position.x - vecLen, transform.position.y), hits);
 						if (hits [0] != null) {
 								//Debug.Log ("Hit Left");
@@ -68,7 +70,7 @@ public class mineController : MonoBehaviour
 						}else{
 							mineLaser.enabled=false;
 						}
-				} else if (vertDir > 0) {
+				} else if (inCtrl.upMinePress()) {
 						Physics2D.OverlapPointNonAlloc (new Vector2 (transform.position.x, transform.position.y + vecLen), hits);
 						if (hits [0] != null) {
 								//Debug.Log ("Hit Up");
@@ -76,7 +78,7 @@ public class mineController : MonoBehaviour
 						}else{
 							mineLaser.enabled=false;
 						}
-				} else if (vertDir < 0) {
+				} else if (inCtrl.downMinePress()) {
 						Physics2D.OverlapPointNonAlloc (new Vector2 (transform.position.x, transform.position.y - vecLen), hits);
 						if (hits [0] != null) {
 								//Debug.Log ("Hit Down");

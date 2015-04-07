@@ -49,9 +49,11 @@ public class msgManager : MonoBehaviour
 		private ArrayList m_unlocked;
 		private bool msgGuiUp = false;
 		private int numSelected;
+		private InputManager inCtrl;
 		// Use this for initialization
 		void Start ()
 		{
+				inCtrl=gameObject.GetComponent<InputManager>();
 				m_messages = new ArrayList{
 					new Message(false,false,"Test","WHOLE MESSAGE"),
 					new Message(false,false,"Test2","Derp"),
@@ -131,7 +133,8 @@ public class msgManager : MonoBehaviour
 		private void guiToggle ()
 		{
 				msgGui gui = gameObject.GetComponent<msgGui> ();
-				bool yPres = Input.GetKeyDown ("f");
+
+				bool yPres = inCtrl.useBuildPress();
 				if (yPres && ansiblePresent ()) {
 						if (msgGuiUp == true) {
 								msgGuiUp = false;

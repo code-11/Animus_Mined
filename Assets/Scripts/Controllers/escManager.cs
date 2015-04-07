@@ -30,6 +30,7 @@ public class escManager : MonoBehaviour
 				
 		}
 		private alertManager alertCtrl;
+		private InputManager inCtrl;
 		public bool startingGame;
 		public  int m_numSelected;
 		public ArrayList m_menuList;
@@ -69,6 +70,7 @@ public class escManager : MonoBehaviour
 		//Also takes away the gui.
 		public void startGame ()
 		{
+				inCtrl=gameObject.GetComponent<InputManager>();
 				QuickSlot quick = gameObject.GetComponent<QuickSlot> ();
 				if (quick != null) {
 						SpriteRenderer renderer = gameObject.GetComponentInChildren<SpriteRenderer> ();
@@ -88,6 +90,7 @@ public class escManager : MonoBehaviour
 		public void Start ()
 		{
 			alertCtrl=gameObject.GetComponent<alertManager>();
+			inCtrl=gameObject.GetComponent<InputManager>();
 			addAllItems ();
 		}
 
@@ -202,7 +205,7 @@ public class escManager : MonoBehaviour
 						}*/
 				}
 				escGui escMenu = gameObject.GetComponent<escGui> ();
-				bool escPress = Input.GetKeyDown ("escape");
+				bool escPress = inCtrl.escPress();
 
 				if (escPress) {
 						//Debug.Log ("pressed Esc");
@@ -221,9 +224,9 @@ public class escManager : MonoBehaviour
 		}
 		public void getInput ()
 		{
-				bool selLeft = Input.GetKeyDown ("w");
-				bool selRight = Input.GetKeyDown ("s");
-				bool rPress = Input.GetKeyDown ("r");
+				bool selLeft = inCtrl.guiUpPress();
+				bool selRight = inCtrl.guiDownPress();
+				bool rPress = inCtrl.usePress();
 				if (rPress) {
 						UseSelected ();
 				}

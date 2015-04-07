@@ -20,6 +20,7 @@ public class discreteMovement : MonoBehaviour
 		;
 		private int m_heading = (int)m_dirs.left;
 		public Transform spPos;
+		private InputManager inCtrl;
 		
 		// Use this for initialization
 		void Start ()
@@ -29,16 +30,17 @@ public class discreteMovement : MonoBehaviour
 				m_falling = false;
 				m_gravityWaiting = false;
 				m_allowFalling = true;
+				inCtrl=gameObject.GetComponent<InputManager>();
 		}
 	
 		// Update is called once per frame
 		void Update ()
 		{						
 				if (m_allowMovement) {
-						bool up = Input.GetKey ("w");
-						bool down = Input.GetKey ("s");
-						bool left = Input.GetKey ("a");
-						bool right = Input.GetKey ("d");
+						bool up = inCtrl.upMovePress();
+						bool down =inCtrl.downMovePress();
+						bool left = inCtrl.leftMovePress();
+						bool right = inCtrl.rightMovePress();
 						makeMove (up, down, left, right);
 						m_allowMovement = false;
 				} else if ((!m_waiting) && (!m_falling)) {

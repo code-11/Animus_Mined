@@ -39,6 +39,7 @@ public class craftManager : MonoBehaviour
 				}
 		}
 		private alertManager alertCtrl;
+		private InputManager inCtrl;
 		private ArrayList m_unlocked = new ArrayList ();
 		private ArrayList m_allRecipes = new ArrayList ();
 		private bool guiMenuUp = false;
@@ -121,6 +122,8 @@ public class craftManager : MonoBehaviour
 		{
 				m_craftGui = gameObject.GetComponent<craftGui> ();
 				alertCtrl=gameObject.GetComponent<alertManager>();
+				inCtrl=gameObject.GetComponent<InputManager>();
+
 				
 				m_allRecipes.Add (new Recipe (0,
 		            new Dictionary<string,int>{{"Regolith",4}},
@@ -250,11 +253,11 @@ public class craftManager : MonoBehaviour
 		// Update is called once per frame
 		public void selection ()
 		{
-				bool wPres = Input.GetKeyDown ("w");
-				bool aPres = Input.GetKeyDown ("a");
-				bool sPres = Input.GetKeyDown ("s");
-				bool dPres = Input.GetKeyDown ("d");
-				bool rPres = Input.GetKeyDown ("r");
+				bool wPres = inCtrl.guiUpPress();
+				bool aPres = inCtrl.guiLeftPress();
+				bool sPres = inCtrl.guiDownPress();
+				bool dPres = inCtrl.guiRightPress();
+				bool rPres = inCtrl.usePress();
 				int MAX_NUM_PER_ROW = 3;
 				int MAX_NUM_PER_COLUMN = 4;
 				int NUM_COLS = m_unlocked.Count / MAX_NUM_PER_COLUMN;
@@ -290,7 +293,7 @@ public class craftManager : MonoBehaviour
 		}
 		public void runCraft ()
 		{
-				bool yPres = Input.GetKeyDown ("f");
+				bool yPres = inCtrl.useBuildPress();
 				if (yPres && checkForFactory ()) {
 						if (guiMenuUp == true) {
 								guiMenuUp = false;

@@ -14,6 +14,7 @@ public class inventoryManager : MonoBehaviour
 		private bool invenUp = false;
 		private int m_numSelected = 0;
 		private alertManager alertCtrl;
+		private InputManager inCtrl;
 		
 		public GameObject getSelObj ()
 		{
@@ -44,6 +45,7 @@ public class inventoryManager : MonoBehaviour
 /*				GameObject m_startItems[]={};*/
 				m_inventory = new ArrayList ();
 				alertCtrl=gameObject.GetComponent<alertManager>();
+				inCtrl=gameObject.GetComponent<InputManager>();
 
 /*				foreach (var item in m_startItems) {
 						m_inventory.Add (m_inventory.Count, item);
@@ -75,11 +77,11 @@ public class inventoryManager : MonoBehaviour
 		void runInven ()
 		{
 				InventoryGui invenGui = gameObject.GetComponent<InventoryGui> ();
-				bool iPress = Input.GetKeyDown ("i");
-				bool selLeft = Input.GetKeyDown ("q");
-				bool selRight = Input.GetKeyDown ("e");
-				bool rPress = Input.GetKeyDown ("r");
-				bool pPress = Input.GetKeyDown ("p");
+				bool iPress = inCtrl.invenPress();
+				bool selLeft = inCtrl.invenLeftPress();
+				bool selRight = inCtrl.invenRightPress();
+				bool rPress = inCtrl.usePress();
+				bool pPress = inCtrl.dropPress();
 				if (pPress) {
 						RemoveSelItem ();
 				}
