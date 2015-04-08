@@ -151,8 +151,8 @@ public class newGameController : MonoBehaviour
 		}
 		private string m_fileName;
 		private ArrayList features = new ArrayList (); 
-		public static int m_endX = 40;
-		public static int m_endY = 80;
+		public static int m_endX = 35;
+		public static int m_endY = 70;
 		public static int m_surfaceSize = 3;
 		//In world coordinates
 		private static int m_startX = (m_endX / 2) - 3;
