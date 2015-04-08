@@ -34,6 +34,8 @@ public class escManager : MonoBehaviour
 		public bool startingGame;
 		public  int m_numSelected;
 		public ArrayList m_menuList;
+		public ArrayList m_startList;
+		public ArrayList m_gameList; 
 		public bool escMenuUp = false;
 		public bool getEscMenuUp ()
 		{
@@ -41,16 +43,29 @@ public class escManager : MonoBehaviour
 		}
 		public virtual void addAllItems ()
 		{
+
 				m_menuList = new ArrayList ();	
-				menuItem item1 = new menuItem ("New Game/Back to Main Menu", newFile);
+				m_startList = new ArrayList();
+
+				menuItem item1 = new menuItem ("Back to Main Menu", newFile);
 				menuItem item2 = new menuItem ("Load Game", loadFile);
 				menuItem item3 = new menuItem ("Save Game", saveFile);
-				menuItem item4 = new menuItem ("Exit Game/Self-Destruct", exitGame);
-				m_menuList.Add (item1);
+				menuItem item4 = new menuItem ("Self-Destruct", exitGame);
+				m_menuList.Add (item4);
 				m_menuList.Add (item2);
 				m_menuList.Add (item3);
-				m_menuList.Add (item4);
+				m_menuList.Add (item1);
+
+				m_startList.Add(new menuItem ("New Game", newFile));
+				m_startList.Add(new menuItem ("Load Game", loadFile));
+				m_startList.Add(new menuItem ("Save Game", saveFile));
+				m_startList.Add(new menuItem ("Exit Game", exitGame));
+
+				m_gameList =m_menuList;
+
 				m_numSelected = 0;
+
+
 		}
 		private void disableSpecial ()
 		{
@@ -198,11 +213,14 @@ public class escManager : MonoBehaviour
 		{
 				if (startingGame) {
 						discreteMovement mov = gameObject.GetComponent<discreteMovement> ();
+						m_menuList=m_startList;
 /*						if (mov != null) {
 								//mov.m_allowMovement = false;
 						} else {
 								Debug.Log ("Couldn't find discrete movement controller");
 						}*/
+				}else{
+						m_menuList=m_gameList;
 				}
 				escGui escMenu = gameObject.GetComponent<escGui> ();
 				bool escPress = inCtrl.escPress();

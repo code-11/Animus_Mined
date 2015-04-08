@@ -1,0 +1,61 @@
+Instructions for AM:
+
+You play as a NASA mining robot sent to a strange new planet. Scans indicate the presence of an strange blue diamond artifact that NASA wants to study further on earth.  
+
+Your job is to find this artifact. 
+
+Controls:
+	wasd              	Movement. Also movement in menus.
+	up/down/left/right	Mine in directions  
+	r                 	Use items from inventory. Also select in menus.
+	f                   Interact with buildings
+	q/e                 Quick select through inventory 
+	i                   Toggle inventory visibility
+	c                   Alert Menu
+	p                   Drop Item
+	esc                 Esc Menu
+
+Feeling adventurous? Ignore the rest of this readme and figure stuff out as you go!
+
+Mechanics:
+	
+	Ore Types:
+		World Boundry         Dark Red. Invincible, cannot be mined.
+	G	Regolith              Sandy color. Can fall via gravity. Gives Regolith
+		Packed Regolith		  Brown. Tougher than regular regolith. Gives more regolith
+		Rock				  Dark Brown. Gives rock.
+		Taenite				  Purple. Gives Nickel
+		Kamacite			  Reddish. Gives Iron
+		Quartz    			  White. Gives Quartz. Rare
+		Magnesium			  Shitty looking. You'll know. Also Rare
+	G	Hypersthene			  Twice as big as normal blocks. Can fall via gravity. Very Tough. Gives Rock 
+		Feldspar			  Very Tough. Gives nothing
+	W	Water				  Cannot be mined and spreads in all available directions. Will kill you apon contact.
+
+	Buildings:
+		Ladder				  Can travel upwards
+		Factory				  A black hollow square. Can craft here using "f".
+		Replicator            Life Counter. Will go from green to yellow to red lives are lost. Will self destruct when no lives.
+
+	Pickups:
+		Ladder Pickup         Green box. Gives ladders.
+	G	Ore Pickups           Black circles. Gives whatever ore you mined. 
+		Artifact              Blue Diamond. Wins the Game!
+
+	Mining:
+		Hold down arrow keys in direction of mining
+		Mining produces pickups which you then can pickup
+		Some ores take longer to mine than others
+
+	Hazards and Death:
+		Careful of water and falling blocks. 
+		You are the only enemy in AM.
+		If you die you will loose all your items and respawn at a random replicator
+		If you run out of replicators, you lose the game.
+
+	Crafting:
+		You can craft at a factory by selecting a recipe from the menu.
+		
+
+	Winning:
+		If you touch the artifact you will win!

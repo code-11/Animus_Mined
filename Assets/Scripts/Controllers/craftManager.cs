@@ -139,7 +139,7 @@ public class craftManager : MonoBehaviour
 				m_allRecipes.Add (new Recipe (2,
 		            new Dictionary<string,int>{{"Regolith",1},{"Rock",1}},
 					new Dictionary<string,int>{{"Support",1}},
-					false
+					true
 				));
 				m_allRecipes.Add (new Recipe (3,
 					new Dictionary<string,int>{{"Iron",1},{"Nickel",1},{"Magnesium",1}},
