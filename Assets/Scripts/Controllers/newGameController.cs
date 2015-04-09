@@ -243,8 +243,9 @@ public class newGameController : MonoBehaviour
 				});
 				features.Add (startingArea);
 
-				Feature endArtifact= new Feature(1,1,m_surfaceSize/2,m_surfaceSize/2,m_endY-4,m_endY-4,1000,true,"End");
-				endArtifact.genFilling(new string[]{A});
+				Feature endArtifact= new Feature(1,2,m_surfaceSize/2,m_surfaceSize/2,m_endY-4,m_endY-4,1000,true,"End");
+				endArtifact.loadFilling(new string[,]{{d,A}});
+				//endArtifact.genFilling(new string[]{A});
 				features.Add(endArtifact);
 				
 				Feature magnesiumInclusion = new Feature(4,5,1,-1,m_surfaceSize+(m_endY/3),-1,2, false,"Magnesium");

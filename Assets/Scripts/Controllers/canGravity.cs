@@ -85,7 +85,7 @@ public class canGravity : MonoBehaviour
 
 		private void hitLogic(GameObject hitObj){
 			//Debug.Log("Falling object hit something 2");
-			if (hitObj.CompareTag ("PickUp")) {
+			if (hitObj.CompareTag ("PickUp")&&(hitObj.name!="prefabArtifactPickUp")) {
 					Destroy (hitObj);
 			} else if (hitObj.CompareTag ("Player")) {
 					if (m_killOnHit) {
