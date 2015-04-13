@@ -31,6 +31,9 @@ public class discreteMovement : MonoBehaviour
 				m_gravityWaiting = false;
 				m_allowFalling = true;
 				inCtrl=gameObject.GetComponent<InputManager>();
+
+				Screen.lockCursor = true;
+				Screen.showCursor = false;
 		}
 	
 		// Update is called once per frame
