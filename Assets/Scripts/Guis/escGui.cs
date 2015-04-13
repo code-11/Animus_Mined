@@ -60,6 +60,9 @@ public class escGui : MonoBehaviour
 				makeBackround ();
 				restOfGui (0);
 			}
+			GUI.color=Color.white;
+			GUI.Label(new Rect (centerX-100, centerY + (height / 2)-20, width, height),"Navigate with WASD. Select with R");
+
 				
 		}
 }

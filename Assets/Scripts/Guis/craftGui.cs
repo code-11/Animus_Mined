@@ -86,6 +86,9 @@ public class craftGui : MonoBehaviour
 		{
 				makeBackround ();
 				drawAllRecipes ();
+				GUI.color=Color.white;
+				GUI.Label(new Rect (centerX-100, localY + height-20, width, height),"Navigate with WASD. Select with R");
+
 				//drawRecipe ((craftController.Recipe)m_craftCrl.getRecipes () [0], leftMost, localY);
 		}
 }
