@@ -8,7 +8,19 @@ public class mineability : MonoBehaviour
 		public GameObject m_drop;
 		public int m_numDrop;
 		public int m_health = 100;
+
+		private int m_maxHealth;
+		private SpriteRenderer rend;
+
 		public int m_percentChance = 100;
+
+		public Sprite m_damaged1;
+		public Sprite m_damaged2;
+
+		void Start(){
+			m_maxHealth=m_health;
+			rend=gameObject.GetComponent<SpriteRenderer>();
+		}
 
 		bool doesDrop ()
 		{
@@ -26,6 +38,10 @@ public class mineability : MonoBehaviour
 								inven.setCharges (m_numDrop);
 						}
 						Destroy (this.gameObject);
+				}else if((m_health>=(m_maxHealth*1/3))&&(m_health<(m_maxHealth*2/3))){
+					rend.sprite=m_damaged1;
+				}else if ((m_health<(m_maxHealth*1/3))&&(m_health>0)){
+					rend.sprite=m_damaged2;
 				}
 		}
 		public int GetHealth ()
