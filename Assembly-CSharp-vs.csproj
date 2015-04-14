@@ -92,6 +92,7 @@
      <Compile Include="Assets\Scripts\Guis\escGui.cs" />
      <Compile Include="Assets\Scripts\Guis\msgGui.cs" />
      <Compile Include="Assets\indicator.cs" />
+     <Compile Include="Assets\soundManager.cs" />
      <Compile Include="Assets\winToken.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.4/UnityEngine.UI.dll</HintPath>

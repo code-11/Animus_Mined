@@ -40,6 +40,7 @@ public class craftManager : MonoBehaviour
 		}
 		private alertManager alertCtrl;
 		private InputManager inCtrl;
+		private soundManager soundCtrl;
 		private ArrayList m_unlocked = new ArrayList ();
 		private ArrayList m_allRecipes = new ArrayList ();
 		private bool guiMenuUp = false;
@@ -123,7 +124,7 @@ public class craftManager : MonoBehaviour
 				m_craftGui = gameObject.GetComponent<craftGui> ();
 				alertCtrl=gameObject.GetComponent<alertManager>();
 				inCtrl=gameObject.GetComponent<InputManager>();
-
+				soundCtrl=gameObject.GetComponent<soundManager>();
 				
 				m_allRecipes.Add (new Recipe (0,
 		            new Dictionary<string,int>{{"Regolith",4}},
@@ -186,10 +187,13 @@ public class craftManager : MonoBehaviour
 								GameObject resultObj = createResult (result.Key, result.Value);
 								inven.AddItem (resultObj);
 						}
-						
+						soundCtrl.playCraftSuccess();
+
 				} else {
 						//alertCtrl.setAlert("Not allowed to make this recipe");
 						Debug.Log ("Not allowed to make this recipe");
+						soundCtrl.playGenFail();
+
 				}
 		}
 		ArrayList evalPossible (int recipeNum)
@@ -228,6 +232,7 @@ public class craftManager : MonoBehaviour
 											//If had ingredient but not enough charges
 											alertCtrl.setAlert(debugInfo);
 										}else{
+											soundCtrl.playGenFail();
 											alertCtrl.setAlert("Didn't make because missing ingredient");
 										}
 									}
