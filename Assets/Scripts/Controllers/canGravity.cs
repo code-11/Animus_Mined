@@ -30,6 +30,19 @@ public class canGravity : MonoBehaviour
 				if (!m_waiting) {
 						StartCoroutine (stateMachine ());
 				}
+				if (m_curState==State.Wait){
+						vibrate();
+				}
+		}
+		private float sinParam(float t,float s,float amp){
+			float halfAmp=(amp/2);
+			return amp*Mathf.Sin(t*s);
+		}
+		private void vibrate(){
+			transform.localEulerAngles=new Vector3(0,0,sinParam(Time.time,30,7));
+		}
+		private void resetVibrate(){
+			transform.localEulerAngles=new Vector3(0,0,0);
 		}
 		IEnumerator stateMachine ()
 		{
@@ -45,6 +58,7 @@ public class canGravity : MonoBehaviour
 				} else if (m_curState == State.Wait) {
 						m_waiting = true;
 						yield return new WaitForSeconds (m_waitTime);
+						resetVibrate();
 						m_waiting = false;
 						m_curState=State.Fall;
 				} else if (m_curState == State.Fall) {
