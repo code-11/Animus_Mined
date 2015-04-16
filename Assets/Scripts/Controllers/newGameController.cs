@@ -242,11 +242,6 @@ public class newGameController : MonoBehaviour
 					{r,p,p,g,g,r}
 				});
 				features.Add (startingArea);
-
-				Feature endArtifact= new Feature(1,2,m_surfaceSize/2,m_surfaceSize/2,m_endY-4,m_endY-4,1000,true,"End");
-				endArtifact.loadFilling(new string[,]{{d,A}});
-				//endArtifact.genFilling(new string[]{A});
-				features.Add(endArtifact);
 				
 				Feature magnesiumInclusion = new Feature(4,5,1,-1,m_surfaceSize+(m_endY/3),-1,2, false,"Magnesium");
 				magnesiumInclusion.format (m_endX, m_endY);
@@ -340,6 +335,15 @@ public class newGameController : MonoBehaviour
 				Feature rightBound = new Feature (1, m_endY, m_endX, m_endX, 0, 0, 1000, true, "RightBound");
 				rightBound.genFilling (new string[]{"prefabInvBlk"});
 				rightBound.placeInWorld (m_endX, 0);
+
+				Feature endArtifact= new Feature(1,2,m_surfaceSize/2,m_surfaceSize/2,m_endY-4,m_endY-4,1000,true,"End");
+				endArtifact.loadFilling(new string[,]{{"prefabFeldspar","PickUps/prefabArtifactPickUp"}});
+				//endArtifact.genFilling(new string[]{A});
+				int posEndX=Random.Range(2,m_endX);
+				int posEndY=Random.Range(m_endY-12,m_endY-3);
+				endArtifact.placeInWorld(posEndX,posEndY);
+				endArtifact.placeInMatrix(posEndX,posEndY,filledMatrix);
+				//features.Add(endArtifact);
 
 				foreach (Feature feat in features) {
 						for (int y=0; y< filledMatrix.GetLength(1); y+=1) {
