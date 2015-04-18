@@ -187,10 +187,11 @@ public class craftManager : MonoBehaviour
 								GameObject resultObj = createResult (result.Key, result.Value);
 								inven.AddItem (resultObj);
 						}
+						alertCtrl.setAlert("Crafting Successful");
 						soundCtrl.playCraftSuccess();
 
 				} else {
-						//alertCtrl.setAlert("Not allowed to make this recipe");
+						alertCtrl.setAlert("Can't make this recipe");
 						Debug.Log ("Not allowed to make this recipe");
 						soundCtrl.playGenFail();
 
@@ -299,6 +300,7 @@ public class craftManager : MonoBehaviour
 		public void runCraft ()
 		{
 				bool yPres = inCtrl.useBuildPress();
+				bool escPres=inCtrl.escPress();
 				if (yPres && checkForFactory ()) {
 						if (guiMenuUp == true) {
 								guiMenuUp = false;
@@ -308,6 +310,10 @@ public class craftManager : MonoBehaviour
 								m_craftGui.enabled = true;
 						}
 						//createRecipeByNum (0);
+				}
+				if (guiMenuUp && escPres){
+					guiMenuUp = false;
+					m_craftGui.enabled = false;
 				}
 				if (guiMenuUp) {
 						selection ();

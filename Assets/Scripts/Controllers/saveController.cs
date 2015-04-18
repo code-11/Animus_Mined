@@ -125,11 +125,18 @@ public class saveController : MonoBehaviour
 		}
 		public void SaveAll ()
 		{
-				StreamWriter strWrite = File.CreateText (m_saveName); 
-				SaveResearch (strWrite);
-				SaveMessages (strWrite);
-				SavePlayer (strWrite);
-				SaveLevel (strWrite);
-				strWrite.Close ();
+				alertManager alertCtrl=gameObject.GetComponent<alertManager>();
+
+				try{
+					StreamWriter strWrite = File.CreateText (m_saveName); 
+					SaveResearch (strWrite);
+					SaveMessages (strWrite);
+					SavePlayer (strWrite);
+					SaveLevel (strWrite);
+					strWrite.Close ();
+					alertCtrl.setAlert("Save Game Successful");
+				}catch{
+					alertCtrl.setAlert("Save Game Failed");
+				}
 		}
 }

@@ -17,7 +17,8 @@ public class deathController : MonoBehaviour {
 		invenCtrl.resetInven();
 		GameObject a_replicator=GameObject.Find("prefabReplicator");
 		if (a_replicator!=null){
-			alertCtrl.setAlert("Uploading Neural Net");
+			replicatorController repr =a_replicator.GetComponent<replicatorController>();
+			alertCtrl.setAlert("Uploading Neural Net- "+(repr.m_bodies-1)+" robot bodies left");
 
 			StartCoroutine (killCam ());
 
