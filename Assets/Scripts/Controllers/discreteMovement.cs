@@ -33,7 +33,8 @@ public class discreteMovement : MonoBehaviour
 				inCtrl=gameObject.GetComponent<InputManager>();
 
 				Screen.lockCursor = true;
-				Screen.showCursor = false;
+				Cursor.lockState = CursorLockMode.Locked;
+				Cursor.visible=false;
 		}
 	
 		// Update is called once per frame
